@@ -15,25 +15,25 @@
 
 ## Используемые библиотеки
 
-### PHP
+#### PHP
 - **PHPMailer v5.2.1** https://github.com/PHPMailer/PHPMailer
 - **MobileESP (mdetect.php) r214** http://www.mobileesp.com
 
-### JS
+#### JS
 - **jQuery v2.1.3** http://docs.jquery.com/Downloading_jQuery
 - **Inline Form Validation Engine v2.6.2** https://github.com/posabsolute/jQuery-Validation-Engine
 - **JSDeferred v0.4.0** http://github.com/cho45/jsdeferred
 - **AJAX Upload ** http://valums.com/ajax-upload *версия устарела, но она стабильная, бесплатная и полностью удовлетворяет всем требованиям*
 
-### Фреймворк дизайна
+#### Фреймворк дизайна
 - **AdminLTE** v2.0.4 https://almsaeedstudio.com/preview *основан на Bootstrap v3.3.2*
 
-### Шрифт иконок
+#### Шрифт иконок
 - **Font Awesome v4.2.0** http://fortawesome.github.io/Font-Awesome
 
 ## Для тех, кто будет обновлять библиотеки
 
-### Обновление библиотеки Font Awesome
+#### Обновление библиотеки Font Awesome
 1. Скачайте новую версию отсюда http://fortawesome.github.io/Font-Awesome
 2. Поместите с заменой новые файлы сюда `/css/font-awesome`
 3. Откройте файл `/css/font-awesome/css/font-awesome.css`
@@ -61,6 +61,6 @@
 }
 ```
 
-### Отключаем файлы .map в js библиотеках
+#### Отключаем файлы .map в js библиотеках
 1. Для этого открываем новый файл с js-библиотекой, например `lightbox.min.js`.
 2. И комментируем строку с указанием `map-файла` или удаляем ее.
