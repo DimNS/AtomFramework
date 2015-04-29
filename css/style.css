@@ -41,7 +41,7 @@
 	z-index:2100;
 	display:none;
 	position:fixed;
-	width:600px;
+	width:360px;
 }
 
 .window_layer {position:absolute;top:0;left:0;width:100%;z-index:2100;display:none;}
@@ -60,112 +60,7 @@
 .login-page {padding:1px 0px;}
 label {font-weight:400;}
 .error-page>.error-content {padding-top:30px;}
+.main-header .navbar-custom-menu {margin-right:0px;}
+.main-header .navbar-custom-menu>.nav {margin-right:0px !important;}
+.main-header .navbar-custom-menu>.navbar-nav>li>.dropdown-menu {right:10px;}
 .navbar-nav>.user-menu>.dropdown-menu>li.user-header .fa-user {color:#fff;font-size:110px;}
-
-
-
-
-
-
-
-
-
-
-
-/* НАЧАЛО - Основные определенния
-input, select, textarea {border:1px #aed0ea solid !important;font-size:16px !important;}
-input[type="text"], input[type="password"] {padding:6px 10px !important;}
-
-.inputMicro {width:30px !important;}
-.inputMini {width:100px !important;}
-.inputNormal {width:200px !important;}
-.inputBig {width:300px !important;}
-
-.curhand {cursor:pointer;}
-.required {color:#ff3b0d;}
-.left {float:left;}
-.right {float:right;}
-.clearfix:after {
-	visibility:hidden;
-	display:block;
-	font-size:0;
-	content:" ";
-	clear:both;
-	height:0;
-}
-* html .clearfix             {zoom:1;} /* IE6 */
-/*:first-child+html .clearfix {zoom:1;} /* IE7 */
-/*
-
-.w1 {width:1px;}
-.wFull {width:100%;}
-/* ОКОНЧАНИЕ - Основные определенния */
-
-/* НАЧАЛО - Таблицы
-.table_zebra {border:0px;border-collapse:collapse;border:1px #999 solid;border-right:0px;}
-.table_zebra th {text-align:left;border-bottom:1px #999 solid;color:#428bca;}
-.table_zebra th, .table_zebra td {padding:3px;border-right:1px #999 solid;}
-.table_zebra tr:nth-child(even) td {background:transparent;}
-.table_zebra tr:nth-child(odd) td {background:#fcf8e3;}
-.table_zebra tr:hover td {background:#d9edf7;}
-
-.table_zebra_line {border:1px #999 solid;border-top:0px;border-collapse:collapse;}
-.table_zebra_line th {text-align:left;color:#428bca;}
-.table_zebra_line th, .table_zebra_line td {padding:3px;border-top:1px #999 solid;}
-.table_zebra_line tr:nth-child(even) td {background:transparent;}
-.table_zebra_line tr:nth-child(odd) td {background:#fcf8e3;}
-.table_zebra_line tr:hover td {background:#d9edf7;}
-/* ОКОНЧАНИЕ - Таблицы */
-
-/* НАЧАЛО - Landing
-.landing_top_left {margin-right:20px;}
-.landing_top_center {width:435px;}
-.landing_top_right {width:225px;}
-
-#landing_regnow {background:#c8f7c5;text-align:center;border-radius:10px;padding:13px 10px 25px 10px;}
-#landing_regnow p {font-size:20px;padding:0px;margin:0px;}
-#landing_regnow div {font-size:35px;font-family:'robotobold', sans-serif;text-transform:uppercase;padding-bottom:10px;}
-#landing_regnow a {font-size:20px;}
-
-#landing_login_form {background:#eee;text-align:center;border-radius:10px;padding:10px;}
-#landing_login_form input[type="text"] {width:183px;}
-#landing_login_form .password {width:154px !important;border-radius:3px 0px 0px 3px;border-right:0px !important;}
-#landing_login_form #show_hide_password {border-radius:0px 3px 3px 0px;margin-top:-2px;padding:7px;}
-#landing_login_form .links {font-size:12px;text-align:left;}
-#landing_login_form .login_separator1 {padding-top:10px;}
-#landing_login_form .login_separator2 {padding:10px 0px;}
-
-.landing_title {font-size:20px;font-family:'robotobold', sans-serif;padding-top:10px;}
-.landing_items {text-align:center;}
-.landing_item {display:inline-block;width:219px;margin:20px 7px 0px 7px;border:3px #c5eff7 solid;border-radius:10px;}
-.landing_item:hover {background:#c5eff7;}
-.landing_item:last-child {margin-right:0px;}
-.landing_item i {font-size:50px;padding-top:20px;padding-bottom:10px;}
-.landing_item div {font-size:18px;font-weight:bold;}
-.landing_item p {text-align:left;padding:10px;margin:0px;}
-
-.landing_item .fa-rub {color:#26A65B;}
-.landing_item .fa-envelope-o {color:#D2527F;}
-.landing_item .fa-line-chart {color:#663399;}
-.landing_item .fa-home {color:#446CB3;}
-.landing_item .fa-question {color:#D35400;}
-.landing_item .fa-magnet {color:#EF4836;}
-.landing_item .fa-trophy {color:#F4D03F;}
-.landing_item .fa-sort-numeric-desc {color:#6C7A89;}
-/* ОКОНЧАНИЕ - Landing */
-
-/* НАЧАЛО - Форма входа и регистрации
-#login_form {background:#eee;text-align:center;}
-#login_form .links {font-size:12px;text-align:left;}
-#login_form .login_separator1 {padding-top:10px;}
-#login_form .login_separator2 {padding:10px 0px;}
-
-#user_reg_block, #user_lost_block {position:fixed;width:520px;}
-/* КОНЕЦ - Форма входа и регистрации */
-
-/* НАЧАЛО - Сообщение о пустой таблице, когда нет данных
-.empty_message {padding:20px;}
-.empty_message div {font-family:'robotobold', sans-serif;font-size:25px;color:#cc0000;padding-bottom:5px;}
-.empty_message i {font-size:50px;}
-.empty_message span {font-size:16px;}
-/* КОНЕЦ - Сообщение о пустой таблице, когда нет данных */

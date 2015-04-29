@@ -29,6 +29,7 @@ use App\Utility\Func;
 			</div>
 		</div>
 
+		<!-- Changelog -->
 		<div id="changelog" class="window_layer">
 			<div class="window_layer_box">
 				<div class="modal-content">
@@ -46,6 +47,7 @@ use App\Utility\Func;
 			</div>
 		</div>
 
+		<!-- User registration -->
 		<div id="user_reg" class="window">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -76,6 +78,7 @@ use App\Utility\Func;
 			</div>
 		</div>
 
+		<!-- User lost password -->
 		<div id="user_lost" class="window">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -97,6 +100,7 @@ use App\Utility\Func;
 			</div>
 		</div>
 
+		<!-- Overlays -->
 		<div id="ajax_overlay"></div>
 		<div id="window_overlay"></div>
 		<div id="ajax_waiter" title="Идёт обмен данными..."><div id="ajax_loader"></div></div>
