@@ -24,7 +24,7 @@
 - **jQuery v2.1.3** http://docs.jquery.com/Downloading_jQuery
 - **JSDeferred v0.4.0** http://github.com/cho45/jsdeferred
 - **Inline Form Validation Engine v2.6.2** https://github.com/posabsolute/jQuery-Validation-Engine
-- **AJAX Upload ** http://valums.com/ajax-upload *версия устарела, но она стабильная, бесплатная и полностью удовлетворяет всем требованиям*
+- **AJAX Upload** http://valums.com/ajax-upload *версия устарела, но она стабильная, бесплатная и полностью удовлетворяет всем требованиям*
 
 #### Фреймворк дизайна
 - **AdminLTE** v2.0.4 https://almsaeedstudio.com/preview *основан на Bootstrap v3.3.2*
