@@ -1,12 +1,12 @@
 <?php
 /**
-* Error
-*
-* Класс для работы с файлом ошибок
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Error
+ *
+ * Класс для работы с файлом ошибок
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Utility;
 
@@ -15,24 +15,24 @@ use App\Utility\Func;
 
 class Error {
 	/**
-	* Основная функция для добавления записи об ошибке
-	*
-	* ___FILE___ - путь к файлу
-	* ___FUNCTION___ - имя функции
-	* ___LINE___ - номер текущей строки
-	*
-	* @param string $show Статус показывать или нет ошибку (1|0)
-	* @param string $str_user Строка с ошибкой для пользователя
-	* @param string $str_admin Строка с ошибкой для администратора
-	* @param string $file Файл в котором произошла ошибка
-	* @param string $function Функция в которой произошла ошибка
-	* @param integer $line Строка в которой произошла ошибка
-	*
-	* @return string Отображаем сообщение если параметр $show со значением 1
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Основная функция для добавления записи об ошибке
+	 *
+	 * ___FILE___     - путь к файлу
+	 * ___FUNCTION___ - имя функции
+	 * ___LINE___     - номер текущей строки
+	 *
+	 * @param string  $show      Статус показывать или нет ошибку (1|0)
+	 * @param string  $str_user  Строка с ошибкой для пользователя
+	 * @param string  $str_admin Строка с ошибкой для администратора
+	 * @param string  $file      Файл в котором произошла ошибка
+	 * @param string  $function  Функция в которой произошла ошибка
+	 * @param integer $line      Строка в которой произошла ошибка
+	 *
+	 * @return string Отображаем сообщение если параметр $show со значением 1
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function ins($show, $str_user, $str_admin, $file, $function, $line) {
 		$ip = Func::get_ip();
 

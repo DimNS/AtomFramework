@@ -1,10 +1,10 @@
 <?php
 /**
-* Главный файл обрабатывающий все запросы
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Главный файл обрабатывающий все запросы
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 header('Content-type: text/html; charset=UTF-8');
 

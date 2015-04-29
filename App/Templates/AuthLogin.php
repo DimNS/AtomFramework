@@ -1,10 +1,10 @@
 <?php
 /**
-* Показывает блок с формой входа
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Показывает блок с формой входа
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 use App\Configs\Config;
 use App\Utility\Template;

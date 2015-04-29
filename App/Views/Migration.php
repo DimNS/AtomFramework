@@ -1,12 +1,12 @@
 <?php
 /**
-* Migration
-*
-* Класс для представления страницы результата работы миграции
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Migration
+ *
+ * Класс для представления страницы результата работы миграции
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Views;
 
@@ -15,15 +15,15 @@ use App\Utility\Template;
 
 class Migration {
 	/**
-	* Показать результат
-	*
-	* @param array $data Массив данных
-	*
-	* @return null
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Показать результат
+	 *
+	 * @param array $data Массив данных
+	 *
+	 * @return null
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function show($data) {
 		Template::show(['Header']);
 		?>

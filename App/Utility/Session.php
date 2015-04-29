@@ -1,12 +1,12 @@
 <?php
 /**
-* Session
-*
-* Класс для работы с сессией
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Session
+ *
+ * Класс для работы с сессией
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Utility;
 
@@ -15,15 +15,15 @@ use App\Utility\Func;
 
 class Session {
 	/**
-	* Создать сессию для пользователя
-	*
-	* @param integer $user_id
-	*
-	* @return integer Статус создания сессии (0|1)
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Создать сессию для пользователя
+	 *
+	 * @param integer $user_id
+	 *
+	 * @return integer Статус создания сессии (0|1)
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function create($user_id) {
 		$params = [
 			'action' => 'get',
@@ -73,13 +73,13 @@ class Session {
 	}
 
 	/**
-	* Найти сессию, если сессия уже есть в базе то обновить атрибуты объекта
-	*
-	* @return boolean Статус поиска сессии
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Найти сессию, если сессия уже есть в базе то обновить атрибуты объекта
+	 *
+	 * @return boolean Статус поиска сессии
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function find() {
 		// Удаляем подвисшие сессии
 		Config::$global['db']->query("DELETE FROM `" . Config::$global['db_prefix'] . "session`
@@ -135,13 +135,13 @@ class Session {
 	}
 
 	/**
-	* Удалить сессию пользователя
-	*
-	* @return null
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Удалить сессию пользователя
+	 *
+	 * @return null
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function del() {
 		$db_result = Config::$global['db']->query("DELETE FROM `" . Config::$global['db_prefix'] . "session`
 			WHERE `id_ses` = :id_ses

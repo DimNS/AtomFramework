@@ -1,12 +1,12 @@
 <?php
 /**
-* Email
-*
-* Класс для отправки писем на почту
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Email
+ *
+ * Класс для отправки писем на почту
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Utility;
 
@@ -15,22 +15,22 @@ use App\Utility\Email;
 
 class Email {
 	/**
-	* Получение информации о клиенте, фактически авторизация
-	*
-	* @param string $type Тип письма (reg|reset|lost)
-	* @param string $email Адрес для отправки
-	* @param array $param Массив данных уникальных для каждого типа писем
-	*
-	* Типы писем:
-	* reg (email, password) - Успешная регистрация
-	* reset (email, hash) - Запрос на сброс пароля
-	* lost (email, password) - Напоминание пароля
-	*
-	* @return array
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Получение информации о клиенте, фактически авторизация
+	 *
+	 * @param string $type  Тип письма (reg|reset|lost)
+	 * @param string $email Адрес для отправки
+	 * @param array  $param Массив данных уникальных для каждого типа писем
+	 *
+	 * Типы писем:
+	 * reg   (email, password) - Успешная регистрация
+	 * reset (email, hash)     - Запрос на сброс пароля
+	 * lost  (email, password) - Напоминание пароля
+	 *
+	 * @return array
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function send($type, $email, $param) {
 		if (!Config::$global['production']) {
 			return true;
@@ -91,13 +91,13 @@ class Email {
 	}
 
 	/**
-	* Шапка письма
-	*
-	* @return string
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Шапка письма
+	 *
+	 * @return string
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function head_mail() {
 		if (!Config::$global['production']) {
 			$logo = Config::$global['path_short_root'] . '/img/logo-mail.png';
@@ -118,13 +118,13 @@ class Email {
 	}
 
 	/**
-	* Подвал письма
-	*
-	* @return string
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Подвал письма
+	 *
+	 * @return string
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function foot_mail() {
 		return '
 							<tr>
@@ -144,16 +144,16 @@ class Email {
 	}
 
 	/**
-	* Успешная регистрация
-	*
-	* @param string $email Адрес электронной почты
-	* @param array $password Пароль
-	*
-	* @return string
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Успешная регистрация
+	 *
+	 * @param string $email    Адрес электронной почты
+	 * @param array  $password Пароль
+	 *
+	 * @return string
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function msg_reg($email, $password) {
 		return '
 			<tr>
@@ -199,16 +199,16 @@ class Email {
 	}
 
 	/**
-	* Запрос на сброс пароля
-	*
-	* @param string $email Адрес электронной почты
-	* @param array $hash Хеш для сброса пароля
-	*
-	* @return string
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Запрос на сброс пароля
+	 *
+	 * @param string $email Адрес электронной почты
+	 * @param array  $hash  Хеш для сброса пароля
+	 *
+	 * @return string
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function msg_reset($email, $hash) {
 		return '
 			<tr>
@@ -229,16 +229,16 @@ class Email {
 	}
 
 	/**
-	* Напоминание пароля
-	*
-	* @param string $email Адрес электронной почты
-	* @param array $password Пароль
-	*
-	* @return string
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Напоминание пароля
+	 *
+	 * @param string $email    Адрес электронной почты
+	 * @param array  $password Пароль
+	 *
+	 * @return string
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function msg_lost($email, $password) {
 		return '
 			<tr>

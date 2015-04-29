@@ -1,12 +1,12 @@
 <?php
 /**
-* User
-*
-* Представление пользователей
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * User
+ *
+ * Представление пользователей
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Views;
 
@@ -14,15 +14,15 @@ use App\Utility\Template;
 
 class User {
 	/**
-	* Показать профиль
-	*
-	* @param array $data Массив данных
-	*
-	* @return null
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Показать профиль
+	 *
+	 * @param array $data Массив данных
+	 *
+	 * @return null
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function profile($data) {
 		Template::show(['Header', 'HeaderInner']);
 		?>

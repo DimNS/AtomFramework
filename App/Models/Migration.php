@@ -1,12 +1,12 @@
 <?php
 /**
-* Migration
-*
-* Модель для применения изменений в БД
-*
-* @version 1 14.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Migration
+ *
+ * Модель для применения изменений в БД
+ *
+ * @version 1 14.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Models;
 
@@ -14,13 +14,13 @@ use App\Configs\Config;
 
 class Migration {
 	/**
-	* Установка с нуля
-	*
-	* @return array
-	*
-	* @version 1 14.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Установка с нуля
+	 *
+	 * @return array
+	 *
+	 * @version 1 14.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function install() {
 		$file = Config::$global['path_home_root'] . '/install.sql';
 
@@ -82,13 +82,13 @@ class Migration {
 	}
 
 	/**
-	* Применение изменений
-	*
-	* @return array
-	*
-	* @version 1 14.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Применение изменений
+	 *
+	 * @return array
+	 *
+	 * @version 1 14.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function change() {
 		$file = Config::$global['path_home_root'] . '/change.sql';
 
@@ -147,20 +147,20 @@ class Migration {
 }
 
 /**
-* Функция разделяет SQL-запросы по разделителю ";" и возвращает массив запросов.
-* Пустые запросы игнорируются.
-* :NOTE:
-* Функнция способна быстро обработать достаточно большие SQL дампы!
-* Дамп размером 1.6 мегабайта (15000 запросов) обрабатывается за 3 секунды на Intel Celeron 3000 MGz!
-*
-* @param    string  $sql                 SQL запросы
-* @param    bool    $is_strip_comments   вырезать комментарии?
-* @return   array
-*
-* @author   Nasibullin Rinat <n a s i b u l l i n  at starlink ru>
-* @charset  ANSI
-* @version  3.0.3
-*/
+ * Функция разделяет SQL-запросы по разделителю ";" и возвращает массив запросов.
+ * Пустые запросы игнорируются.
+ * :NOTE:
+ * Функнция способна быстро обработать достаточно большие SQL дампы!
+ * Дамп размером 1.6 мегабайта (15000 запросов) обрабатывается за 3 секунды на Intel Celeron 3000 MGz!
+ *
+ * @param    string  $sql                 SQL запросы
+ * @param    bool    $is_strip_comments   вырезать комментарии?
+ * @return   array
+ *
+ * @author   Nasibullin Rinat <n a s i b u l l i n  at starlink ru>
+ * @charset  ANSI
+ * @version  3.0.3
+ */
 function sql_split($sql, $is_strip_comments = true)
 {
 	static $_is_callback       = false;

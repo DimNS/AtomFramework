@@ -1,12 +1,12 @@
 <?php
 /**
-* DBMySQL
-*
-* Класс для работы с БД MySQL
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * DBMySQL
+ *
+ * Класс для работы с БД MySQL
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Utility;
 
@@ -16,38 +16,38 @@ use App\Utility\Func;
 
 class DBMySQL {
 	/**
-	* @var string $host Сервер БД
-	*/
+	 * @var string $host Сервер БД
+	 */
 	private $host;
 
 	/**
-	* @var string $database Имя БД
-	*/
+	 * @var string $database Имя БД
+	 */
 	private $database;
 
 	/**
-	* @var string $user Логин пользователя
-	*/
+	 * @var string $user Логин пользователя
+	 */
 	private $user;
 
 	/**
-	* @var string $password Пароль пользователя
-	*/
+	 * @var string $password Пароль пользователя
+	 */
 	private $password;
 
 	/**
-	* @var integer $connect_id Идентификатор соединения с БД
-	*/
+	 * @var integer $connect_id Идентификатор соединения с БД
+	 */
 	private $connect_id = 0;
 
 	/**
-	* Конструктор класса
-	*
-	* @return null
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Конструктор класса
+	 *
+	 * @return null
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	function __construct($h, $d, $u, $p) {
 		$this->host = $h;
 		$this->database = $d;
@@ -56,13 +56,13 @@ class DBMySQL {
 	}
 
 	/**
-	* Соединение с БД
-	*
-	* @return integer Идентификатор соединения
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Соединение с БД
+	 *
+	 * @return integer Идентификатор соединения
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	private function connect() {
 		if (gettype($this->connect_id) == 'integer') {
 			// Пробуем подключиться к БД
@@ -79,16 +79,16 @@ class DBMySQL {
 	}
 
 	/**
-	* Выполнение запроса
-	*
-	* @param string $query_str Строка запроса
-	* @param array $query_data Массив с данными
-	*
-	* @return array|integer Возвращается результат выполнения запроса в зависимости от типа запроса
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Выполнение запроса
+	 *
+	 * @param string $query_str  Строка запроса
+	 * @param array  $query_data Массив с данными
+	 *
+	 * @return array|integer Возвращается результат выполнения запроса в зависимости от типа запроса
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	function query($query_str, $query_data) {
 		$this->connect();
 
@@ -135,17 +135,17 @@ class DBMySQL {
 	}
 
 	/**
-	* Выполнение нескольких запросов в одном
-	*
-	* @param string $table_name Имя таблицы
-	* @param array $data_fields Массив со списком полей
-	* @param array $query_data Массив с данными
-	*
-	* @return integer Возвращаем статус выполнения (1 или -1)
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Выполнение нескольких запросов в одном
+	 *
+	 * @param string $table_name  Имя таблицы
+	 * @param array  $data_fields Массив со списком полей
+	 * @param array  $query_data  Массив с данными
+	 *
+	 * @return integer Возвращаем статус выполнения (1 или -1)
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	function many_inserts($table_name, $data_fields, $query_data) {
 		$this->connect();
 
@@ -185,16 +185,16 @@ class DBMySQL {
 	}
 
 	/**
-	* Сообщение об ошибке при выполнении запроса
-	*
-	* @param string $query_str Строка запроса
-	* @param string $msg Сообщение с ошибкой
-	*
-	* @return integer Возвращаем статус ошибки
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Сообщение об ошибке при выполнении запроса
+	 *
+	 * @param string $query_str Строка запроса
+	 * @param string $msg       Сообщение с ошибкой
+	 *
+	 * @return integer Возвращаем статус ошибки
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	private function error($query_str, $msg) {
 		Error::ins(0, 'Извините произошла ошибка в БД', $msg . ' (' . $query_str . ')', __FILE__, __FUNCTION__, __LINE__);
 		return -1;

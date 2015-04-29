@@ -1,10 +1,10 @@
 <?php
 /**
-* Функции системы
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Функции системы
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 use App\Configs\Config;
 
@@ -83,38 +83,38 @@ if (!isset($_REQUEST['ajax'])) {
 //
 
 /**
-* @var Config::$global['currtime'] Текущее время (integer)
-*/
+ * @var Config::$global['currtime'] Текущее время (integer)
+ */
 Config::$global['currtime'] = time();
 
 /**
-* @var Config::$global['start_script'] Врема запуска скрипта (integer)
-*/
+ * @var Config::$global['start_script'] Врема запуска скрипта (integer)
+ */
 Config::$global['start_script'] = microtime(true);
 
 /**
-* @var Config::$global['mobile'] Мобильный браузер или нет (boolean)
-*/
+ * @var Config::$global['mobile'] Мобильный браузер или нет (boolean)
+ */
 Config::$global['mobile'] = $mdetect->DetectMobileQuick();
 
 /**
-* @var Config::$global['start_year'] Год запуска проекта (string)
-*/
+ * @var Config::$global['start_year'] Год запуска проекта (string)
+ */
 Config::$global['start_year'] = (date('Y', Config::$global['currtime']) == Config::$global['start_year'] ? Config::$global['start_year'] : Config::$global['start_year'] . '-' . date('Y', Config::$global['currtime']));
 
 /**
-* @var Config::$global['session_die_time'] Время удаления подвисших сессий (integer)
-*/
+ * @var Config::$global['session_die_time'] Время удаления подвисших сессий (integer)
+ */
 Config::$global['session_die_time'] = Config::$global['currtime'] - Config::$global['session_die_time'];
 
 /**
-* @var Config::$global['path_http_root'] Виртуальный путь до папки проекта (string)
-*/
+ * @var Config::$global['path_http_root'] Виртуальный путь до папки проекта (string)
+ */
 Config::$global['path_http_root'] = 'http://' . $_SERVER['HTTP_HOST'] . Config::$global['path_short_root'];
 
 /**
-* @var Config::$global['path_home_root'] Абсолютный путь до папки с проектом (string)
-*/
+ * @var Config::$global['path_home_root'] Абсолютный путь до папки с проектом (string)
+ */
 Config::$global['path_home_root'] = $_SERVER['DOCUMENT_ROOT'] . Config::$global['path_short_root'];
 
 //

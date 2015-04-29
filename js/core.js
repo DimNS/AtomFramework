@@ -1,9 +1,9 @@
 /**
-* Общие функции JavaScript
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Общие функции JavaScript
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 //
 //
@@ -38,15 +38,15 @@ $('body').on('click', '#window_overlay, .window_layer', function() {
 });
 
 /**
-* Открыть окно по идентификатору
-*
-* @param string wndID Идентификатор окна
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Открыть окно по идентификатору
+ *
+ * @param string wndID Идентификатор окна
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function windowOpen(wndID) {
 	if ($('#' + wndID).hasClass('window_layer')) {
 		// Всплывающее окно как Вконтакте
@@ -68,15 +68,15 @@ function windowOpen(wndID) {
 }
 
 /**
-* Закрыть окно по идентификатору
-*
-* @param string wndID Идентификатор окна
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Закрыть окно по идентификатору
+ *
+ * @param string wndID Идентификатор окна
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function windowClose(wndID) {
 	switch (wndID) {
 		case 'changelog':
@@ -115,18 +115,18 @@ function windowClose(wndID) {
 //
 
 /**
-* Показать подтверждение (confirm)
-*
-* @param string htmlTitle Текст заголовка
-* @param string htmlBody Текст подтверждения
-* @param string funcOK Код функции если нажали OK
-* @param string funcCancel Код функции если нажали Отмена
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Показать подтверждение (confirm)
+ *
+ * @param string htmlTitle  Текст заголовка
+ * @param string htmlBody   Текст подтверждения
+ * @param string funcOK     Код функции если нажали OK
+ * @param string funcCancel Код функции если нажали Отмена
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function showConfirm(htmlTitle, htmlBody, funcOK, funcCancel) {
 	windowActive = 'atom_confirm';
 	$('#atom_confirm .modal-title').html(htmlTitle);
@@ -159,16 +159,16 @@ function showConfirm(htmlTitle, htmlBody, funcOK, funcCancel) {
 //
 
 /**
-* Показать ошибку (alert)
-*
-* @param string type Код ошибки
-* @param string message Текст сообщения
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Показать ошибку (alert)
+ *
+ * @param string type    Код ошибки
+ * @param string message Текст сообщения
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function showMessage(type, message) {
 	$('#alerts-container .alert').hide();
 	$('#alerts-container .alert-' + type + ' span').html(message);

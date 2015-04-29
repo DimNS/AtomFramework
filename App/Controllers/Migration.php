@@ -1,12 +1,12 @@
 <?php
 /**
-* Migration
-*
-* Класс для применения изменений в БД
-*
-* @version 1 14.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Migration
+ *
+ * Класс для применения изменений в БД
+ *
+ * @version 1 14.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Controllers;
 
@@ -14,15 +14,15 @@ use App\Configs\Config;
 
 class Migration {
 	/**
-	* Запуск контроллера
-	*
-	* @param array $params Массив маршрута
-	*
-	* @return content
-	*
-	* @version 1 14.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Запуск контроллера
+	 *
+	 * @param array $params Массив маршрута
+	 *
+	 * @return content
+	 *
+	 * @version 1 14.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function start($params) {
 		if ($params['params']['token'] == Config::$global['db_migration_token']) {
 			switch ($params['action']) {

@@ -1,9 +1,9 @@
 /**
-* Функции JavaScript для AJAX
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Функции JavaScript для AJAX
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 //
 //
@@ -26,16 +26,16 @@ $.ajaxSetup({
 });
 
 /**
-* Отображение ошибки AJAX
-*
-* @param string status Код ошибки
-* @param string text Текст сообщения
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Отображение ошибки AJAX
+ *
+ * @param string status Код ошибки
+ * @param string text   Текст сообщения
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function ajax_error(status, text) {
 	switch (status)
 	{
@@ -48,15 +48,15 @@ function ajax_error(status, text) {
 };
 
 /**
-* Блок ожидания
-*
-* @param string action Показать или скрыь блок ожиания (show|hide)
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Блок ожидания
+ *
+ * @param string action Показать или скрыь блок ожиания (show|hide)
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function ajax_waiter(action) {
 	if (action == 'show') {
 		// Показ блока ожидания
@@ -95,13 +95,13 @@ var cPreloaderTimeout = false;
 var SECONDS_BETWEEN_FRAMES = 0;
 
 /**
-* Запустить анимацию
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Запустить анимацию
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function startAnimation() {
 	document.getElementById('ajax_loader').style.backgroundImage = 'url(' + cImageSrc + ')';
 	document.getElementById('ajax_loader').style.width = cWidth + 'px';
@@ -114,13 +114,13 @@ function startAnimation() {
 };
 
 /**
-* Продолжить анимацию
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Продолжить анимацию
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function continueAnimation() {
 	cXpos += cFrameWidth;
 	cIndex += 1;
@@ -137,29 +137,29 @@ function continueAnimation() {
 };
 
 /**
-* Остановить анимацию
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Остановить анимацию
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function stopAnimation() {
 	clearTimeout(cPreloaderTimeout);
 	cPreloaderTimeout = false;
 };
 
 /**
-* Загрузка изображения прелоадера
-*
-* @param array s Путь до изображения
-* @param array fun Функция при успешном выполнении
-*
-* @return null
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Загрузка изображения прелоадера
+ *
+ * @param array s   Путь до изображения
+ * @param array fun Функция при успешном выполнении
+ *
+ * @return null
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 function imageLoader(s, fun) {
 	clearTimeout(cImageTimeout);
 	cImageTimeout = 0;

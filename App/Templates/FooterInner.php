@@ -1,10 +1,10 @@
 <?php
 /**
-* Подвал страницы
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Подвал страницы
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 use App\Configs\Config;
 ?>

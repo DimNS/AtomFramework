@@ -1,12 +1,12 @@
 <?php
 /**
-* User
-*
-* Класс для работы с пользователями
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * User
+ *
+ * Класс для работы с пользователями
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Controllers;
 
@@ -15,15 +15,15 @@ use App\Utility\Func;
 
 class User {
 	/**
-	* Запуск контроллера
-	*
-	* @param array $params Массив маршрута
-	*
-	* @return content
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Запуск контроллера
+	 *
+	 * @param array $params Массив маршрута
+	 *
+	 * @return content
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function start($params) {
 		switch ($params['action']) {
 			// Авторизация пользователя

@@ -1,12 +1,12 @@
 <?php
 /**
-* Error404
-*
-* Класс для представления страницы ошибки 404
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Error404
+ *
+ * Класс для представления страницы ошибки 404
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Views;
 
@@ -15,13 +15,13 @@ use App\Utility\Template;
 
 class Error404 {
 	/**
-	* Показать страницу
-	*
-	* @return null
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Показать страницу
+	 *
+	 * @return null
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function show() {
 		Template::show(['Header']);
 		?>

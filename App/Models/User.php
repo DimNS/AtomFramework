@@ -1,12 +1,12 @@
 <?php
 /**
-* User
-*
-* Модель для работы с пользователями
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * User
+ *
+ * Модель для работы с пользователями
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Models;
 
@@ -18,17 +18,17 @@ use App\Utility\Protocol;
 
 class User {
 	/**
-	* Добавление нового пользователя
-	*
-	* @param string $name Имя пользователя
-	* @param string $email Почтовый адрес
-	* @param string $password Пароль
-	*
-	* @return array
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Добавление нового пользователя
+	 *
+	 * @param string $name     Имя пользователя
+	 * @param string $email    Почтовый адрес
+	 * @param string $password Пароль
+	 *
+	 * @return array
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function add($name, $email, $password) {
 		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE email = :email
@@ -90,16 +90,16 @@ class User {
 	}
 
 	/**
-	* Авторизация пользователя по логину и паролю
-	*
-	* @param string $email Почтовый адрес для авторизации
-	* @param string $password Пароль для авторизации
-	*
-	* @return integer Статус авторизации (#: id_user; 0: wrong_email_or_password; -1: user_blocked; -2: user_not_found)
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Авторизация пользователя по логину и паролю
+	 *
+	 * @param string $email    Почтовый адрес для авторизации
+	 * @param string $password Пароль для авторизации
+	 *
+	 * @return integer Статус авторизации (#: id_user; 0: wrong_email_or_password; -1: user_blocked; -2: user_not_found)
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function login($email, $password) {
 		// Удаляем устаревшие попытки входа
 		// 7 дней
@@ -171,15 +171,15 @@ class User {
 	}
 
 	/**
-	* Получение данных пользователя по его ИД
-	*
-	* @param integer $id
-	*
-	* @return array Массив данных пользователя
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Получение данных пользователя по его ИД
+	 *
+	 * @param integer $id
+	 *
+	 * @return array Массив данных пользователя
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function get($id) {
 		if (preg_match("/^[0-9]+$/", $id)) {
 			$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
@@ -194,17 +194,17 @@ class User {
 	}
 
 	/**
-	* Сохранение личных данных
-	*
-	* @param string $name Имя пользователя
-	* @param string $password Новый пароль, если указан
-	* @param string $newpassword Статус смены пароля
-	*
-	* @return array
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Сохранение личных данных
+	 *
+	 * @param string $name        Имя пользователя
+	 * @param string $password    Новый пароль, если указан
+	 * @param string $newpassword Статус смены пароля
+	 *
+	 * @return array
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function save($name, $password, $newpassword) {
 		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE id = :id
@@ -264,15 +264,15 @@ class User {
 	}
 
 	/**
-	* Отправка запроса для напоминания пароля
-	*
-	* @param string $email Почтовый адрес
-	*
-	* @return array
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Отправка запроса для напоминания пароля
+	 *
+	 * @param string $email Почтовый адрес
+	 *
+	 * @return array
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function lost_password($email) {
 		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE email = :email
@@ -326,15 +326,15 @@ class User {
 	}
 
 	/**
-	* Сброс пароля для пользователя
-	*
-	* @param integer $key Ключ из письма
-	*
-	* @return string Результат работы
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Сброс пароля для пользователя
+	 *
+	 * @param integer $key Ключ из письма
+	 *
+	 * @return string Результат работы
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function reset_password($key) {
 		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE reset_password = :reset_password

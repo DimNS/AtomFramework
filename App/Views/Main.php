@@ -1,12 +1,12 @@
 <?php
 /**
-* Main
-*
-* Класс для представления главной страницы
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Main
+ *
+ * Класс для представления главной страницы
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Views;
 
@@ -15,29 +15,29 @@ use App\Utility\Template;
 
 class Main {
 	/**
-	* Показать Landing
-	*
-	* @param array $data Массив данных
-	*
-	* @return null
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Показать Landing
+	 *
+	 * @param array $data Массив данных
+	 *
+	 * @return null
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function landing($data) {
 		Template::show(['Header', 'AuthLogin', 'Footer']);
 	}
 
 	/**
-	* Показать Dashboard
-	*
-	* @param array $data Массив данных
-	*
-	* @return null
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Показать Dashboard
+	 *
+	 * @param array $data Массив данных
+	 *
+	 * @return null
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function dashboard($data) {
 		Template::show(['Header', 'HeaderInner']);
 		?>

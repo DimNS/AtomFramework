@@ -1,10 +1,10 @@
 <?php
 /**
-* Шапка страницы
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Шапка страницы
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 use App\Configs\Config;
 use App\Utility\Template;

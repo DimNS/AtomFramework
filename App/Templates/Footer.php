@@ -1,10 +1,10 @@
 <?php
 /**
-* Конечные определения страницы
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Конечные определения страницы
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 use App\Configs\Config;
 use App\Utility\Func;

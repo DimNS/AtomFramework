@@ -1,12 +1,12 @@
 <?php
 /**
-* Route
-*
-* Класс для работы с маршрутами
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Route
+ *
+ * Класс для работы с маршрутами
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Utility;
 
@@ -14,13 +14,13 @@ use App\Configs\Config;
 
 class Route {
 	/**
-	* Запускаем разбор маршрута
-	*
-	* @return null
-	*
-	* @version 0.1 27.04.2015
-	* @author Дмитрий Щербаков <atomcms@ya.ru>
-	*/
+	 * Запускаем разбор маршрута
+	 *
+	 * @return null
+	 *
+	 * @version 0.1 27.04.2015
+	 * @author Дмитрий Щербаков <atomcms@ya.ru>
+	 */
 	static function start() {
 		// Отсекаем Config::$global['path_short_root'] и "/" с концов
 		$routes = trim(str_replace(Config::$global['path_short_root'], '', $_SERVER['REQUEST_URI']), '/');

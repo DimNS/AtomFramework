@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Показываем блок с алертами
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 ?>
 <!-- Alerts -->
 <section id="alerts-container" class="content-alerts">

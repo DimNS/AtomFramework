@@ -1,19 +1,19 @@
 <?php
 /**
-* Config
-*
-* Класс для работы с настройками системы
-*
-* @version 0.1 27.04.2015
-* @author Дмитрий Щербаков <atomcms@ya.ru>
-*/
+ * Config
+ *
+ * Класс для работы с настройками системы
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
 
 namespace App\Configs;
 
 class Config {
 	/**
-	* @var array $global Массив для глобальных переменных
-	*/
+	 * @var array $global Массив для глобальных переменных
+	 */
 	public static $global = [
 		// Это боевой сервер (true), необходим для подставления .min в подключении скриптов и блокировки отправки почты (boolean)
 		'production' => false,
@@ -54,16 +54,16 @@ class Config {
 	];
 
 	/**
-	* @var array $session Переменная сессии
-	*/
+	 * @var array $session Переменная сессии
+	 */
 	public static $session = [
 		'id' => 0,
 		'session' => '0',
 	];
 
 	/**
-	* @var array $userinfo Информация о пользователе
-	*/
+	 * @var array $userinfo Информация о пользователе
+	 */
 	public static $userinfo = [];
 }
 ?>
