@@ -10,7 +10,6 @@
 
 namespace App\Controllers;
 
-use App\Configs\Config;
 use App\Utility\Func;
 
 class Changelog {

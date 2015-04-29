@@ -10,8 +10,6 @@
 
 namespace App\Controllers;
 
-use App\Utility\Error;
-
 class Error404 {
 	/**
 	 * Запуск контроллера
@@ -23,7 +21,7 @@ class Error404 {
 	 */
 	static function start() {
 		header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
-		Error::ins(0, 'ERR', '', 'Ошибка 404: Страница не найдена (запрошен адрес: ' . $_SERVER['REQUEST_URI'] . ')', __FILE__, __FUNCTION__, __LINE__);
+		\App\Utility\Error::ins(0, 'ERR', '', 'Ошибка 404: Страница не найдена (запрошен адрес: ' . $_SERVER['REQUEST_URI'] . ')', __FILE__, __FUNCTION__, __LINE__);
 		\App\Views\Error404::show();
 		return null;
 	}
