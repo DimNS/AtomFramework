@@ -38,7 +38,12 @@ use App\Utility\Func;
 						<h4 class="modal-title">Последние обновления</h4>
 					</div>
 					<div class="modal-body">
-						<p><?php echo nl2br(file_get_contents(Config::$global['path_home_root'] . '/changelog.txt')); ?></p>
+						<?php
+						// Подключаем класс для парсинга .md
+						require_once(Config::$global['path_home_root'] . '/App/Utility/Parsedown/Parsedown.php');
+						$Parsedown = new Parsedown();
+						echo $Parsedown->text(file_get_contents(Config::$global['path_home_root'] . '/CHANGELOG.md'));
+						?>
 					</div>
 					<div class="modal-footer">
 						<a href="javascript:;" class="btn btn-default wnd_close" data-id="changelog">Закрыть</a>
