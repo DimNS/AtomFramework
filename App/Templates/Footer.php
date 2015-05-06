@@ -2,7 +2,7 @@
 /**
  * Конечные определения страницы
  *
- * @version 0.1 27.04.2015
+ * @version 0.2 06.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -110,18 +110,24 @@ use App\Utility\Func;
 		<div id="window_overlay"></div>
 		<div id="ajax_waiter" title="Идёт обмен данными..."><div id="ajax_loader"></div></div>
 
-		<script src="<?php echo Config::$global['path_short_root']; ?>/js/jquery-2.1.3.min.js" type="text/javascript"></script>
-		<script src="<?php echo Config::$global['path_short_root']; ?>/js/validationEngine/jquery.validationEngine-ru.js" type="text/javascript"></script>
-		<script src="<?php echo Config::$global['path_short_root']; ?>/js/validationEngine/jquery.validationEngine.js" type="text/javascript"></script>
-		<script src="<?php echo Config::$global['path_short_root']; ?>/js/ajaxupload.js" type="text/javascript"></script>
-		<script src="<?php echo Config::$global['path_short_root']; ?>/js/jquery.jsdeferred.js" type="text/javascript"></script>
-
+		<!-- jQuery -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/jquery-2.1.3.min.js" type="text/javascript"></script>
+		<!-- AjaxUpload -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/ajaxupload.js" type="text/javascript"></script>
+		<!-- jsDeferred -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/jquery.jsdeferred.js" type="text/javascript"></script>
 		<!-- Bootstrap 3.3.2 JS -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 		<!-- AdminLTE App -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/adminlte/js/app.min.js" type="text/javascript"></script>
 		<!-- iCheck -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+		<!-- Select2 -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/Select2/js/i18n/ru.js" type="text/javascript"></script>
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/Select2/js/select2.full.min.js" type="text/javascript"></script>
+		<!-- validationEngine -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/validationEngine/jquery.validationEngine-ru.js" type="text/javascript"></script>
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/validationEngine/jquery.validationEngine.js" type="text/javascript"></script>
 
 		<script type="text/javascript">
 			var pathRoot = '<?php echo Config::$global['path_http_root']; ?>';

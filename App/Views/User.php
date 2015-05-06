@@ -64,8 +64,7 @@ class User {
 							</div>
 						</div>
 						<div class="form-group">
-							<label><input type="checkbox" id="forma_users_save_newpassword" class="minimal"> Новый пароль?</label>
-							<p class="help-block">Отметьте для смены пароля.</p>
+							<label><input type="checkbox" id="forma_users_save_newpassword" class="minimal"> Новый пароль? <span class="text-muted small">Отметьте для смены пароля.</span></label>
 						</div>
 					</div><!-- /.box-body -->
 

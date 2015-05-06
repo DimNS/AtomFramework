@@ -2,7 +2,7 @@
 /**
  * Начальные определения страницы
  *
- * @version 0.1 27.04.2015
+ * @version 0.2 06.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -46,8 +46,10 @@ use App\Configs\Config;
 
 	<!-- iCheck -->
 	<link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css">
-
-	<link href="<?php echo Config::$global['path_short_root']; ?>/js/validationEngine/validationEngine.jquery.css" rel="stylesheet" type="text/css">
+	<!-- Select2 -->
+	<link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/Select2/css/select2.css" rel="stylesheet" type="text/css">
+	<!-- validationEngine -->
+	<link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/validationEngine/validationEngine.jquery.css" rel="stylesheet" type="text/css">
 
 	<link href="<?php echo Config::$global['path_short_root']; ?>/css/font-awesome/css/font-awesome.css?v=4.2.0" rel="stylesheet" type="text/css">
 	<link href="<?php echo Config::$global['path_short_root']; ?>/css/style.css?v=<?php echo Config::$global['version']; ?>" rel="stylesheet" type="text/css">

@@ -2071,7 +2071,7 @@
 	 // Only show one message per error prompt
 	 showOneMessage: false
 	}};
-	$(function(){$.validationEngine.defaults.promptPosition = methods.isRTL()?'topLeft':"topRight"});
+//	$(function(){$.validationEngine.defaults.promptPosition = methods.isRTL()?'topLeft':"topRight"});
 })(jQuery);
 
 

@@ -1,7 +1,7 @@
 /**
  * Функции JavaScript для AJAX
  *
- * @version 0.1 27.04.2015
+ * @version 0.2 06.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -50,11 +50,11 @@ function ajax_error(status, text) {
 /**
  * Блок ожидания
  *
- * @param string action Показать или скрыь блок ожиания (show|hide)
+ * @param string action Показать или скрыть блок ожидания (show|hide)
  *
  * @return null
  *
- * @version 0.1 27.04.2015
+ * @version 0.2 06.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function ajax_waiter(action) {
@@ -62,6 +62,9 @@ function ajax_waiter(action) {
 		// Показ блока ожидания
 		$('#ajax_waiter').show();
 		$('#ajax_overlay').show();
+
+		// Скрываем старые ошибки
+		$('#alerts-container .alert').hide();
 	} else {
 		// Скрываем блок ожидания
 		$('#ajax_waiter').hide();
