@@ -25,22 +25,10 @@ class Main {
 	static function start() {
 		if (Func::is_login()) {
 			// Получаем данные для главной страницы (с авторизацией)
-			$data = \App\Models\Main::index(true);
-
-			if ($data['code'] == 'success') {
-				return \App\Views\Main::dashboard($data);
-			} else {
-				//ERROR
-			}
+			return \App\Views\Main::dashboard(\App\Models\Main::index(true));
 		} else {
 			// Получаем данные для главной страницы (без авторизации)
-			$data = \App\Models\Main::index(false);
-
-			if ($data['code'] == 'success') {
-				return \App\Views\Main::landing($data);
-			} else {
-				//ERROR
-			}
+			return \App\Views\Main::landing(\App\Models\Main::index(false));
 		}
 	}
 
@@ -61,13 +49,7 @@ class Main {
 		Config::$global['message_text'] = $message_text;
 
 		// Получаем данные для главной страницы (без авторизации)
-		$data = \App\Models\Main::index(false);
-
-		if ($data['code'] == 'success') {
-			return \App\Views\Main::landing($data);
-		} else {
-			//ERROR
-		}
+		return \App\Views\Main::landing(\App\Models\Main::index(false));
 	}
 }
 ?>

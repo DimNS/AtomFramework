@@ -4,7 +4,7 @@
  *
  * Класс для работы с протоколом действий пользователя
  *
- * @version 0.1 27.04.2015
+ * @version 0.3 08.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -23,7 +23,7 @@ class Protocol {
 	 *
 	 * @return null
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function ins($action, $file, $line, $function) {
@@ -33,7 +33,7 @@ class Protocol {
 			$user_id = Config::$userinfo['id'];
 		}
 
-		$db_result = Config::$global['db']->query("INSERT INTO `" . Config::$global['db_prefix'] . "protocol` SET
+		$db_result = query("INSERT INTO `" . Config::$global['db_prefix'] . "protocol` SET
 			date = :date,
 			user_id = :user_id,
 			file = :file,
@@ -47,7 +47,7 @@ class Protocol {
 			'line' => $line,
 			'function' => $function,
 			'action' => $action,
-		]);
+		], __FILE__, __LINE__);
 	}
 }
 ?>

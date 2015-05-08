@@ -4,14 +4,13 @@
  *
  * Класс для работы с сессией
  *
- * @version 0.1 27.04.2015
+ * @version 0.3 08.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace App\Utility;
 
 use App\Configs\Config;
-use App\Utility\Func;
 
 class Session {
 	/**
@@ -21,7 +20,7 @@ class Session {
 	 *
 	 * @return integer Статус создания сессии (0|1)
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function create($user_id) {
@@ -41,15 +40,15 @@ class Session {
 			$ip = 'no ip';
 		}
 
-		Config::$global['db']->query("DELETE FROM `" . Config::$global['db_prefix'] . "session`
+		query("DELETE FROM `" . Config::$global['db_prefix'] . "session`
 			WHERE `id_user` = :id_user
 				OR `id_ses` = :id_ses
 		", [
 			'id_user' => $user_id,
 			'id_ses' => $session_id,
-		]);
+		], __FILE__, __LINE__);
 
-		$db_result = Config::$global['db']->query("INSERT INTO `" . Config::$global['db_prefix'] . "session` SET
+		$db_result = query("INSERT INTO `" . Config::$global['db_prefix'] . "session` SET
 			`id_ses` = :id_ses,
 			`ip` = :ip,
 			`last_date` = :last_date,
@@ -59,7 +58,7 @@ class Session {
 			'ip' => $ip,
 			'last_date' => Config::$global['currtime'],
 			'id_user' => $user_id,
-		]);
+		], __FILE__, __LINE__);
 		if ($db_result > 0) {
 			$_SESSION[Config::$global['session_name']] = $session_id;
 			Config::$session = [
@@ -77,26 +76,26 @@ class Session {
 	 *
 	 * @return boolean Статус поиска сессии
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function find() {
 		// Удаляем подвисшие сессии
-		Config::$global['db']->query("DELETE FROM `" . Config::$global['db_prefix'] . "session`
+		query("DELETE FROM `" . Config::$global['db_prefix'] . "session`
 			WHERE last_date < :last_date
 		", [
 			'last_date' => Config::$global['session_die_time'],
-		]);
+		], __FILE__, __LINE__);
 
 		if (isset($_SESSION[Config::$global['session_name']])) {
-			$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "session`
+			$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "session`
 				WHERE `id_ses` = :id_ses
 					AND `ip` = :ip
 				LIMIT 1
 			", [
 				'id_ses' => $_SESSION[Config::$global['session_name']],
 				'ip' => Func::get_ip(),
-			]);
+			], __FILE__, __LINE__);
 			if ($db_result != -1 AND count($db_result) == 1) {
 				if ($db_result[0]['id_ses'] == $_SESSION[Config::$global['session_name']]) {
 					$item = $db_result[0];
@@ -113,13 +112,13 @@ class Session {
 						'id' => $item['id_user'],
 						'session' => str_replace("'", "", $_SESSION[Config::$global['session_name']]),
 					];
-					Config::$global['db']->query("UPDATE `" . Config::$global['db_prefix'] . "session` SET
+					query("UPDATE `" . Config::$global['db_prefix'] . "session` SET
 						`last_date` = :last_date
 						WHERE `id_ses` = :id_ses
 					", [
 						'last_date' => Config::$global['currtime'],
 						'id_ses' => $_SESSION[Config::$global['session_name']],
-					]);
+					], __FILE__, __LINE__);
 					return true;
 				} else {
 					unset($_SESSION[Config::$global['session_name']]);
@@ -139,16 +138,16 @@ class Session {
 	 *
 	 * @return null
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function del() {
-		$db_result = Config::$global['db']->query("DELETE FROM `" . Config::$global['db_prefix'] . "session`
+		$db_result = query("DELETE FROM `" . Config::$global['db_prefix'] . "session`
 			WHERE `id_ses` = :id_ses
 			LIMIT 1
 		", [
 			'id_ses' => $_SESSION[Config::$global['session_name']],
-		]);
+		], __FILE__, __LINE__);
 		if ($db_result != -1) {
 			unset($_SESSION[Config::$global['session_name']]);
 		}

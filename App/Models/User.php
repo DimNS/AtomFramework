@@ -4,7 +4,7 @@
  *
  * Модель для работы с пользователями
  *
- * @version 0.1 27.04.2015
+ * @version 0.3 08.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -26,21 +26,21 @@ class User {
 	 *
 	 * @return array
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function add($name, $email, $password) {
-		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
+		$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE email = :email
 			LIMIT 1
 		", [
 			'email' => $email,
-		]);
+		], __FILE__, __LINE__);
 		if ($db_result != -1) {
 			if (count($db_result) == 0) {
 				$password = Func::generate_password();
 
-				$db_result = Config::$global['db']->query("INSERT INTO `" . Config::$global['db_prefix'] . "user` SET
+				$db_result = query("INSERT INTO `" . Config::$global['db_prefix'] . "user` SET
 					date = :date,
 					email = :email,
 					password = :password,
@@ -52,7 +52,7 @@ class User {
 					'password' => Func::collect_password($password),
 					'name' => $name,
 					'version' => Config::$global['version'],
-				]);
+				], __FILE__, __LINE__);
 				if ($db_result >= 0) {
 					Protocol::ins('Добавлен новый администратор: ' . $email, __FILE__, __LINE__, __FUNCTION__);
 
@@ -97,40 +97,40 @@ class User {
 	 *
 	 * @return integer Статус авторизации (#: id_user; 0: wrong_email_or_password; -1: user_blocked; -2: user_not_found)
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function login($email, $password) {
 		// Удаляем устаревшие попытки входа
 		// 7 дней
-		$db_result = Config::$global['db']->query("DELETE FROM `" . Config::$global['db_prefix'] . "user_block`
+		$db_result = query("DELETE FROM `" . Config::$global['db_prefix'] . "user_block`
 			WHERE date < :date
 		", [
 			'date' => Config::$global['currtime'] - 604800,
-		]);
+		], __FILE__, __LINE__);
 
-		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
+		$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE email = :email
 				AND `active` = '1'
 			LIMIT 1
 		", [
 			'email' => $email,
-		]);
+		], __FILE__, __LINE__);
 		if ($db_result != -1) {
 			if (count($db_result) == 1) {
 				$user_info = $db_result[0];
 
-				$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
+				$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 					WHERE id = :id
 					LIMIT 1
 				", [
 					'id' => $user_info['id'],
-				]);
+				], __FILE__, __LINE__);
 				if ($db_result != -1) {
 					if (count($db_result) < 10) {
 						if (crypt($password, $user_info['password']) == $user_info['password']) {
 							// Записываем браузер пользователя
-							$db_result = Config::$global['db']->query("INSERT INTO `" . Config::$global['db_prefix'] . "browsers` SET
+							$db_result = query("INSERT INTO `" . Config::$global['db_prefix'] . "browsers` SET
 								date = :date,
 								user_id = :user_id,
 								user_agent = :user_agent
@@ -138,17 +138,17 @@ class User {
 								'date' => Config::$global['currtime'],
 								'user_id' => $user_info['id'],
 								'user_agent' => $_SERVER['HTTP_USER_AGENT'],
-							]);
+							], __FILE__, __LINE__);
 
 							return $user_info['id'];
 						} else {
-							$db_result = Config::$global['db']->query("INSERT INTO `" . Config::$global['db_prefix'] . "user_block` SET
+							$db_result = query("INSERT INTO `" . Config::$global['db_prefix'] . "user_block` SET
 								user_id = :user_id,
 								date = :date
 							", [
 								'user_id' => $user_info['id'],
 								'date' => time(),
-							]);
+							], __FILE__, __LINE__);
 							if ($db_result >= 0) {
 								Error::ins(0, 'SQL', '', 'Пользователь не прошел авторизацию (передан параметр email: ' . $email . ')', __FILE__, __FUNCTION__, __LINE__);
 								return 0;
@@ -177,17 +177,17 @@ class User {
 	 *
 	 * @return array Массив данных пользователя
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function get($id) {
 		if (preg_match("/^[0-9]+$/", $id)) {
-			$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
+			$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 				WHERE id = :id
 				LIMIT 1
 			", [
 				'id' => $id,
-			]);
+			], __FILE__, __LINE__);
 
 			return $db_result[0];
 		}
@@ -202,20 +202,20 @@ class User {
 	 *
 	 * @return array
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function save($name, $password, $newpassword) {
-		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
+		$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE id = :id
 			LIMIT 1
 		", [
 			'id' => Config::$userinfo['id'],
-		]);
+		], __FILE__, __LINE__);
 		if ($db_result != -1 AND count($db_result) > 0) {
 			if ($newpassword == '1') {
 				if ($password != '' AND count($password) > 3) {
-					$db_result = Config::$global['db']->query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
+					$db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
 						name = :name,
 						password = :password
 						WHERE id = :id
@@ -224,7 +224,7 @@ class User {
 						'name' => $name,
 						'password' => Func::collect_password($password),
 						'id' => Config::$userinfo['id'],
-					]);
+					], __FILE__, __LINE__);
 					Protocol::ins('Сохранение личных данных с изменением пароля', __FILE__, __LINE__, __FUNCTION__);
 				} else {
 					return [
@@ -233,14 +233,14 @@ class User {
 					];
 				}
 			} else {
-				$db_result = Config::$global['db']->query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
+				$db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
 					name = :name
 					WHERE id = :id
 					LIMIT 1
 				", [
 					'name' => $name,
 					'id' => Config::$userinfo['id'],
-				]);
+				], __FILE__, __LINE__);
 				Protocol::ins('Сохранение личных данных', __FILE__, __LINE__, __FUNCTION__);
 			}
 
@@ -270,27 +270,27 @@ class User {
 	 *
 	 * @return array
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function lost_password($email) {
-		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
+		$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE email = :email
 			LIMIT 1
 		", [
 			'email' => $email,
-		]);
+		], __FILE__, __LINE__);
 		if ($db_result != -1) {
 			if (count($db_result) > 0) {
 				$hash = md5($email);
 
-				$db_result = Config::$global['db']->query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
+				$db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
 					reset_password = :reset_password
 					WHERE email = :email
 				", [
 					'reset_password' => $hash,
 					'email' => $email,
-				]);
+				], __FILE__, __LINE__);
 				if ($db_result >= 0) {
 					Protocol::ins('Запрос на сброс пароля для пользователя: ' . $email, __FILE__, __LINE__, __FUNCTION__);
 
@@ -332,28 +332,28 @@ class User {
 	 *
 	 * @return string Результат работы
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function reset_password($key) {
-		$db_result = Config::$global['db']->query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
+		$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
 			WHERE reset_password = :reset_password
 			LIMIT 1
 		", [
 			'reset_password' => $key,
-		]);
+		], __FILE__, __LINE__);
 		if ($db_result != -1 AND count($db_result) > 0) {
 			$email = $db_result[0]['email'];
 			$password = Func::generate_password();
 
-			$db_result = Config::$global['db']->query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
+			$db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
 				password = :password,
 				reset_password = ''
 				WHERE reset_password = :reset_password
 			", [
 				'password' => Func::collect_password($password),
 				'reset_password' => $key,
-			]);
+			], __FILE__, __LINE__);
 			if ($db_result >= 0) {
 				Protocol::ins('Сброс пароля для пользователя: ' . $email, __FILE__, __LINE__, __FUNCTION__);
 
@@ -363,11 +363,11 @@ class User {
 						'text' => 'При отправке пароля произошла ошибка. Свяжитесь с администрацией.',
 					];
 				} else {
-					$db_result = Config::$global['db']->query("DELETE FROM `" . Config::$global['db_prefix'] . "user_block`
+					$db_result = query("DELETE FROM `" . Config::$global['db_prefix'] . "user_block`
 						WHERE user_id = :user_id
 					", [
 						'user_id' => Config::$userinfo['id'],
-					]);
+					], __FILE__, __LINE__);
 
 					return [
 						'code' => 'success',

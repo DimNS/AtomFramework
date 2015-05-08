@@ -4,7 +4,7 @@
 * @author Дмитрий Щербаков <info@atomcms.ru>
 */
 
-/* НАЧАЛО - Главные элементы */
+/* НАЧАЛО - Всплывающие элементы */
 #container_all {position:absolute;top:0;left:0;width:100%;z-index:1;}
 
 #ajax_overlay, #window_overlay {
@@ -48,11 +48,33 @@
 .window_layer_box {width:800px;margin:0 auto;background:#fff;}
 
 #atom_confirm {width:400px;}
-/* ОКОНЧАНИЕ - Главные элементы */
+/* ОКОНЧАНИЕ - Всплывающие элементы */
 
+/* НАЧАЛО - Различные элементы */
 .light_bg {background:#d2d6de;}
 .content-alerts {padding:20px 20px 0px 20px;}
 .content-alerts .alert {display:none;}
+.exception-page {width:600px;margin:20px auto 0 auto;}
+/* ОКОНЧАНИЕ - Различные элементы */
+
+/*
+	`7MM"""YMM  `YMM'   `MP' .g8"""bgd `7MM"""YMM  `7MM"""Mq. MMP""MM""YMM `7MMF' .g8""8q. `7MN.   `7MF'
+	  MM    `7    VMb.  ,P .dP'     `M   MM    `7    MM   `MM.P'   MM   `7   MM .dP'    `YM. MMN.    M
+	  MM   d       `MM.M'  dM'       `   MM   d      MM   ,M9      MM        MM dM'      `MM M YMb   M
+	  MMmmMM         MMb   MM            MMmmMM      MMmmdM9       MM        MM MM        MM M  `MN. M
+	  MM   Y  ,    ,M'`Mb. MM.           MM   Y  ,   MM            MM        MM MM.      ,MP M   `MM.M
+	  MM     ,M   ,P   `MM.`Mb.     ,'   MM     ,M   MM            MM        MM `Mb.    ,dP' M     YMM
+	.JMMmmmmMMM .MM:.  .:MMa.`"bmmmd'  .JMMmmmmMMM .JMML.        .JMML.    .JMML. `"bmmd"' .JML.    YM
+*/
+
+.exception-page {width:700px;margin:40px auto 0 auto;}
+@media (max-width:991px) {.exception-page {width:100%;}}
+.exception-page > .headline {float:left;font-size:70px;font-weight:300;}
+@media (max-width:991px) {.exception-page > .headline {float:none;text-align:center;}}
+.exception-page > .exception-content {margin-left:300px;display:block;padding-top:1px;}
+@media (max-width:991px) {.exception-page > .exception-content {margin-left:0;}}
+.exception-page > .exception-content > h3 {font-weight:300;font-size:25px;}
+@media (max-width:991px) {.exception-page > .exception-content > h3 {text-align:center;}}
 
 /* =============================================================== */
 /* ========== ПЕРЕОПРЕДЕЛЕНИЕ СТИЛЕЙ ============================= */

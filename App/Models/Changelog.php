@@ -4,7 +4,7 @@
  *
  * Модель для работы с файлом изменений
  *
- * @version 0.1 27.04.2015
+ * @version 0.3 08.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -18,18 +18,18 @@ class Changelog {
 	 *
 	 * @return array
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function check() {
-		Config::$global['db']->query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
+		query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
 			version = :version
 			WHERE id = :id
 			LIMIT 1
 		", [
 			'id' => Config::$userinfo['id'],
 			'version' => Config::$global['version'],
-		]);
+		], __FILE__, __LINE__);
 
 		return [
 			'code' => 'success',

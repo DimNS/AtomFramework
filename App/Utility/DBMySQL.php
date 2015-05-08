@@ -11,8 +11,7 @@
 namespace App\Utility;
 
 use PDO;
-use App\Utility\Error;
-use App\Utility\Func;
+use PDOException;
 
 class DBMySQL {
 	/**
@@ -69,9 +68,8 @@ class DBMySQL {
 			try {
 				$this->connect_id = new PDO("mysql:host=$this->host;dbname=$this->database", $this->user, $this->password, [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']);
 				$this->connect_id->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			}
-			catch(PDOException $e) {
-				$this->error('', $e->getMessage());
+			} catch(PDOException $e) {
+				throw new AtomException($e->getMessage(), 10);
 			}
 		}
 
@@ -81,21 +79,23 @@ class DBMySQL {
 	/**
 	 * Выполнение запроса
 	 *
-	 * @param string $query_str  Строка запроса
-	 * @param array  $query_data Массив с данными
+	 * @param string  $query_str  Строка запроса
+	 * @param array   $query_data Массив с данными
+	 * @param string  $file       Путь к файлу в котором случился запрос
+	 * @param integer $line       Номер строки где случился запрос
 	 *
 	 * @return array|integer Возвращается результат выполнения запроса в зависимости от типа запроса
 	 *
 	 * @version 0.1 27.04.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
-	function query($query_str, $query_data) {
+	function query($query_str, $query_data, $file, $line) {
 		$this->connect();
 
 		$query_type = mb_strtolower(mb_substr($query_str, 0, mb_strpos($query_str, ' ', 0, 'utf-8'), 'utf-8'), 'utf-8');
 
-		//Func::debug($query_str);
-		//Func::debug($query_data);
+		//App\Utility\Func::debug($query_str);
+		//App\Utility\Func::debug($query_data);
 
 		switch ($query_type) {
 			case 'select':
@@ -104,9 +104,8 @@ class DBMySQL {
 					$STH->execute($query_data);
 					$STH->setFetchMode(PDO::FETCH_ASSOC);
 					return $STH->fetchAll();
-				}
-				catch(PDOException $e) {
-					return $this->error($query_str, $e->getMessage());
+				} catch(PDOException $e) {
+					throw new AtomException($e->getMessage() . ' (' . $query_str . ')', 10, $file, $line);
 				}
 			break;
 
@@ -115,9 +114,8 @@ class DBMySQL {
 					$STH = $this->connect_id->prepare($query_str);
 					$STH->execute($query_data);
 					return $this->connect_id->lastInsertId();
-				}
-				catch(PDOException $e) {
-					return $this->error($query_str, $e->getMessage());
+				} catch(PDOException $e) {
+					throw new AtomException($e->getMessage() . ' (' . $query_str . ')', 10, $file, $line);
 				}
 			break;
 
@@ -126,78 +124,11 @@ class DBMySQL {
 					$STH = $this->connect_id->prepare($query_str);
 					$STH->execute($query_data);
 					return $STH->rowCount();
-				}
-				catch(PDOException $e) {
-					return $this->error($query_str, $e->getMessage());
+				} catch(PDOException $e) {
+					throw new AtomException($e->getMessage() . ' (' . $query_str . ')', 10, $file, $line);
 				}
 			break;
 		}
-	}
-
-	/**
-	 * Выполнение нескольких запросов в одном
-	 *
-	 * @param string $table_name  Имя таблицы
-	 * @param array  $data_fields Массив со списком полей
-	 * @param array  $query_data  Массив с данными
-	 *
-	 * @return integer Возвращаем статус выполнения (1 или -1)
-	 *
-	 * @version 0.1 27.04.2015
-	 * @author Дмитрий Щербаков <atomcms@ya.ru>
-	 */
-	function many_inserts($table_name, $data_fields, $query_data) {
-		$this->connect();
-
-		function placeholders($text, $count = 0, $separator = ",") {
-			$result = [];
-
-			if($count > 0) {
-				for($x=0; $x<$count; $x++) {
-					$result[] = $text;
-				}
-			}
-
-			return implode($separator, $result);
-		}
-
-		$insert_values = [];
-
-		foreach($query_data as $d) {
-			$question_marks[] = '(' . placeholders('?', sizeof($d)) . ')';
-			$insert_values = array_merge($insert_values, array_values($d));
-		}
-
-		$query_str = "INSERT INTO `" . $table_name . "` (" . implode(",", array_keys($data_fields)) . ") VALUES " . implode(',', $question_marks);
-
-		$this->connect_id->beginTransaction(); // also helps speed up your inserts.
-
-		$STH = $this->connect_id->prepare($query_str);
-		try {
-			$STH->execute($insert_values);
-		} catch (PDOException $e){
-			return $this->error($query_str, $e->getMessage());
-		}
-
-		$this->connect_id->commit();
-
-		return 1;
-	}
-
-	/**
-	 * Сообщение об ошибке при выполнении запроса
-	 *
-	 * @param string $query_str Строка запроса
-	 * @param string $msg       Сообщение с ошибкой
-	 *
-	 * @return integer Возвращаем статус ошибки
-	 *
-	 * @version 0.1 27.04.2015
-	 * @author Дмитрий Щербаков <atomcms@ya.ru>
-	 */
-	private function error($query_str, $msg) {
-		Error::ins(0, 'Извините произошла ошибка в БД', $msg . ' (' . $query_str . ')', __FILE__, __FUNCTION__, __LINE__);
-		return -1;
 	}
 }
 ?>

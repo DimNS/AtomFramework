@@ -4,7 +4,7 @@
  *
  * Модель для применения изменений в БД
  *
- * @version 1 14.04.2015
+ * @version 0.3 08.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -18,7 +18,7 @@ class Migration {
 	 *
 	 * @return array
 	 *
-	 * @version 1 14.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function install() {
@@ -42,7 +42,7 @@ class Migration {
 				if ($sql_count > 0) {
 					// Прогоняем каждую команду
 					foreach ($sql_list as $command) {
-						$db_result = Config::$global['db']->query($command, []);
+						$db_result = query($command, [], __FILE__, __LINE__);
 
 						if ($db_result != -1) {
 							++$sql_success;
@@ -86,7 +86,7 @@ class Migration {
 	 *
 	 * @return array
 	 *
-	 * @version 1 14.04.2015
+	 * @version 0.3 08.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function change() {
@@ -109,7 +109,7 @@ class Migration {
 				if ($sql_count > 0) {
 					// Прогоняем каждую команду
 					foreach ($sql_list as $command) {
-						$db_result = Config::$global['db']->query($command, []);
+						$db_result = query($command, [], __FILE__, __LINE__);
 
 						if ($db_result != -1) {
 							$result[] = [

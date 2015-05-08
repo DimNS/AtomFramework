@@ -33,6 +33,9 @@ require_once('Configs/Database.php');
 require_once('Utility/MobileDetect/mdetect.php');
 $mdetect = new uagent_info();
 
+// Собственный обработчик исключений
+require_once('App/Utility/AtomException.php');
+
 //
 //
 // 	      db   `7MMF'   `7MF'MMP""MM""YMM   .g8""8q. `7MMF'        .g8""8q.      db      `7MM"""Yb.
@@ -131,4 +134,33 @@ Config::$global['path_home_root'] = $_SERVER['DOCUMENT_ROOT'] . Config::$global[
 
 // Подключаем класс для работы с БД
 Config::$global['db'] = new \App\Utility\DBMySQL(DB_HOST, DB_DATABASE, DB_USER, DB_PASSWORD);
+
+//
+//
+// 	  .g8""8q. `7MMF'   `7MF'`7MM"""YMM  `7MM"""Mq.`YMM'   `MM'    `7MM"""YMM `7MN.   `7MF'.M"""bgd
+// 	.dP'    `YM. MM       M    MM    `7    MM   `MM. VMA   ,V        MM    `7   MMN.    M ,MI    "Y
+// 	dM'      `MM MM       M    MM   d      MM   ,M9   VMA ,V         MM   d     M YMb   M `MMb.
+// 	MM        MM MM       M    MMmmMM      MMmmdM9     VMMP          MM""MM     M  `MN. M   `YMMNq.
+// 	MM.      ,MP MM       M    MM   Y  ,   MM  YM.      MM           MM   Y     M   `MM.M .     `MM
+// 	`Mb.    ,dP' YM.     ,M    MM     ,M   MM   `Mb.    MM           MM         M     YMM Mb     dM
+// 	  `"bmmd"'    `bmmmmd"'  .JMMmmmmMMM .JMML. .JMM. .JMML.       .JMML.     .JML.    YM P"Ybmmd"
+// 	      MMb
+// 	       `bood'
+
+/**
+ * Функция для запуска запроса
+ *
+ * @param string  $query Строка sql-запроса
+ * @param array   $data  Массив с данными для запроса
+ * @param string  $file  Путь к файлу в котором случился запрос
+ * @param integer $line  Номер строки где случился запрос
+ *
+ * @return mixed
+ *
+ * @version 0.1 27.04.2015
+ * @author Дмитрий Щербаков <atomcms@ya.ru>
+ */
+function query($query, $data, $file, $line) {
+	return Config::$global['db']->query($query, $data, $file, $line);
+}
 ?>

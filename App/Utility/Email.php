@@ -11,7 +11,6 @@
 namespace App\Utility;
 
 use App\Configs\Config;
-use App\Utility\Email;
 
 class Email {
 	/**
