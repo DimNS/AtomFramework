@@ -1,0 +1,1 @@
+1432352441|127.0.0.1|10|SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.atom_session' doesn't exist (DELETE FROM `atom_session` WHERE last_date < :last_date )|D:\Dropbox\work\htdocs\atom_framework\App\Utility\Session.php (line: 88)

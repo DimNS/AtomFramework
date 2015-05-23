@@ -75,22 +75,3 @@
 @media (max-width:991px) {.exception-page > .exception-content {margin-left:0;}}
 .exception-page > .exception-content > h3 {font-weight:300;font-size:25px;}
 @media (max-width:991px) {.exception-page > .exception-content > h3 {text-align:center;}}
-
-/* =============================================================== */
-/* ========== ПЕРЕОПРЕДЕЛЕНИЕ СТИЛЕЙ ============================= */
-/* =============================================================== */
-
-/* AdminLTE */
-.login-page {padding:1px 0px;}
-label {font-weight:400;}
-.error-page>.error-content {padding-top:30px;}
-.main-header .navbar-custom-menu {margin-right:0px;}
-.main-header .navbar-custom-menu>.nav {margin-right:0px !important;}
-.main-header .navbar-custom-menu>.navbar-nav>li>.dropdown-menu {right:10px;}
-.navbar-nav>.user-menu>.dropdown-menu>li.user-header .fa-user {color:#fff;font-size:110px;}
-
-/* Select2 */
-.select2-container--default .select2-selection--single {
-	border-color:#d2d6de;
-	border-radius:0px;
-}

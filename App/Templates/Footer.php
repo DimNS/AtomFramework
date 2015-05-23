@@ -2,7 +2,7 @@
 /**
  * Конечные определения страницы
  *
- * @version 0.2 06.05.2015
+ * @version 0.4 23.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -112,14 +112,16 @@ use App\Utility\Func;
 
 		<!-- jQuery -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/jquery-2.1.3.min.js" type="text/javascript"></script>
-		<!-- AjaxUpload -->
-		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/ajaxupload.js" type="text/javascript"></script>
-		<!-- jsDeferred -->
-		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/jquery.jsdeferred.js" type="text/javascript"></script>
 		<!-- Bootstrap 3.3.2 JS -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 		<!-- AdminLTE App -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/adminlte/js/app.min.js" type="text/javascript"></script>
+		<!-- AjaxUpload -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/ajaxupload.js" type="text/javascript"></script>
+		<!-- jsDeferred -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/jquery.jsdeferred.js" type="text/javascript"></script>
+		<!-- Bootstrap Tour -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-tour/bootstrap-tour.min.js" type="text/javascript"></script>
 		<!-- iCheck -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 		<!-- Select2 -->
@@ -142,6 +144,8 @@ use App\Utility\Func;
 
 		<script src="<?php echo Config::$global['path_short_root']; ?>/js/core<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/core.min.js'); ?>" type="text/javascript"></script>
 		<script src="<?php echo Config::$global['path_short_root']; ?>/js/ajax<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/ajax.min.js'); ?>" type="text/javascript"></script>
+		<script src="<?php echo Config::$global['path_short_root']; ?>/js/forms<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/forms.min.js'); ?>" type="text/javascript"></script>
+		<script src="<?php echo Config::$global['path_short_root']; ?>/js/app<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/app.min.js'); ?>" type="text/javascript"></script>
 	</body>
 
 </html>

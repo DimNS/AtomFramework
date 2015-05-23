@@ -1,7 +1,7 @@
 /**
  * Функции JavaScript для AJAX
  *
- * @version 0.2 06.05.2015
+ * @version 0.4 23.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -174,96 +174,3 @@ function imageLoader(s, fun) {
 
 //The following code starts the animation
 new imageLoader(cImageSrc, 'startAnimation()');
-
-//
-//
-// 	`7MM"""YMM   .g8""8q. `7MM"""Mq.  `7MMM.     ,MMF' .M"""bgd
-// 	  MM    `7 .dP'    `YM. MM   `MM.   MMMb    dPMM  ,MI    "Y
-// 	  MM   d   dM'      `MM MM   ,M9    M YM   ,M MM  `MMb.
-// 	  MM""MM   MM        MM MMmmdM9     M  Mb  M' MM    `YMMNq.
-// 	  MM   Y   MM.      ,MP MM  YM.     M  YM.P'  MM  .     `MM
-// 	  MM       `Mb.    ,dP' MM   `Mb.   M  `YM'   MM  Mb     dM
-// 	.JMML.       `"bmmd"' .JMML. .JMM..JML. `'  .JMML.P"Ybmmd"
-//
-//
-
-$('body').on('click', '.forma_submit', function() {
-	var button = $(this);
-	var forma = button.attr('data-forma');
-
-	if ($('#' + forma + '_forma').validationEngine('validate')) {
-		switch (forma) {
-			// Регистрация пользователя
-			case 'user_reg':
-				ajax_waiter('show');
-
-				$.ajax({
-					url: pathRoot + '/user/add',
-					data: {
-						'ajax': true,
-						'name': $('#forma_reg_name').val(),
-						'email': $('#forma_reg_email').val()
-					},
-					success: function(data, textStatus, jqXHR) {
-						windowClose('user_reg');
-						showMessage(data.code, data.text);
-					},
-					complete: function() {
-						ajax_waiter('hide');
-					},
-					error: function(jqXHR, textStatus, errorThrown) {
-						ajax_error(textStatus, errorThrown);
-					}
-				});
-			break;
-
-			// Напоминание пароля
-			case 'user_lost':
-				ajax_waiter('show');
-
-				$.ajax({
-					url: pathRoot + '/user/lost_password',
-					data: {
-						'ajax': true,
-						'email': $('#forma_lost_email').val()
-					},
-					success: function(data, textStatus, jqXHR) {
-						windowClose('user_lost');
-						showMessage(data.code, data.text);
-					},
-					complete: function() {
-						ajax_waiter('hide');
-					},
-					error: function(jqXHR, textStatus, errorThrown) {
-						ajax_error(textStatus, errorThrown);
-					}
-				});
-			break;
-
-			// Сохранение личных данных
-			case 'user_save':
-				ajax_waiter('show');
-
-				$.ajax({
-					url: pathRoot + '/user/save',
-					data: {
-						'ajax': true,
-						'name': $('#forma_users_save_name').val(),
-						'password': $('#forma_users_save_password').val(),
-						'newpassword': $('#forma_users_save_newpassword:checked').val()
-					},
-					success: function(data, textStatus, jqXHR) {
-						$('.userinfo_name').text($('#forma_users_save_name').val());
-						showMessage(data.code, data.text);
-					},
-					complete: function() {
-						ajax_waiter('hide');
-					},
-					error: function(jqXHR, textStatus, errorThrown) {
-						ajax_error(textStatus, errorThrown);
-					}
-				});
-			break;
-		}
-	}
-});

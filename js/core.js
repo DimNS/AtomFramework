@@ -1,7 +1,7 @@
 /**
  * Общие функции JavaScript
  *
- * @version 0.1 27.04.2015
+ * @version 0.4 23.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -249,29 +249,3 @@ $('#forma_users_save_newpassword').on('ifChecked', function(event){
 }).on('ifUnchecked', function(event){
 	$('#user_profile_newpwd_block').addClass('hide');
 });
-
-// Выполняем следующий код только после авторизации пользователя
-if (pageLogin) {
-	// Если это первый вход
-	if (firstLogin) {
-		// Меняем номер версии на актуальный, чтобы больше не выдавать это окно
-		$.ajax({
-			url: pathRoot + '/changelog/check'
-		});
-
-		// Показываем запрос на изменение пароля
-		showConfirm(
-			'Изменение пароля',
-			'<p>Прямо сейчас вы можете изменить пароль на более удобный для вас. Перейти к смене пароля?</p>',
-			function() {
-				location.replace(pathRoot + '/user/profile');
-			},
-			function() {}
-		);
-	} else {
-		// Если новая версия
-		if (changelog) {
-			windowOpen('changelog');
-		}
-	}
-}

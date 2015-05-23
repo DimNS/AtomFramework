@@ -1,0 +1,27 @@
+/**
+* Файл redefinition.css - для переопределения стилей сторонних js-плагинов
+*
+* @author Дмитрий Щербаков <info@atomcms.ru>
+*/
+
+/* AdminLTE */
+.login-page {padding:1px 0px;}
+label {font-weight:400;}
+.error-page>.error-content {padding-top:30px;}
+.main-header .navbar-custom-menu {margin-right:0px;}
+.main-header .navbar-custom-menu>.nav {margin-right:0px !important;}
+.main-header .navbar-custom-menu>.navbar-nav>li>.dropdown-menu {right:10px;}
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header .fa-user {color:#fff;font-size:110px;}
+
+/* Select2 */
+.select2-container--default .select2-selection--single {
+	border-color:#d2d6de;
+	border-radius:0px;
+}
+
+/* Bootstrap Tour */
+.tour-backdrop {z-index:3100;opacity:0.5;filter:alpha(opacity=50);}
+.tour-step-backdrop {z-index:3101;}
+.tour-step-backdrop > td {z-index:3101;}
+.tour-step-background {z-index:3100;background:#fff;opacity:0.2;filter:alpha(opacity=20);}
+.popover[class*="tour-"] {z-index:3100;}

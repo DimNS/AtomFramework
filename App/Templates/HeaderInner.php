@@ -2,7 +2,7 @@
 /**
  * Шапка страницы
  *
- * @version 0.1 27.04.2015
+ * @version 0.4 23.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -24,7 +24,7 @@ use App\Utility\Template;
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- User Account: style can be found in dropdown.less -->
-				<li class="dropdown user user-menu">
+				<li id="userinfo_drop_menu" class="dropdown user user-menu">
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 						<i class="fa fa-user"></i>
 						<span class="hidden-xs userinfo_name"><?php echo Config::$userinfo['name']; ?></span>

@@ -28,11 +28,12 @@
 - **PHPMailer v5.2.1** https://github.com/PHPMailer/PHPMailer
 
 #### JS
+- **AJAX Upload** http://valums.com/ajax-upload *версия устарела, но она стабильная и бесплатная*
+- **Bootstrap Tour v0.10.2** http://bootstraptour.com
+- **Inline Form Validation Engine v2.6.2** https://github.com/posabsolute/jQuery-Validation-Engine
 - **jQuery v2.1.3** http://docs.jquery.com/Downloading_jQuery
 - **JSDeferred v0.4.0** http://github.com/cho45/jsdeferred
-- **Inline Form Validation Engine v2.6.2** https://github.com/posabsolute/jQuery-Validation-Engine
-- **AJAX Upload** http://valums.com/ajax-upload *версия устарела, но она стабильная, бесплатная и полностью удовлетворяет всем требованиям*
-- **Select2 v4.0.0 beta3** https://select2.github.io/
+- **Select2 v4.0.0 beta3** https://select2.github.io
 
 #### Фреймворк дизайна
 - **AdminLTE** v2.0.4 https://almsaeedstudio.com/preview *основан на Bootstrap v3.3.2*

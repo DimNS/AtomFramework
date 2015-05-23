@@ -2,7 +2,7 @@
 /**
  * Начальные определения страницы
  *
- * @version 0.2 06.05.2015
+ * @version 0.4 23.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -44,6 +44,8 @@ use App\Configs\Config;
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
 
+	<!-- Bootstrap Tour -->
+	<link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-tour/bootstrap-tour.min.css" rel="stylesheet" type="text/css">
 	<!-- iCheck -->
 	<link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css">
 	<!-- Select2 -->
@@ -53,6 +55,7 @@ use App\Configs\Config;
 
 	<link href="<?php echo Config::$global['path_short_root']; ?>/css/font-awesome/css/font-awesome.css?v=4.2.0" rel="stylesheet" type="text/css">
 	<link href="<?php echo Config::$global['path_short_root']; ?>/css/style.css?v=<?php echo Config::$global['version']; ?>" rel="stylesheet" type="text/css">
+	<link href="<?php echo Config::$global['path_short_root']; ?>/css/redefinition.css?v=<?php echo Config::$global['version']; ?>" rel="stylesheet" type="text/css">
 
 	<title><?php echo Config::$global['proj_name']; ?></title>
 </head>
