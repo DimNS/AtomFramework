@@ -79,8 +79,6 @@ if (pageLogin) {
 
 		// Запускаем тур по системе
 		tour.start();
-
-		tour.restart();
 	} else {
 		// Если новая версия
 		if (changelog) {
