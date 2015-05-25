@@ -1,7 +1,7 @@
 /**
  * Мое приложение
  *
- * @version 0.4 23.05.2015
+ * @version 0.5 25.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -18,9 +18,9 @@ if (pageLogin) {
 					'<h3 class="popover-title"></h3>' +
 					'<div class="popover-content"></div>' +
 					'<div class="popover-navigation">' +
-						'<button class="btn btn-default" data-role="prev"><i class="fa fa-arrow-left"></i></button>' +
+						'<button class="btn btn-primary" data-role="prev"><i class="fa fa-arrow-left"></i></button>' +
 						'<span data-role="separator">&nbsp;</span>' +
-						'<button class="btn btn-default" data-role="next"><i class="fa fa-arrow-right"></i></button>' +
+						'<button class="btn btn-primary" data-role="next"><i class="fa fa-arrow-right"></i></button>' +
 						'<button class="btn btn-default" data-role="end">Завершить</button>' +
 					'</div>' +
 				'</div>'

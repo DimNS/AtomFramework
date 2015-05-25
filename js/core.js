@@ -1,7 +1,7 @@
 /**
  * Общие функции JavaScript
  *
- * @version 0.4 23.05.2015
+ * @version 0.5 25.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -237,15 +237,20 @@ if (!mobileBrowser) {
 if (messageText != '') showMessage(messageCode, messageText);
 
 // Подключем плагин iCheck
-$('input').iCheck({
+$('.icheck').iCheck({
 	checkboxClass: 'icheckbox_square-blue',
 	radioClass: 'iradio_square-blue',
 	increaseArea: '20%' // optional
 });
 
-// Отслеживаем галочку "Новый пароль?" в профиле пользователя
-$('#forma_users_save_newpassword').on('ifChecked', function(event){
-	$('#user_profile_newpwd_block').removeClass('hide');
-}).on('ifUnchecked', function(event){
-	$('#user_profile_newpwd_block').addClass('hide');
+// Подключаем плагин Bootstrap Toggle
+$('.bootstrap-toggle').bootstrapToggle();
+
+// Отслеживаем галочку "Новый пароль: Да" в профиле пользователя
+$('#forma_users_save_newpassword').change(function() {
+	if ($(this).prop('checked')) {
+		$('#user_profile_newpwd_block').removeClass('hide');
+	} else {
+		$('#user_profile_newpwd_block').addClass('hide');
+	}
 });

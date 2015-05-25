@@ -2,7 +2,7 @@
 /**
  * Начальные определения страницы
  *
- * @version 0.4 23.05.2015
+ * @version 0.5 25.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -44,6 +44,8 @@ use App\Configs\Config;
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
 
+	<!-- Bootstrap Toggle -->
+	<link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-toggle/bootstrap-toggle.min.css" rel="stylesheet" type="text/css">
 	<!-- Bootstrap Tour -->
 	<link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-tour/bootstrap-tour.min.css" rel="stylesheet" type="text/css">
 	<!-- iCheck -->

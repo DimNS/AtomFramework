@@ -4,7 +4,7 @@
  *
  * Представление пользователей
  *
- * @version 0.1 27.04.2015
+ * @version 0.5 25.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -20,7 +20,7 @@ class User {
 	 *
 	 * @return null
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.5 25.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function profile($data) {
@@ -52,19 +52,17 @@ class User {
 							<label>Имя</label>
 							<input type="text" class="form-control validate[required]" id="forma_users_save_name" value="<?php echo $data['name']; ?>">
 						</div>
-						<div id="user_profile_newpwd_block" class="form-group hide">
+						<div class="form-group">
 							<label>Новый пароль</label>
-							<div class="form-group input-group has-feedback">
-								<input type="password" class="form-control" id="forma_users_save_password">
+							<label><input type="checkbox" id="forma_users_save_newpassword" class="bootstrap-toggle" data-on="Да" data-off="Нет" data-size="mini"></label>
+							<div id="user_profile_newpwd_block" class="form-group input-group has-feedback hide">
+								<input type="password" id="forma_users_save_password" class="form-control" name="password">
 								<span class="input-group-btn">
 									<button class="btn btn-info" type="button">
 										<span id="show_hide_password" class="fa fa-fw fa-lock"></span>
 									</button>
 								</span>
 							</div>
-						</div>
-						<div class="form-group">
-							<label><input type="checkbox" id="forma_users_save_newpassword" class="minimal"> Новый пароль? <span class="text-muted small">Отметьте для смены пароля.</span></label>
 						</div>
 					</div><!-- /.box-body -->
 

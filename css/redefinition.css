@@ -25,3 +25,4 @@ label {font-weight:400;}
 .tour-step-backdrop > td {z-index:3101;}
 .tour-step-background {z-index:3100;background:#fff;opacity:0.2;filter:alpha(opacity=20);}
 .popover[class*="tour-"] {z-index:3100;}
+.popover-title {font-weight:bold;}

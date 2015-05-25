@@ -4,7 +4,7 @@
  *
  * Модель для работы с пользователями
  *
- * @version 0.3 08.05.2015
+ * @version 0.5 25.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -202,7 +202,7 @@ class User {
 	 *
 	 * @return array
 	 *
-	 * @version 0.3 08.05.2015
+	 * @version 0.5 25.05.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function save($name, $password, $newpassword) {
@@ -213,8 +213,8 @@ class User {
 			'id' => Config::$userinfo['id'],
 		], __FILE__, __LINE__);
 		if ($db_result != -1 AND count($db_result) > 0) {
-			if ($newpassword == '1') {
-				if ($password != '' AND count($password) > 3) {
+			if ($newpassword) {
+				if ($password != '' AND mb_strlen($password) > 3) {
 					$db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
 						name = :name,
 						password = :password
@@ -229,7 +229,7 @@ class User {
 				} else {
 					return [
 						'code' => 'info',
-						'text' => 'Укажите новый пароль. Длина пароля не менее 3 символов.'
+						'text' => '|Укажите новый пароль. Длина пароля не менее 3 символов.'
 					];
 				}
 			} else {

@@ -2,7 +2,7 @@
 /**
  * Конечные определения страницы
  *
- * @version 0.4 23.05.2015
+ * @version 0.5 25.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -72,7 +72,7 @@ use App\Utility\Func;
 						</div>
 						<br>
 						<div>
-							<label><input type="checkbox" class="validate[required]" value="1" name="forma_reg_offer"> Я принимаю все условия <a href="<?php echo Config::$global['path_short_root']; ?>/stat-offer.pdf" target="_blank">публичной офёрты</a> и соглашаюсь с <a href="javascript:;" target="_blank">политикой конфиденциальности</a>.</label>
+							<label><input type="checkbox" class="icheck validate[required]" value="1" name="forma_reg_offer"> Я принимаю все условия <a href="<?php echo Config::$global['path_short_root']; ?>/stat-offer.pdf" target="_blank">публичной офёрты</a> и соглашаюсь с <a href="javascript:;" target="_blank">политикой конфиденциальности</a>.</label>
 						</div>
 					</form>
 				</div>
@@ -120,6 +120,8 @@ use App\Utility\Func;
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/ajaxupload.js" type="text/javascript"></script>
 		<!-- jsDeferred -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/jquery.jsdeferred.js" type="text/javascript"></script>
+		<!-- Bootstrap Toggle -->
+		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-toggle/bootstrap-toggle.min.js" type="text/javascript"></script>
 		<!-- Bootstrap Tour -->
 		<script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-tour/bootstrap-tour.min.js" type="text/javascript"></script>
 		<!-- iCheck -->

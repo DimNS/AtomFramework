@@ -1,7 +1,7 @@
 /**
  * Формы для проверки валидатором и запуска AJAX
  *
- * @version 0.4 23.05.2015
+ * @version 0.5 25.05.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -68,7 +68,7 @@ $('body').on('click', '.forma_submit', function() {
 						'ajax': true,
 						'name': $('#forma_users_save_name').val(),
 						'password': $('#forma_users_save_password').val(),
-						'newpassword': $('#forma_users_save_newpassword:checked').val()
+						'newpassword': $('#forma_users_save_newpassword').prop('checked')
 					},
 					success: function(data, textStatus, jqXHR) {
 						$('.userinfo_name').text($('#forma_users_save_name').val());
