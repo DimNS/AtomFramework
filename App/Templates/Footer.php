@@ -2,29 +2,27 @@
 /**
  * Конечные определения страницы
  *
- * @version 0.5 25.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-use App\Configs\Config;
-use App\Utility\Func;
+use AtomFramework\Configs\Config;
+use AtomFramework\Utility\Func;
 ?>
-			</div><!-- ./wrapper -->
-		</div><!-- ./container_all -->
-
 		<!-- Confirm -->
 		<div id="atom_confirm" class="window">
 			<div class="modal-content">
 				<div class="modal-header">
-					<a href="javascript:;" class="btn-cancel close"><i class="fa fa-times"></i></a>
+					<a href="javascript:windowClose('atom_confirm');" class="close"><i class="fa fa-times"></i></a>
 					<h4 class="modal-title">NaN</h4>
 				</div>
 				<div class="modal-body">
 					<p>NaN</p>
 				</div>
 				<div class="modal-footer">
-					<a href="javascript:;" class="btn btn-default btn-cancel pull-left">Отмена</a>
-					<a href="javascript:;" class="btn btn-primary btn-ok">OK</a>
+					<a href="javascript:;" id="atom_confirm_cancel">Отмена</a>
+					<a href="javascript:;" id="atom_confirm_ok"></a>
+					<a href="javascript:;" id="atom_confirm_third">Третья кнопка</a>
 				</div>
 			</div>
 		</div>
@@ -38,12 +36,7 @@ use App\Utility\Func;
 						<h4 class="modal-title">Последние обновления</h4>
 					</div>
 					<div class="modal-body">
-						<?php
-						// Подключаем класс для парсинга .md
-						require_once(Config::$global['path_home_root'] . '/App/Utility/Parsedown/Parsedown.php');
-						$Parsedown = new Parsedown();
-						echo $Parsedown->text(file_get_contents(Config::$global['path_home_root'] . '/CHANGELOG.md'));
-						?>
+						<!-- Здесь будет список последних изменений -->
 					</div>
 					<div class="modal-footer">
 						<a href="javascript:;" class="btn btn-default wnd_close" data-id="changelog">Закрыть</a>
@@ -91,7 +84,7 @@ use App\Utility\Func;
 					<h4 class="modal-title">Забыли пароль?</h4>
 				</div>
 				<div class="modal-body">
-					<form id="user_reg_forma" class="p10">
+					<form id="user_lost_forma" class="p10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-fw fa-envelope"></i></span>
 							<input type="text" id="forma_lost_email" class="form-control validate[required,custom[email]]" placeholder="Электронная почта">
@@ -135,13 +128,13 @@ use App\Utility\Func;
 
 		<script type="text/javascript">
 			var pathRoot = '<?php echo Config::$global['path_http_root']; ?>';
-			var messageCode = '<?php echo Config::$global['message_code']; ?>';
-			var messageText = '<?php echo Config::$global['message_text']; ?>';
+			var messageCode = '<?php print(isset(Config::$global['message_code']) ? Config::$global['message_code'] : ''); ?>';
+			var messageText = '<?php print(isset(Config::$global['message_text']) ? Config::$global['message_text'] : ''); ?>';
 			var mobileBrowser = <?php print(Config::$global['mobile'] ? 'true' : 'false'); ?>;
 			var pageLogin = <?php print(Func::is_login() ? 'true' : 'false'); ?>;
-			var firstLogin = <?php print(Config::$userinfo['version'] == 0 ? 'true' : 'false'); ?>;
-			var changelog = <?php print(Config::$userinfo['version'] < Config::$global['version'] ? 'true' : 'false'); ?>;
-			<?php echo Config::$global['page_js_vars']; ?>
+			var firstLogin = <?php if (isset(Config::$userinfo['version']) AND Config::$userinfo['version'] === '0') { echo 'true'; } else { echo 'false'; } ?>;
+			var changelog = <?php if (isset(Config::$userinfo['version']) AND Config::$userinfo['version'] < Config::$global['version']) { echo 'true'; } else { echo 'false'; } ?>;
+			<?php print(isset(Config::$global['page_js_vars']) ? Config::$global['page_js_vars'] : ''); ?>
 		</script>
 
 		<script src="<?php echo Config::$global['path_short_root']; ?>/js/core<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/core.min.js'); ?>" type="text/javascript"></script>

@@ -2,38 +2,45 @@
 /**
  * Главный файл обрабатывающий все запросы
  *
- * @version 0.3 08.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 header('Content-type: text/html; charset=UTF-8');
 
+// Подключаем файл с ядром
+require_once('App/application.php');
+
+// Разбираем маршрут в массив
+$route = \AtomFramework\Utility\Route::start();
+
+// Смотрим пришел ли запрос через AJAX
+if (isset($route['params']['ajax'])) {
+	$ajax = $route['params']['ajax'];
+} else {
+	$ajax = 'false';
+}
+
 try {
-	// Подключаем файл с ядром
-	require_once('app/application.php');
-
-	// Разбираем маршрут в массив
-	$route = \App\Utility\Route::start();
-
 	// Если запущена миграция, тогда не искать сессию, таблиц еще может не быть
-	if ($route['controller'] != '\App\Controllers\Migration') {
+	if ($route['controller'] != '\AtomFramework\Controllers\Migration') {
 		// Обновляем сессию
-		\App\Utility\Session::find();
+		\AtomFramework\Utility\Session::find();
 	}
 
 	// Получаем массив с результатом выполнения
 	$result = $route['controller']::start($route);
 
 	// В зависимости откуда пришел запрос, делаем правильный вывод
-	if ($route['params']['ajax']) {
+	if ($ajax === 'true') {
 		// Возвращаем результат в виде массива
 		echo json_encode($result);
 	} else {
 		// Отображаем содержимое страницы
 		echo $result;
 	}
-} catch(App\Utility\AtomException $e) {
+} catch(\AtomFramework\Utility\AtomException $e) {
 	// Отображаем результат
-	echo App\Utility\AtomException::report($route['params']['ajax'], $e);
+	echo \AtomFramework\Utility\AtomException::report($ajax, $e);
 }
 ?>

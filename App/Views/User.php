@@ -4,13 +4,13 @@
  *
  * Представление пользователей
  *
- * @version 0.5 25.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Views;
+namespace AtomFramework\Views;
 
-use App\Utility\Template;
+use AtomFramework\Utility\Template;
 
 class User {
 	/**

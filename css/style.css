@@ -46,8 +46,6 @@
 
 .window_layer {position:absolute;top:0;left:0;width:100%;z-index:2100;display:none;}
 .window_layer_box {width:800px;margin:0 auto;background:#fff;}
-
-#atom_confirm {width:400px;}
 /* ОКОНЧАНИЕ - Всплывающие элементы */
 
 /* НАЧАЛО - Различные элементы */

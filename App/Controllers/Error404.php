@@ -4,11 +4,11 @@
  *
  * Класс для вызова страницы ошибки 404
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Controllers;
+namespace AtomFramework\Controllers;
 
 class Error404 {
 	/**
@@ -16,13 +16,13 @@ class Error404 {
 	 *
 	 * @return content
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function start() {
 		header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
-		\App\Utility\Error::ins(0, 'ERR', '', 'Ошибка 404: Страница не найдена (запрошен адрес: ' . $_SERVER['REQUEST_URI'] . ')', __FILE__, __FUNCTION__, __LINE__);
-		\App\Views\Error404::show();
+		\AtomFramework\Utility\Error::ins(0, 'ERR', '', 'Ошибка 404: Страница не найдена (запрошен адрес: ' . $_SERVER['REQUEST_URI'] . ')', __FILE__, __FUNCTION__, __LINE__);
+		\AtomFramework\Views\Error404::show();
 		return null;
 	}
 }

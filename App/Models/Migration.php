@@ -4,15 +4,27 @@
  *
  * Модель для применения изменений в БД
  *
- * @version 0.3 08.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Models;
+namespace AtomFramework\Models;
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 
 class Migration {
+	//
+	// 	  ,,                                        ,,    ,,
+	// 	  db                        mm            `7MM  `7MM
+	// 	                            MM              MM    MM
+	// 	`7MM  `7MMpMMMb.  ,pP"Ybd mmMMmm  ,6"Yb.    MM    MM
+	// 	  MM    MM    MM  8I   `"   MM   8)   MM    MM    MM
+	// 	  MM    MM    MM  `YMMMa.   MM    ,pm9MM    MM    MM
+	// 	  MM    MM    MM  L.   I8   MM   8M   MM    MM    MM
+	// 	.JMML..JMML  JMML.M9mmmP'   `Mbmo`Moo9^Yo..JMML..JMML.
+	//
+	//
+
 	/**
 	 * Установка с нуля
 	 *
@@ -81,6 +93,18 @@ class Migration {
 		}
 	}
 
+	//
+	// 	         ,,
+	// 	       `7MM
+	// 	         MM
+	// 	 ,p6"bo  MMpMMMb.   ,6"Yb.  `7MMpMMMb.  .P"Ybmmm .gP"Ya
+	// 	6M'  OO  MM    MM  8)   MM    MM    MM :MI  I8  ,M'   Yb
+	// 	8M       MM    MM   ,pm9MM    MM    MM  WmmmP"  8M""""""
+	// 	YM.    , MM    MM  8M   MM    MM    MM 8M       YM.    ,
+	// 	 YMbmd'.JMML  JMML.`Moo9^Yo..JMML  JMML.YMMMMMb  `Mbmmd'
+	// 	                                       6'     dP
+	// 	                                       Ybmmmd'
+
 	/**
 	 * Применение изменений
 	 *
@@ -146,6 +170,18 @@ class Migration {
 	}
 }
 
+//
+// 	                   ,,                      ,,    ,,
+// 	                 `7MM                    `7MM    db   mm
+// 	                   MM                      MM         MM
+// 	,pP"Ybd  ,dW"Yvd   MM   ,pP"Ybd `7MMpdMAo. MM  `7MM mmMMmm
+// 	8I   `" ,W'   MM   MM   8I   `"   MM   `Wb MM    MM   MM
+// 	`YMMMa. 8M    MM   MM   `YMMMa.   MM    M8 MM    MM   MM
+// 	L.   I8 YA.   MM   MM   L.   I8   MM   ,AP MM    MM   MM
+// 	M9mmmP'  `MbmdMM .JMML. M9mmmP'   MMbmmd'.JMML..JMML. `Mbmo
+// 	              MM                  MM
+// 	            .JMML.  mmmmmmm     .JMML.
+
 /**
  * Функция разделяет SQL-запросы по разделителю ";" и возвращает массив запросов.
  * Пустые запросы игнорируются.
@@ -168,7 +204,7 @@ function sql_split($sql, $is_strip_comments = true)
 
 	if ($_is_callback)
 	{
-		if ($sql[0] == ';')
+		if ($sql[0] === ';')
 		{
 			return "\x01\r;\n\x02";
 		}
@@ -177,10 +213,10 @@ function sql_split($sql, $is_strip_comments = true)
 			#вырезаем комментарии
 			$c = substr($sql[0], 0, 1);
 			if (#однострочные комментарии
-				$c == '-' || $c == '#'
+				$c === '-' || $c === '#'
 				#многострочные комментарии, за исключением /*!ddddd ... */
 				#(выполнение части кода SQL запроса в зависимости от версии MySQL)
-				|| ($c == '/' && preg_match('/^\/\*(?!\!\d{5}[ \r\n\t])/s', $sql[0])))
+				|| ($c === '/' && preg_match('/^\/\*(?!\!\d{5}[ \r\n\t])/s', $sql[0])))
 			{
 				return '';
 			}

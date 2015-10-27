@@ -1,7 +1,7 @@
 /**
  * Мое приложение
  *
- * @version 0.5 25.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -62,14 +62,15 @@ if (pageLogin) {
 					});
 
 					// Показываем запрос на изменение пароля
-					showConfirm(
-						'Изменение пароля',
-						'<p>Прямо сейчас вы можете изменить пароль на более удобный для вас. Перейти к смене пароля?</p>',
-						function() {
-							location.replace(pathRoot + '/user/profile');
+					showConfirm({
+						htmlTitle: 'Изменение пароля',
+						htmlBody : '<p>Прямо сейчас вы можете изменить пароль на более удобный для вас. Перейти к смене пароля?</p>',
+						butOK: {
+							func: function() {
+								location.replace(pathRoot + '/user/profile');
+							},
 						},
-						function() {}
-					);
+					});
 				}
 			}]
 		});

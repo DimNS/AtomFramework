@@ -4,13 +4,13 @@
  *
  * Класс для работы с файлом ошибок
  *
- * @version 0.3 08.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Utility;
+namespace AtomFramework\Utility;
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 
 class Error {
 	/**

@@ -4,13 +4,13 @@
  *
  * Класс для работы с сессией
  *
- * @version 0.3 08.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Utility;
+namespace AtomFramework\Utility;
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 
 class Session {
 	/**
@@ -20,7 +20,7 @@ class Session {
 	 *
 	 * @return integer Статус создания сессии (0|1)
 	 *
-	 * @version 0.3 08.05.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function create($user_id) {
@@ -31,12 +31,12 @@ class Session {
 			],
 		];
 
-		Config::$userinfo = \App\Controllers\User::start($params);
+		Config::$userinfo = \AtomFramework\Controllers\User::start($params);
 		$session_id = sha1(md5(Config::$userinfo['email'] . Config::$global['currtime']));
 
 		$ip = '';
 		$ip = Func::get_ip();
-		if ($ip == '') {
+		if ($ip === '') {
 			$ip = 'no ip';
 		}
 
@@ -76,7 +76,7 @@ class Session {
 	 *
 	 * @return boolean Статус поиска сессии
 	 *
-	 * @version 0.3 08.05.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function find() {
@@ -96,8 +96,8 @@ class Session {
 				'id_ses' => $_SESSION[Config::$global['session_name']],
 				'ip' => Func::get_ip(),
 			], __FILE__, __LINE__);
-			if ($db_result != -1 AND count($db_result) == 1) {
-				if ($db_result[0]['id_ses'] == $_SESSION[Config::$global['session_name']]) {
+			if ($db_result != -1 AND count($db_result) === 1) {
+				if ($db_result[0]['id_ses'] === $_SESSION[Config::$global['session_name']]) {
 					$item = $db_result[0];
 
 					$params = [
@@ -106,7 +106,7 @@ class Session {
 							'user_id' => $item['id_user'],
 						],
 					];
-					Config::$userinfo = \App\Controllers\User::start($params);
+					Config::$userinfo = \AtomFramework\Controllers\User::start($params);
 
 					Config::$session = [
 						'id' => $item['id_user'],

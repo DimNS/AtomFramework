@@ -4,19 +4,31 @@
  *
  * Модель для работы с пользователями
  *
- * @version 0.5 25.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Models;
+namespace AtomFramework\Models;
 
-use App\Configs\Config;
-use App\Utility\Email;
-use App\Utility\Error;
-use App\Utility\Func;
-use App\Utility\Protocol;
+use AtomFramework\Configs\Config;
+use AtomFramework\Utility\Email;
+use AtomFramework\Utility\Error;
+use AtomFramework\Utility\Func;
+use AtomFramework\Utility\Protocol;
 
 class User {
+	//
+	// 	               ,,        ,,
+	// 	             `7MM      `7MM
+	// 	               MM        MM
+	// 	 ,6"Yb.   ,M""bMM   ,M""bMM
+	// 	8)   MM ,AP    MM ,AP    MM
+	// 	 ,pm9MM 8MI    MM 8MI    MM
+	// 	8M   MM `Mb    MM `Mb    MM
+	// 	`Moo9^Yo.`Wbmd"MML.`Wbmd"MML.
+	//
+	//
+
 	/**
 	 * Добавление нового пользователя
 	 *
@@ -26,7 +38,7 @@ class User {
 	 *
 	 * @return array
 	 *
-	 * @version 0.3 08.05.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function add($name, $email, $password) {
@@ -37,7 +49,7 @@ class User {
 			'email' => $email,
 		], __FILE__, __LINE__);
 		if ($db_result != -1) {
-			if (count($db_result) == 0) {
+			if (count($db_result) === 0) {
 				$password = Func::generate_password();
 
 				$db_result = query("INSERT INTO `" . Config::$global['db_prefix'] . "user` SET
@@ -89,6 +101,18 @@ class User {
 		}
 	}
 
+	//
+	// 	  ,,                       ,,
+	// 	`7MM                       db
+	// 	  MM
+	// 	  MM  ,pW"Wq.   .P"Ybmmm `7MM  `7MMpMMMb.
+	// 	  MM 6W'   `Wb :MI  I8     MM    MM    MM
+	// 	  MM 8M     M8  WmmmP"     MM    MM    MM
+	// 	  MM YA.   ,A9 8M          MM    MM    MM
+	// 	.JMML.`Ybmd9'   YMMMMMb  .JMML..JMML  JMML.
+	// 	               6'     dP
+	// 	               Ybmmmd'
+
 	/**
 	 * Авторизация пользователя по логину и паролю
 	 *
@@ -97,7 +121,7 @@ class User {
 	 *
 	 * @return integer Статус авторизации (#: id_user; 0: wrong_email_or_password; -1: user_blocked; -2: user_not_found)
 	 *
-	 * @version 0.3 08.05.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function login($email, $password) {
@@ -117,7 +141,7 @@ class User {
 			'email' => $email,
 		], __FILE__, __LINE__);
 		if ($db_result != -1) {
-			if (count($db_result) == 1) {
+			if (count($db_result) === 1) {
 				$user_info = $db_result[0];
 
 				$db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
@@ -128,7 +152,7 @@ class User {
 				], __FILE__, __LINE__);
 				if ($db_result != -1) {
 					if (count($db_result) < 10) {
-						if (crypt($password, $user_info['password']) == $user_info['password']) {
+						if (crypt($password, $user_info['password']) === $user_info['password']) {
 							// Записываем браузер пользователя
 							$db_result = query("INSERT INTO `" . Config::$global['db_prefix'] . "browsers` SET
 								date = :date,
@@ -170,6 +194,18 @@ class User {
 		}
 	}
 
+	//
+	//
+	// 	                   mm
+	// 	                   MM
+	// 	 .P"Ybmmm .gP"Ya mmMMmm
+	// 	:MI  I8  ,M'   Yb  MM
+	// 	 WmmmP"  8M""""""  MM
+	// 	8M       YM.    ,  MM
+	// 	 YMMMMMb  `Mbmmd'  `Mbmo
+	// 	6'     dP
+	// 	Ybmmmd'
+
 	/**
 	 * Получение данных пользователя по его ИД
 	 *
@@ -192,6 +228,18 @@ class User {
 			return $db_result[0];
 		}
 	}
+
+	//
+	//
+	//
+	//
+	// 	,pP"Ybd  ,6"Yb.`7M'   `MF'.gP"Ya
+	// 	8I   `" 8)   MM  VA   ,V ,M'   Yb
+	// 	`YMMMa.  ,pm9MM   VA ,V  8M""""""
+	// 	L.   I8 8M   MM    VVV   YM.    ,
+	// 	M9mmmP' `Moo9^Yo.   W     `Mbmmd'
+	//
+	//
 
 	/**
 	 * Сохранение личных данных
@@ -263,6 +311,18 @@ class User {
 		}
 	}
 
+	//
+	// 	  ,,                                                                                                           ,,
+	// 	`7MM                     mm                                                                                  `7MM
+	// 	  MM                     MM                                                                                    MM
+	// 	  MM  ,pW"Wq.  ,pP"Ybd mmMMmm      `7MMpdMAo.  ,6"Yb.  ,pP"Ybd ,pP"Ybd `7M'    ,A    `MF',pW"Wq.`7Mb,od8  ,M""bMM
+	// 	  MM 6W'   `Wb 8I   `"   MM          MM   `Wb 8)   MM  8I   `" 8I   `"   VA   ,VAA   ,V 6W'   `Wb MM' "',AP    MM
+	// 	  MM 8M     M8 `YMMMa.   MM          MM    M8  ,pm9MM  `YMMMa. `YMMMa.    VA ,V  VA ,V  8M     M8 MM    8MI    MM
+	// 	  MM YA.   ,A9 L.   I8   MM          MM   ,AP 8M   MM  L.   I8 L.   I8     VVV    VVV   YA.   ,A9 MM    `Mb    MM
+	// 	.JMML.`Ybmd9'  M9mmmP'   `Mbmo       MMbmmd'  `Moo9^Yo.M9mmmP' M9mmmP'      W      W     `Ybmd9'.JMML.   `Wbmd"MML.
+	// 	                                     MM
+	// 	                           mmmmmmm .JMML.
+
 	/**
 	 * Отправка запроса для напоминания пароля
 	 *
@@ -324,6 +384,18 @@ class User {
 			];
 		}
 	}
+
+	//
+	// 	                                                                                                                         ,,
+	// 	                                   mm                                                                                  `7MM
+	// 	                                   MM                                                                                    MM
+	// 	`7Mb,od8 .gP"Ya  ,pP"Ybd  .gP"Ya mmMMmm      `7MMpdMAo.  ,6"Yb.  ,pP"Ybd ,pP"Ybd `7M'    ,A    `MF',pW"Wq.`7Mb,od8  ,M""bMM
+	// 	  MM' "',M'   Yb 8I   `" ,M'   Yb  MM          MM   `Wb 8)   MM  8I   `" 8I   `"   VA   ,VAA   ,V 6W'   `Wb MM' "',AP    MM
+	// 	  MM    8M"""""" `YMMMa. 8M""""""  MM          MM    M8  ,pm9MM  `YMMMa. `YMMMa.    VA ,V  VA ,V  8M     M8 MM    8MI    MM
+	// 	  MM    YM.    , L.   I8 YM.    ,  MM          MM   ,AP 8M   MM  L.   I8 L.   I8     VVV    VVV   YA.   ,A9 MM    `Mb    MM
+	// 	.JMML.   `Mbmmd' M9mmmP'  `Mbmmd'  `Mbmo       MMbmmd'  `Moo9^Yo.M9mmmP' M9mmmP'      W      W     `Ybmd9'.JMML.   `Wbmd"MML.
+	// 	                                               MM
+	// 	                                     mmmmmmm .JMML.
 
 	/**
 	 * Сброс пароля для пользователя

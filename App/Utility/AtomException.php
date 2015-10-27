@@ -4,11 +4,11 @@
  *
  * Класс для работы с исключениями
  *
- * @version 0.3 08.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Utility;
+namespace AtomFramework\Utility;
 
 use Exception;
 
@@ -46,7 +46,7 @@ class AtomException extends Exception {
 	 *
 	 * @return string|array
 	 *
-	 * @version 0.3 08.05.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function report($ajax, $e) {
@@ -74,15 +74,15 @@ class AtomException extends Exception {
 			break;
 		}
 
-		\App\Utility\Error::ins($data['code_number'], $data['message_admin'], $e->getFile(), $e->getLine());
+		\AtomFramework\Utility\Error::ins($data['code_number'], $data['message_admin'], $e->getFile(), $e->getLine());
 
 		// В зависимости откуда пришел запрос, делаем правильный вывод
-		if ($ajax) {
+		if ($ajax === 'true') {
 			// Возвращаем результат в виде массива
 			return json_encode($data);
 		} else {
 			// Отображаем содержимое страницы
-			return \App\Views\AtomException::show($data);
+			return \AtomFramework\Views\AtomException::show($data);
 		}
 	}
 }

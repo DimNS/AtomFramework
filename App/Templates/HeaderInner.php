@@ -2,12 +2,12 @@
 /**
  * Шапка страницы
  *
- * @version 0.4 23.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-use App\Configs\Config;
-use App\Utility\Template;
+use AtomFramework\Configs\Config;
+use AtomFramework\Utility\Template;
 ?>
 <!-- Main Header -->
 <header class="main-header">
@@ -61,8 +61,8 @@ use App\Utility\Template;
 		<ul class="sidebar-menu">
 			<li class="header">НАВИГАЦИЯ</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li<?php print(Config::$global['route_controller'] == 'main' ? ' class="active"' : ''); ?>><a href="<?php echo Config::$global['path_short_root']; ?>/"><span>Главная</span></a></li>
-			<li<?php print(Config::$global['route_controller'] == 'user' ? ' class="active"' : ''); ?>><a href="<?php echo Config::$global['path_short_root']; ?>/user/profile"><span>Мой профиль</span></a></li>
+			<li<?php print(Config::$global['route_controller'] === 'main' ? ' class="active"' : ''); ?>><a href="<?php echo Config::$global['path_short_root']; ?>/"><span>Главная</span></a></li>
+			<li<?php print(Config::$global['route_controller'] === 'user' ? ' class="active"' : ''); ?>><a href="<?php echo Config::$global['path_short_root']; ?>/user/profile"><span>Мой профиль</span></a></li>
 		</ul><!-- /.sidebar-menu -->
 	</section><!-- /.sidebar -->
 </aside>

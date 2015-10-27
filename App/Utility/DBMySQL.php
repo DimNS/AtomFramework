@@ -4,14 +4,16 @@
  *
  * Класс для работы с БД MySQL
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Utility;
+namespace AtomFramework\Utility;
 
 use PDO;
 use PDOException;
+
+use AtomFramework\Utility\AtomException;
 
 class DBMySQL {
 	/**
@@ -59,11 +61,11 @@ class DBMySQL {
 	 *
 	 * @return integer Идентификатор соединения
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	private function connect() {
-		if (gettype($this->connect_id) == 'integer') {
+		if (gettype($this->connect_id) === 'integer') {
 			// Пробуем подключиться к БД
 			try {
 				$this->connect_id = new PDO("mysql:host=$this->host;dbname=$this->database", $this->user, $this->password, [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']);
@@ -94,8 +96,8 @@ class DBMySQL {
 
 		$query_type = mb_strtolower(mb_substr($query_str, 0, mb_strpos($query_str, ' ', 0, 'utf-8'), 'utf-8'), 'utf-8');
 
-		//App\Utility\Func::debug($query_str);
-		//App\Utility\Func::debug($query_data);
+		//AtomFramework\Utility\Func::debug($query_str);
+		//AtomFramework\Utility\Func::debug($query_data);
 
 		switch ($query_type) {
 			case 'select':

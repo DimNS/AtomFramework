@@ -4,13 +4,13 @@
  *
  * Класс для работы с протоколом действий пользователя
  *
- * @version 0.3 08.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Utility;
+namespace AtomFramework\Utility;
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 
 class Protocol {
 	/**
@@ -23,11 +23,11 @@ class Protocol {
 	 *
 	 * @return null
 	 *
-	 * @version 0.3 08.05.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function ins($action, $file, $line, $function) {
-		if (Config::$userinfo['id'] == '') {
+		if (Config::$userinfo['id'] === '') {
 			$user_id = 0;
 		} else {
 			$user_id = Config::$userinfo['id'];

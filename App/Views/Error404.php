@@ -4,14 +4,14 @@
  *
  * Класс для представления страницы ошибки 404
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Views;
+namespace AtomFramework\Views;
 
-use App\Configs\Config;
-use App\Utility\Template;
+use AtomFramework\Configs\Config;
+use AtomFramework\Utility\Template;
 
 class Error404 {
 	/**

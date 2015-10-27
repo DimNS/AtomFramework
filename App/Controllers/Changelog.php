@@ -4,13 +4,14 @@
  *
  * Класс для работы с файлом изменений
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Controllers;
+namespace AtomFramework\Controllers;
 
-use App\Utility\Func;
+use AtomFramework\Utility\Func;
+use AtomFramework\Models\Changelog as ChangelogModel;
 
 class Changelog {
 	/**
@@ -20,22 +21,22 @@ class Changelog {
 	 *
 	 * @return content
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function start($params) {
 		if (Func::is_login()) {
 			switch ($params['action']) {
 				case 'check':
-					return \App\Models\Changelog::check();
+					return ChangelogModel::check();
 				break;
 
 				default:
-					return \App\Controllers\Error404::start();
+					return ChangelogModel::get();
 				break;
 			}
 		} else {
-			return \App\Controllers\Main::error('info', 'Необходимо войти в систему');
+			return \AtomFramework\Controllers\Main::error('info', 'Необходимо войти в систему');
 		}
 	}
 }

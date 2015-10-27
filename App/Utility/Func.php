@@ -4,13 +4,13 @@
  *
  * Класс для вызова различных функций, используемых в разных частях приложения
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Utility;
+namespace AtomFramework\Utility;
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 
 class Func {
 	/**
@@ -147,11 +147,11 @@ class Func {
 	 *
 	 * @return string Хеш
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function collect_password($pwd) {
-		$salt = '$2a$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
+		$salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
 		return crypt($pwd, $salt);
 	}
 

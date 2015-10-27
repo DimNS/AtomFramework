@@ -2,11 +2,11 @@
 /**
  * Начальные определения страницы
  *
- * @version 0.5 25.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 ?>
 <!DOCTYPE html>
 

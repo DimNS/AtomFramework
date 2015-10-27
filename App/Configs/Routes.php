@@ -2,11 +2,11 @@
 /**
  * Настройки системы: Маршруты
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Configs;
+namespace AtomFramework\Configs;
 
 class Routes {
 	/**

@@ -1,7 +1,7 @@
 /**
  * Общие функции JavaScript
  *
- * @version 0.5 25.05.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -31,7 +31,7 @@ $('body').on('click', '.wnd_close', function() {
 	windowClose($(this).attr('data-id'));
 });
 
-$('body').on('click', '#window_overlay, .window_layer', function() {
+$('body').on('click', '#window_overlay', function() {
 	if (windowActive != 'NaN') {
 		windowClose(windowActive);
 	}
@@ -44,7 +44,7 @@ $('body').on('click', '#window_overlay, .window_layer', function() {
  *
  * @return null
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function windowOpen(wndID) {
@@ -55,6 +55,33 @@ function windowOpen(wndID) {
 		$('#container_all').css('position', 'fixed');
 		$('#container_all').css('margin-top', '-' + iScrolled + 'px');
 		$('#' + wndID).css('display', 'block').show();
+
+		if (wndID == 'changelog') {
+			windowActive = wndID;
+
+			// Получаем список последних изменений
+			ajax_waiter('show');
+
+			$.ajax({
+				url: pathRoot + '/changelog',
+				data: {
+					'ajax': true,
+				},
+				success: function(data, textStatus, jqXHR) {
+					if (data.code == 'success') {
+						$('#changelog .modal-body').html(data.content);
+					} else {
+						showMessage(data.code, data.text, true);
+					}
+				},
+				complete: function() {
+					ajax_waiter('hide');
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					ajax_error(textStatus, errorThrown);
+				}
+			});
+		}
 	} else {
 		// Обычное всплывающее окно
 		$('#' + wndID).css({
@@ -117,32 +144,136 @@ function windowClose(wndID) {
 /**
  * Показать подтверждение (confirm)
  *
- * @param string htmlTitle  Текст заголовка
- * @param string htmlBody   Текст подтверждения
- * @param string funcOK     Код функции если нажали OK
- * @param string funcCancel Код функции если нажали Отмена
+ * @param object settings Настройки
  *
  * @return null
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
-function showConfirm(htmlTitle, htmlBody, funcOK, funcCancel) {
+function showConfirm(settings) {
 	windowActive = 'atom_confirm';
-	$('#atom_confirm .modal-title').html(htmlTitle);
-	$('#atom_confirm .modal-body').html(htmlBody);
-	$('#atom_confirm .btn-ok').unbind('click').bind('click', function() {
-		funcOK();
-		windowClose('atom_confirm');
-	});
-	$('#atom_confirm .btn-cancel').unbind('click').bind('click', function() {
-		funcCancel();
-		windowClose('atom_confirm');
-	});
+
+	// Новая ширина окна, особенно актуально при трех кнопках и изменении текста на кнопках
+	if ('newWidth' in settings) {
+		$('#atom_confirm').css({
+			'width': settings.newWidth,
+		});
+	} else {
+		$('#atom_confirm').css({
+			'width': '400px',
+		});
+	}
+
+	// Заголовок окна
+	if ('htmlTitle' in settings) {
+		$('#atom_confirm .modal-title').html(settings.htmlTitle);
+	} else {
+		$('#atom_confirm .modal-title').html('Подтверждение действия');
+	}
+
+	// Сообщение
+	if ('htmlBody' in settings) {
+		$('#atom_confirm .modal-body').html(settings.htmlBody);
+	} else {
+		$('#atom_confirm .modal-body').html('Вы действительно хотите выполнить это действие?');
+	}
+
+	// Кнопка OK
+	if ('butOK' in settings) {
+		if ('title' in settings.butOK) {
+			$('#atom_confirm_ok').text(settings.butOK.title);
+		} else {
+			$('#atom_confirm_ok').text('OK');
+		}
+
+		if ('class' in settings.butOK) {
+			$('#atom_confirm_ok').removeClass().addClass('btn ' + settings.butOK.class);
+		} else {
+			$('#atom_confirm_ok').removeClass().addClass('btn btn-primary');
+		}
+
+		if ('func' in settings.butOK) {
+			$('#atom_confirm_ok').unbind('click').bind('click', function() {
+				settings.butOK.func();
+				windowClose('atom_confirm');
+			});
+		} else {
+			$('#atom_confirm_ok').unbind('click').bind('click', function() {
+				windowClose('atom_confirm');
+			});
+		}
+	} else {
+		$('#atom_confirm_ok').text('OK').removeClass().addClass('btn btn-primary').unbind('click').bind('click', function() {
+			windowClose('atom_confirm');
+		});
+	}
+
+	// Кнопка Cancel
+	if ('butCancel' in settings) {
+		if ('title' in settings.butCancel) {
+			$('#atom_confirm_cancel').text(settings.butCancel.title);
+		} else {
+			$('#atom_confirm_cancel').text('Отмена');
+		}
+
+		if ('class' in settings.butCancel) {
+			$('#atom_confirm_cancel').removeClass().addClass('btn pull-left ' + settings.butCancel.class);
+		} else {
+			$('#atom_confirm_cancel').removeClass().addClass('btn pull-left btn-default');
+		}
+
+		if ('func' in settings.butCancel) {
+			$('#atom_confirm_cancel').unbind('click').bind('click', function() {
+				settings.butCancel.func();
+				windowClose('atom_confirm');
+			});
+		} else {
+			$('#atom_confirm_cancel').unbind('click').bind('click', function() {
+				windowClose('atom_confirm');
+			});
+		}
+	} else {
+		$('#atom_confirm_cancel').text('Отмена').removeClass().addClass('btn pull-left btn-default').unbind('click').bind('click', function() {
+			windowClose('atom_confirm');
+		});
+	}
+
+	// Кнопка Третья
+	if ('butThird' in settings) {
+		if ('title' in settings.butThird) {
+			$('#atom_confirm_third').text(settings.butThird.title);
+		} else {
+			$('#atom_confirm_third').text('Третья кнопка');
+		}
+
+		if ('class' in settings.butThird) {
+			$('#atom_confirm_third').removeClass().addClass('btn ' + settings.butThird.class);
+		} else {
+			$('#atom_confirm_third').removeClass().addClass('btn btn-primary');
+		}
+
+		if ('func' in settings.butThird) {
+			$('#atom_confirm_third').unbind('click').bind('click', function() {
+				settings.butThird.func();
+				windowClose('atom_confirm');
+			});
+		} else {
+			$('#atom_confirm_third').unbind('click').bind('click', function() {
+				windowClose('atom_confirm');
+			});
+		}
+
+		$('#atom_confirm_third').show();
+	} else {
+		$('#atom_confirm_third').hide();
+	}
+
 	$('#atom_confirm').css({
 		'top': Math.max(0, (($(window).height() - $('#atom_confirm').outerHeight()) / 2)) + 'px',
 		'left': Math.max(0, (($(window).width() - $('#atom_confirm').outerWidth()) / 2)) + 'px'
 	}).show();
+
 	$('#window_overlay').show();
 }
 
@@ -161,18 +292,33 @@ function showConfirm(htmlTitle, htmlBody, funcOK, funcCancel) {
 /**
  * Показать ошибку (alert)
  *
- * @param string type    Код ошибки
- * @param string message Текст сообщения
+ * @param string  code    Код ошибки
+ * @param string  message Текст сообщения
+ * @param boolean modal   Показать сообщения для модального окна
  *
  * @return null
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
-function showMessage(type, message) {
-	$('#alerts-container .alert').hide();
-	$('#alerts-container .alert-' + type + ' span').html(message);
-	$('#alerts-container .alert-' + type).show();
+function showMessage(code, message, modal) {
+	// Если параметр не был передан, ему присваивается значение по умолчанию
+	modal = modal || false;
+
+	if (modal) {
+		// Показать сообщение внутри модального окна
+		$('#alerts-container .alert-' + code + ' span').html(message);
+		$('#' + windowActive + ' .modal-alert').remove();
+		$('#' + windowActive + ' .modal-body').prepend('<div class="modal-alert alert alert-' + code + '">' + $('#alerts-container .alert-' + code).html() + '</div>');
+		$('#' + windowActive + ' .modal-alert .close').hide();
+	} else {
+		// Показать обычное сообщение в интерфейсе
+		$('#alerts-container .alert').hide();
+		$('#alerts-container .alert-' + code + ' span').html(message);
+		$('#alerts-container .alert-' + code).show();
+	}
+
+	$('html,body').animate({ scrollTop: 0 }, 'slow');
 }
 
 $('#alerts-container .close').click(function() {
@@ -218,18 +364,10 @@ $('#show_hide_password').click(function() {
 
 // Только не мобильным браузерам
 if (!mobileBrowser) {
-	// Находим все select кроме тех у которых есть класс select2
-	$('select').each(function() {
-		if ($(this).hasClass('select2_wtags')) {
-			$(this).select2({
-				tags: true,
-				width: '100%'
-			});
-		} else {
-			$(this).select2({
-				width: '100%'
-			});
-		}
+	// Находим все селекты у которых есть класс select2_wtags
+	$('select.select2_wtags').select2({
+		tags: true,
+		width: '100%'
 	});
 }
 
@@ -244,7 +382,10 @@ $('.icheck').iCheck({
 });
 
 // Подключаем плагин Bootstrap Toggle
-$('.bootstrap-toggle').bootstrapToggle();
+$('.bootstrap-toggle').bootstrapToggle({
+	onstyle: 'success',
+	offstyle: 'danger',
+});
 
 // Отслеживаем галочку "Новый пароль: Да" в профиле пользователя
 $('#forma_users_save_newpassword').change(function() {

@@ -4,13 +4,13 @@
  *
  * Класс для отправки писем на почту
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Utility;
+namespace AtomFramework\Utility;
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 
 class Email {
 	/**
@@ -27,15 +27,15 @@ class Email {
 	 *
 	 * @return array
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function send($type, $email, $param) {
 		if (!Config::$global['production']) {
 			return true;
 		} else {
-			require_once(Config::$global['path_home_root'] . '/Utility/phpmailer/class.phpmailer.php');
-			$mail = new PHPMailer();
+			$mail = new \PHPMailer();
+			$mail->setLanguage('ru', Config::$global['path_home_root'] . '/vendor/phpmailer/phpmailer/language/');
 			$mail->IsHTML(true);
 			$mail->CharSet = 'windows-1251';
 			$mail->From = Config::$global['mail_from_email'];

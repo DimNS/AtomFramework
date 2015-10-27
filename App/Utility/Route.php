@@ -4,13 +4,13 @@
  *
  * Класс для работы с маршрутами
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Utility;
+namespace AtomFramework\Utility;
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 
 class Route {
 	/**
@@ -18,14 +18,14 @@ class Route {
 	 *
 	 * @return null
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function start() {
 		// Отсекаем Config::$global['path_short_root'] и "/" с концов
 		$routes = trim(str_replace(Config::$global['path_short_root'], '', $_SERVER['REQUEST_URI']), '/');
 
-		if ($routes == '') {
+		if ($routes === '') {
 			// Главная страница
 			$result = [
 				'controller' => 'Main',
@@ -47,8 +47,8 @@ class Route {
 			$route_con_act = explode('/', $routes_array[0]);
 
 			// Проверяем доступность контроллера
-			if (in_array($route_con_act[0], \App\Configs\Routes::$list)) {
-				if ($route_con_act[1] != '') {
+			if (in_array($route_con_act[0], \AtomFramework\Configs\Routes::$list)) {
+				if (isset($route_con_act[1]) AND $route_con_act[1] != '') {
 					$result = [
 						'controller' => ucfirst($route_con_act[0]),
 						'action' => $route_con_act[1],
@@ -67,7 +67,7 @@ class Route {
 			}
 
 			// Если есть параметры, находим их
-			if ($routes_array[1] != '') {
+			if (isset($routes_array[1]) AND $routes_array[1] != '') {
 				// Разбиваем параметры по "&"
 				$route_params = explode('&', $routes_array[1]);
 
@@ -90,7 +90,7 @@ class Route {
 		Config::$global['route_controller'] = strtolower($result['controller']);
 		Config::$global['route_action'] = $result['action'];
 
-		$result['controller'] = '\\App\\Controllers\\' . $result['controller'];
+		$result['controller'] = '\\AtomFramework\\Controllers\\' . $result['controller'];
 
 		return $result;
 	}

@@ -4,14 +4,14 @@
  *
  * Класс для представления страницы результата работы миграции
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Views;
+namespace AtomFramework\Views;
 
-use App\Configs\Config;
-use App\Utility\Template;
+use AtomFramework\Configs\Config;
+use AtomFramework\Utility\Template;
 
 class Migration {
 	/**
@@ -21,7 +21,7 @@ class Migration {
 	 *
 	 * @return null
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function show($data) {
@@ -30,7 +30,7 @@ class Migration {
 		<!-- Main content -->
 		<section class="content light_bg">
 			<?php
-			if ($data['data_success'] == $data['data_count']) {
+			if ($data['data_success'] === $data['data_count']) {
 				?>
 				<h2 class="text-green">Все запросы успешно выполнены</h2>
 				<?php
@@ -45,7 +45,7 @@ class Migration {
 				<ol>
 					<?php
 					foreach ($data['data'] as $sql_string_result) {
-						if ($sql_string_result['code'] == 'success') {
+						if ($sql_string_result['code'] === 'success') {
 							?>
 							<li class="text-muted"><?php echo $sql_string_result['sql']; ?>;</li>
 							<?php

@@ -4,14 +4,16 @@
  *
  * Класс для вызова главной страницы
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace App\Controllers;
+namespace AtomFramework\Controllers;
 
-use App\Configs\Config;
-use App\Utility\Func;
+use AtomFramework\Configs\Config;
+use AtomFramework\Models\Main as MainModel;
+use AtomFramework\Utility\Func;
+use AtomFramework\Views\Main as MainView;
 
 class Main {
 	/**
@@ -19,16 +21,16 @@ class Main {
 	 *
 	 * @return content
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function start() {
 		if (Func::is_login()) {
 			// Получаем данные для главной страницы (с авторизацией)
-			return \App\Views\Main::dashboard(\App\Models\Main::index(true));
+			return MainView::dashboard(MainModel::index(true));
 		} else {
 			// Получаем данные для главной страницы (без авторизации)
-			return \App\Views\Main::landing(\App\Models\Main::index(false));
+			return MainView::landing(MainModel::index(false));
 		}
 	}
 
@@ -40,7 +42,7 @@ class Main {
 	 *
 	 * @return content
 	 *
-	 * @version 0.1 27.04.2015
+	 * @version 0.6 27.10.2015
 	 * @author Дмитрий Щербаков <atomcms@ya.ru>
 	 */
 	static function error($message_code, $message_text) {
@@ -49,7 +51,7 @@ class Main {
 		Config::$global['message_text'] = $message_text;
 
 		// Получаем данные для главной страницы (без авторизации)
-		return \App\Views\Main::landing(\App\Models\Main::index(false));
+		return MainView::landing(MainModel::index(false));
 	}
 }
 ?>

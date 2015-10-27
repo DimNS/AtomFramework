@@ -2,11 +2,11 @@
 /**
  * Функции системы
  *
- * @version 0.1 27.04.2015
+ * @version 0.6 27.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-use App\Configs\Config;
+use AtomFramework\Configs\Config;
 
 // Запускаем сессию
 session_start();
@@ -26,15 +26,14 @@ date_default_timezone_set('UTC');
 // 	                              MMb
 // 	                               `bood'
 
+// Подключаем автозагрузку классов
+require_once('vendor/autoload.php');
+
 // Подключаем файлы с настройками
 require_once('Configs/Database.php');
 
 // Проверка браузера на мобильность
-require_once('Utility/MobileDetect/mdetect.php');
-$mdetect = new uagent_info();
-
-// Собственный обработчик исключений
-require_once('App/Utility/AtomException.php');
+$mdetect = new \Detection\MobileDetect();
 
 //
 //
@@ -47,20 +46,6 @@ require_once('App/Utility/AtomException.php');
 // 	.AMA.   .AMMA.`bmmmmd"'     .JMML.      `"bmmd"' .JMMmmmmMMM   `"bmmd"'.AMA.   .AMMA..JMMmmmdP'
 //
 //
-
-// Регистрируем функцию для автоматической загрузки классов (файлов)
-spl_autoload_register(function($class_path) {
-	// Убираем с начала косую черту и заменяем слеши на обратные слеши
-	$file = str_replace('\\', '/', trim($class_path, '\\')) . '.php';
-
-	// Проверяем файл на наличие и читаемость
-	if (is_readable($file) == true) {
-		// Подключаем файл
-		require_once($file);
-	} else {
-		return false;
-	}
-});
 
 // Регистрируем функцию, которая всегда выполняется перед завершением работы скрипт, даже если он пытается завершиться до своего логического конца
 if (!isset($_REQUEST['ajax'])) {
@@ -98,12 +83,12 @@ Config::$global['start_script'] = microtime(true);
 /**
  * @var Config::$global['mobile'] Мобильный браузер или нет (boolean)
  */
-Config::$global['mobile'] = $mdetect->DetectMobileQuick();
+Config::$global['mobile'] = $mdetect->isMobile();
 
 /**
  * @var Config::$global['start_year'] Год запуска проекта (string)
  */
-Config::$global['start_year'] = (date('Y', Config::$global['currtime']) == Config::$global['start_year'] ? Config::$global['start_year'] : Config::$global['start_year'] . '-' . date('Y', Config::$global['currtime']));
+Config::$global['start_year'] = (date('Y', Config::$global['currtime']) === Config::$global['start_year'] ? Config::$global['start_year'] : Config::$global['start_year'] . '-' . date('Y', Config::$global['currtime']));
 
 /**
  * @var Config::$global['session_die_time'] Время удаления подвисших сессий (integer)
@@ -133,7 +118,7 @@ Config::$global['path_home_root'] = $_SERVER['DOCUMENT_ROOT'] . Config::$global[
 // 	               OOb"                        `bood'
 
 // Подключаем класс для работы с БД
-Config::$global['db'] = new \App\Utility\DBMySQL(DB_HOST, DB_DATABASE, DB_USER, DB_PASSWORD);
+Config::$global['db'] = new \AtomFramework\Utility\DBMySQL(DB_HOST, DB_DATABASE, DB_USER, DB_PASSWORD);
 
 //
 //
