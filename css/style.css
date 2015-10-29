@@ -8,40 +8,40 @@
 #container_all {position:absolute;top:0;left:0;width:100%;z-index:1;}
 
 #ajax_overlay, #window_overlay {
-	z-index:2000;
-	display:none;
-	background:#000;
-	left:0;
-	opacity:0.40;
-	filter:alpha(opacity=40);
-	position:fixed;
-	top:0;
-	width:100%;
-	height:100%;
+    z-index:2000;
+    display:none;
+    background:#000;
+    left:0;
+    opacity:0.40;
+    filter:alpha(opacity=40);
+    position:fixed;
+    top:0;
+    width:100%;
+    height:100%;
 }
 
 #ajax_overlay {z-index:90000;}
 
 #ajax_waiter {
-	z-index:100000;
-	display:none;
-	background:#fff;
-	position:fixed;
-	top:100px;
-	left:50%;
-	margin-left:-50px;
-	width:140px;
-	height:143px;
-	border:2px #aed0ea solid;
-	border-radius:100px;
-	padding:20px;
+    z-index:100000;
+    display:none;
+    background:#fff;
+    position:fixed;
+    top:100px;
+    left:50%;
+    margin-left:-50px;
+    width:140px;
+    height:143px;
+    border:2px #aed0ea solid;
+    border-radius:100px;
+    padding:20px;
 }
 
 .window {
-	z-index:2100;
-	display:none;
-	position:fixed;
-	width:360px;
+    z-index:2100;
+    display:none;
+    position:fixed;
+    width:360px;
 }
 
 .window_layer {position:absolute;top:0;left:0;width:100%;z-index:2100;display:none;}
@@ -56,13 +56,13 @@
 /* ОКОНЧАНИЕ - Различные элементы */
 
 /*
-	`7MM"""YMM  `YMM'   `MP' .g8"""bgd `7MM"""YMM  `7MM"""Mq. MMP""MM""YMM `7MMF' .g8""8q. `7MN.   `7MF'
-	  MM    `7    VMb.  ,P .dP'     `M   MM    `7    MM   `MM.P'   MM   `7   MM .dP'    `YM. MMN.    M
-	  MM   d       `MM.M'  dM'       `   MM   d      MM   ,M9      MM        MM dM'      `MM M YMb   M
-	  MMmmMM         MMb   MM            MMmmMM      MMmmdM9       MM        MM MM        MM M  `MN. M
-	  MM   Y  ,    ,M'`Mb. MM.           MM   Y  ,   MM            MM        MM MM.      ,MP M   `MM.M
-	  MM     ,M   ,P   `MM.`Mb.     ,'   MM     ,M   MM            MM        MM `Mb.    ,dP' M     YMM
-	.JMMmmmmMMM .MM:.  .:MMa.`"bmmmd'  .JMMmmmmMMM .JMML.        .JMML.    .JMML. `"bmmd"' .JML.    YM
+    `7MM"""YMM  `YMM'   `MP' .g8"""bgd `7MM"""YMM  `7MM"""Mq. MMP""MM""YMM `7MMF' .g8""8q. `7MN.   `7MF'
+      MM    `7    VMb.  ,P .dP'     `M   MM    `7    MM   `MM.P'   MM   `7   MM .dP'    `YM. MMN.    M
+      MM   d       `MM.M'  dM'       `   MM   d      MM   ,M9      MM        MM dM'      `MM M YMb   M
+      MMmmMM         MMb   MM            MMmmMM      MMmmdM9       MM        MM MM        MM M  `MN. M
+      MM   Y  ,    ,M'`Mb. MM.           MM   Y  ,   MM            MM        MM MM.      ,MP M   `MM.M
+      MM     ,M   ,P   `MM.`Mb.     ,'   MM     ,M   MM            MM        MM `Mb.    ,dP' M     YMM
+    .JMMmmmmMMM .MM:.  .:MMa.`"bmmmd'  .JMMmmmmMMM .JMML.        .JMML.    .JMML. `"bmmd"' .JML.    YM
 */
 
 .exception-page {width:700px;margin:40px auto 0 auto;}

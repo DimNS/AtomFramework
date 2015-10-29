@@ -16,31 +16,31 @@ $route = \AtomFramework\Utility\Route::start();
 
 // Смотрим пришел ли запрос через AJAX
 if (isset($route['params']['ajax'])) {
-	$ajax = $route['params']['ajax'];
+    $ajax = $route['params']['ajax'];
 } else {
-	$ajax = 'false';
+    $ajax = 'false';
 }
 
 try {
-	// Если запущена миграция, тогда не искать сессию, таблиц еще может не быть
-	if ($route['controller'] != '\AtomFramework\Controllers\Migration') {
-		// Обновляем сессию
-		\AtomFramework\Utility\Session::find();
-	}
+    // Если запущена миграция, тогда не искать сессию, таблиц еще может не быть
+    if ($route['controller'] != '\AtomFramework\Controllers\Migration') {
+        // Обновляем сессию
+        \AtomFramework\Utility\Session::find();
+    }
 
-	// Получаем массив с результатом выполнения
-	$result = $route['controller']::start($route);
+    // Получаем массив с результатом выполнения
+    $result = $route['controller']::start($route);
 
-	// В зависимости откуда пришел запрос, делаем правильный вывод
-	if ($ajax === 'true') {
-		// Возвращаем результат в виде массива
-		echo json_encode($result);
-	} else {
-		// Отображаем содержимое страницы
-		echo $result;
-	}
+    // В зависимости откуда пришел запрос, делаем правильный вывод
+    if ($ajax === 'true') {
+        // Возвращаем результат в виде массива
+        echo json_encode($result);
+    } else {
+        // Отображаем содержимое страницы
+        echo $result;
+    }
 } catch(\AtomFramework\Utility\AtomException $e) {
-	// Отображаем результат
-	echo \AtomFramework\Utility\AtomException::report($ajax, $e);
+    // Отображаем результат
+    echo \AtomFramework\Utility\AtomException::report($ajax, $e);
 }
 ?>

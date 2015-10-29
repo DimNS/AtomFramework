@@ -7,22 +7,22 @@
 
 //
 //
-// 	      db        `7MMF'    db      `YMM'   `MP'
-// 	     ;MM:         MM     ;MM:       VMb.  ,P
-// 	    ,V^MM.        MM    ,V^MM.       `MM.M'
-// 	   ,M  `MM        MM   ,M  `MM         MMb
-// 	   AbmmmqMA       MM   AbmmmqMA      ,M'`Mb.
-// 	  A'     VML (O)  MM  A'     VML    ,P   `MM.
-// 	.AMA.   .AMMA.Ymmm9 .AMA.   .AMMA..MM:.  .:MMa.
+//        db        `7MMF'    db      `YMM'   `MP'
+//       ;MM:         MM     ;MM:       VMb.  ,P
+//      ,V^MM.        MM    ,V^MM.       `MM.M'
+//     ,M  `MM        MM   ,M  `MM         MMb
+//     AbmmmqMA       MM   AbmmmqMA      ,M'`Mb.
+//    A'     VML (O)  MM  A'     VML    ,P   `MM.
+//  .AMA.   .AMMA.Ymmm9 .AMA.   .AMMA..MM:.  .:MMa.
 //
 //
 
 // Настройки
 $.ajaxSetup({
-	timeout: 20000,
-	type: 'POST',
-	dataType: 'json',
-	cache: false
+    timeout: 20000,
+    type: 'POST',
+    dataType: 'json',
+    cache: false
 });
 
 /**
@@ -37,14 +37,14 @@ $.ajaxSetup({
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function ajax_error(status, text) {
-	switch (status)
-	{
-		case 'timeout': showMessage('warning', 'Время ожидания истекло. Попробуйте ещё раз.'); break;
-		case 'parsererror': showMessage('warning', 'Ошибка парсера. Попробуйте ещё раз.'); break;
-		case 'abort': showMessage('info', 'Запрос был отменён.'); break;
-		case 'error': showMessage('danger', 'Произошла ошибка сервера: ' + text + '. Передайте администрации и попробуйте ещё раз.'); break;
-		default: showMessage('danger', 'Неизвестная ошибка. Попробуйте ещё раз.'); break;
-	}
+    switch (status)
+    {
+        case 'timeout': showMessage('warning', 'Время ожидания истекло. Попробуйте ещё раз.'); break;
+        case 'parsererror': showMessage('warning', 'Ошибка парсера. Попробуйте ещё раз.'); break;
+        case 'abort': showMessage('info', 'Запрос был отменён.'); break;
+        case 'error': showMessage('danger', 'Произошла ошибка сервера: ' + text + '. Передайте администрации и попробуйте ещё раз.'); break;
+        default: showMessage('danger', 'Неизвестная ошибка. Попробуйте ещё раз.'); break;
+    }
 };
 
 /**
@@ -58,29 +58,29 @@ function ajax_error(status, text) {
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function ajax_waiter(action) {
-	if (action === 'show') {
-		// Показ блока ожидания
-		$('#ajax_waiter').show();
-		$('#ajax_overlay').show();
+    if (action === 'show') {
+        // Показ блока ожидания
+        $('#ajax_waiter').show();
+        $('#ajax_overlay').show();
 
-		// Скрываем старые ошибки
-		$('#alerts-container .alert').hide();
-	} else {
-		// Скрываем блок ожидания
-		$('#ajax_waiter').hide();
-		$('#ajax_overlay').hide();
-	}
+        // Скрываем старые ошибки
+        $('#alerts-container .alert').hide();
+    } else {
+        // Скрываем блок ожидания
+        $('#ajax_waiter').hide();
+        $('#ajax_overlay').hide();
+    }
 };
 
 //
 //
-// 	`7MMF'     A     `7MF' db      `7MMF'MMP""MM""YMM `7MM"""YMM  `7MM"""Mq.
-// 	  `MA     ,MA     ,V  ;MM:       MM  P'   MM   `7   MM    `7    MM   `MM.
-// 	   VM:   ,VVM:   ,V  ,V^MM.      MM       MM        MM   d      MM   ,M9
-// 	    MM.  M' MM.  M' ,M  `MM      MM       MM        MMmmMM      MMmmdM9
-// 	    `MM A'  `MM A'  AbmmmqMA     MM       MM        MM   Y  ,   MM  YM.
-// 	     :MM;    :MM;  A'     VML    MM       MM        MM     ,M   MM   `Mb.
-// 	      VF      VF .AMA.   .AMMA..JMML.   .JMML.    .JMMmmmmMMM .JMML. .JMM.
+//  `7MMF'     A     `7MF' db      `7MMF'MMP""MM""YMM `7MM"""YMM  `7MM"""Mq.
+//    `MA     ,MA     ,V  ;MM:       MM  P'   MM   `7   MM    `7    MM   `MM.
+//     VM:   ,VVM:   ,V  ,V^MM.      MM       MM        MM   d      MM   ,M9
+//      MM.  M' MM.  M' ,M  `MM      MM       MM        MMmmMM      MMmmdM9
+//      `MM A'  `MM A'  AbmmmqMA     MM       MM        MM   Y  ,   MM  YM.
+//       :MM;    :MM;  A'     VML    MM       MM        MM     ,M   MM   `Mb.
+//        VF      VF .AMA.   .AMMA..JMML.   .JMML.    .JMMmmmmMMM .JMML. .JMM.
 //
 //
 
@@ -106,14 +106,14 @@ var SECONDS_BETWEEN_FRAMES = 0;
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function startAnimation() {
-	document.getElementById('ajax_loader').style.backgroundImage = 'url(' + cImageSrc + ')';
-	document.getElementById('ajax_loader').style.width = cWidth + 'px';
-	document.getElementById('ajax_loader').style.height = cHeight + 'px';
+    document.getElementById('ajax_loader').style.backgroundImage = 'url(' + cImageSrc + ')';
+    document.getElementById('ajax_loader').style.width = cWidth + 'px';
+    document.getElementById('ajax_loader').style.height = cHeight + 'px';
 
-	FPS = Math.round(100 / cSpeed);
-	SECONDS_BETWEEN_FRAMES = 1 / FPS;
+    FPS = Math.round(100 / cSpeed);
+    SECONDS_BETWEEN_FRAMES = 1 / FPS;
 
-	cPreloaderTimeout = setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES / 1000);
+    cPreloaderTimeout = setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES / 1000);
 };
 
 /**
@@ -125,18 +125,18 @@ function startAnimation() {
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function continueAnimation() {
-	cXpos += cFrameWidth;
-	cIndex += 1;
+    cXpos += cFrameWidth;
+    cIndex += 1;
 
-	if (cIndex >= cTotalFrames) {
-		cXpos = 0;
-		cIndex = 0;
-	}
+    if (cIndex >= cTotalFrames) {
+        cXpos = 0;
+        cIndex = 0;
+    }
 
-	if(document.getElementById('ajax_loader'))
-		document.getElementById('ajax_loader').style.backgroundPosition = (-cXpos) + 'px 0';
+    if(document.getElementById('ajax_loader'))
+        document.getElementById('ajax_loader').style.backgroundPosition = (-cXpos) + 'px 0';
 
-	cPreloaderTimeout = setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES * 1000);
+    cPreloaderTimeout = setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES * 1000);
 };
 
 /**
@@ -148,8 +148,8 @@ function continueAnimation() {
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function stopAnimation() {
-	clearTimeout(cPreloaderTimeout);
-	cPreloaderTimeout = false;
+    clearTimeout(cPreloaderTimeout);
+    cPreloaderTimeout = false;
 };
 
 /**
@@ -164,12 +164,12 @@ function stopAnimation() {
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function imageLoader(s, fun) {
-	clearTimeout(cImageTimeout);
-	cImageTimeout = 0;
-	genImage = new Image();
-	genImage.onload = function (){cImageTimeout = setTimeout(fun, 0)};
-	genImage.onerror = new Function('alert(\'Could not load the image\')');
-	genImage.src = s;
+    clearTimeout(cImageTimeout);
+    cImageTimeout = 0;
+    genImage = new Image();
+    genImage.onload = function (){cImageTimeout = setTimeout(fun, 0)};
+    genImage.onerror = new Function('alert(\'Could not load the image\')');
+    genImage.src = s;
 };
 
 //The following code starts the animation

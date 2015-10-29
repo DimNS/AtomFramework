@@ -15,8 +15,8 @@ label {font-weight:400;}
 
 /* Select2 */
 .select2-container--default .select2-selection--single {
-	border-color:#d2d6de;
-	border-radius:0px;
+    border-color:#d2d6de;
+    border-radius:0px;
 }
 
 /* Bootstrap Tour */
