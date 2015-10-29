@@ -2,7 +2,7 @@
 /**
  * Показывает блок с формой входа
  *
- * @version 0.6 27.10.2015
+ * @version 0.6.2 29.10.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -31,9 +31,9 @@ use AtomFramework\Utility\Template;
                 </div>
                 <div class="form-group input-group has-feedback">
                     <input type="password" class="form-control validate[required]" name="password" placeholder="Пароль">
-                    <span class="input-group-btn">
+                    <span id="show_hide_password" class="input-group-btn">
                         <button class="btn btn-info" type="button">
-                            <span id="show_hide_password" class="fa fa-fw fa-lock"></span>
+                            <span class="fa fa-fw fa-lock"></span>
                         </button>
                     </span>
                 </div>
