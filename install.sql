@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS `atom_session` (
 DROP TABLE IF EXISTS `atom_user`;
 CREATE TABLE IF NOT EXISTS `atom_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` int(11) NOT NULL DEFAULT '0',
   `active` tinyint(4) NOT NULL DEFAULT '1',
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',

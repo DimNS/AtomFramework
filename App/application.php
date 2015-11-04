@@ -2,7 +2,7 @@
 /**
  * Функции системы
  *
- * @version 0.6 27.10.2015
+ * @version 0.6.4 04.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -74,6 +74,11 @@ if (!isset($_REQUEST['ajax'])) {
  * @var Config::$global['currtime'] Текущее время (integer)
  */
 Config::$global['currtime'] = time();
+
+/**
+ * @var Config::$global['currtime_format'] Текущее время в формате YYYY-MM-DD HH:MM:SS (string)
+ */
+Config::$global['currtime_format'] = date('Y-m-d H:i:s', Config::$global['currtime']);
 
 /**
  * @var Config::$global['start_script'] Врема запуска скрипта (integer)
