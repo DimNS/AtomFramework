@@ -15,17 +15,17 @@
 
 ## Если нужно выкинуть ошибку
 
-1. Подключаем namespace `use App\Utility\AtomException;`
+1. Подключаем namespace `use AtomFramework\Utility\AtomException;`
 2. В нужном вам месте кода пишем `throw new AtomException('текст ошибки для разработчика', 20);`
 3. Данный код выкинет страницу с ошибкой. Где будет указан номер ошибки `20-1431074362`, а в тексте будет написано `Произошла ошибка в коде`. Вы же сможете по номеру ошибки найти ее полное описание в файле `error.log`
 4. Код ошибки `10` используется для ошибок в sql-запросах. Если код ошибки не указать или указать отличный от `10` или `20`, тогда пользователю покажется ошибка `0-1431074362` с текстом `Неизвестная ошибка`
 
 ## Используемые библиотеки
 
-#### PHP
-- **MobileESP (mdetect.php) r214** http://www.mobileesp.com
-- **Parsedown v1.5.1** https://github.com/erusev/parsedown
-- **PHPMailer v5.2.1** https://github.com/PHPMailer/PHPMailer
+#### PHP (устанавливаются через Composer)
+- **Mobile_Detect** https://github.com/serbanghita/Mobile-Detect
+- **Parsedown** https://github.com/erusev/parsedown
+- **PHPMailer** https://github.com/PHPMailer/PHPMailer
 
 #### JS
 - **AJAX Upload** http://valums.com/ajax-upload *версия устарела, но она стабильная и бесплатная*

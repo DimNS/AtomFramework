@@ -4,7 +4,7 @@
  *
  * Модель для работы с пользователями
  *
- * @version 0.6 27.10.2015
+ * @version 0.6.3 04.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -38,7 +38,7 @@ class User {
      *
      * @return array
      *
-     * @version 0.6 27.10.2015
+     * @version 0.6.3 04.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function add($name, $email, $password) {
@@ -57,13 +57,14 @@ class User {
                     email = :email,
                     password = :password,
                     name = :name,
-                    version = :version
+                    version = :version,
+                    created_at = NOW()
                 ", [
-                    'date' => Config::$global['currtime'],
-                    'email' => $email,
+                    'date'     => Config::$global['currtime'],
+                    'email'    => $email,
                     'password' => Func::collect_password($password),
-                    'name' => $name,
-                    'version' => Config::$global['version'],
+                    'name'     => $name,
+                    'version'  => Config::$global['version'],
                 ], __FILE__, __LINE__);
                 if ($db_result >= 0) {
                     Protocol::ins('Добавлен новый администратор: ' . $email, __FILE__, __LINE__, __FUNCTION__);
@@ -159,8 +160,8 @@ class User {
                                 user_id = :user_id,
                                 user_agent = :user_agent
                             ", [
-                                'date' => Config::$global['currtime'],
-                                'user_id' => $user_info['id'],
+                                'date'       => Config::$global['currtime'],
+                                'user_id'    => $user_info['id'],
                                 'user_agent' => $_SERVER['HTTP_USER_AGENT'],
                             ], __FILE__, __LINE__);
 
@@ -171,7 +172,7 @@ class User {
                                 date = :date
                             ", [
                                 'user_id' => $user_info['id'],
-                                'date' => time(),
+                                'date'    => time(),
                             ], __FILE__, __LINE__);
                             if ($db_result >= 0) {
                                 Error::ins(0, 'SQL', '', 'Пользователь не прошел авторизацию (передан параметр email: ' . $email . ')', __FILE__, __FUNCTION__, __LINE__);
@@ -250,7 +251,7 @@ class User {
      *
      * @return array
      *
-     * @version 0.5 25.05.2015
+     * @version 0.6.3 04.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function save($name, $password, $newpassword) {
@@ -265,13 +266,14 @@ class User {
                 if ($password != '' AND mb_strlen($password) > 3) {
                     $db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
                         name = :name,
-                        password = :password
+                        password = :password,
+                        updated_at = NOW()
                         WHERE id = :id
                         LIMIT 1
                     ", [
-                        'name' => $name,
+                        'name'     => $name,
                         'password' => Func::collect_password($password),
-                        'id' => Config::$userinfo['id'],
+                        'id'       => Config::$userinfo['id'],
                     ], __FILE__, __LINE__);
                     Protocol::ins('Сохранение личных данных с изменением пароля', __FILE__, __LINE__, __FUNCTION__);
                 } else {
@@ -282,12 +284,13 @@ class User {
                 }
             } else {
                 $db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
-                    name = :name
+                    name = :name,
+                    updated_at = NOW()
                     WHERE id = :id
                     LIMIT 1
                 ", [
                     'name' => $name,
-                    'id' => Config::$userinfo['id'],
+                    'id'   => Config::$userinfo['id'],
                 ], __FILE__, __LINE__);
                 Protocol::ins('Сохранение личных данных', __FILE__, __LINE__, __FUNCTION__);
             }
@@ -330,7 +333,7 @@ class User {
      *
      * @return array
      *
-     * @version 0.3 08.05.2015
+     * @version 0.6.3 04.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function lost_password($email) {
@@ -345,11 +348,12 @@ class User {
                 $hash = md5($email);
 
                 $db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
-                    reset_password = :reset_password
+                    reset_password = :reset_password,
+                    updated_at = NOW()
                     WHERE email = :email
                 ", [
                     'reset_password' => $hash,
-                    'email' => $email,
+                    'email'          => $email,
                 ], __FILE__, __LINE__);
                 if ($db_result >= 0) {
                     Protocol::ins('Запрос на сброс пароля для пользователя: ' . $email, __FILE__, __LINE__, __FUNCTION__);
@@ -404,7 +408,7 @@ class User {
      *
      * @return string Результат работы
      *
-     * @version 0.3 08.05.2015
+     * @version 0.6.3 04.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function reset_password($key) {
@@ -420,10 +424,11 @@ class User {
 
             $db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
                 password = :password,
-                reset_password = ''
+                reset_password = '',
+                updated_at = NOW()
                 WHERE reset_password = :reset_password
             ", [
-                'password' => Func::collect_password($password),
+                'password'       => Func::collect_password($password),
                 'reset_password' => $key,
             ], __FILE__, __LINE__);
             if ($db_result >= 0) {

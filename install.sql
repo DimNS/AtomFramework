@@ -43,6 +43,8 @@ CREATE TABLE IF NOT EXISTS `atom_user` (
   `reset_password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `created_at` datetime,
+  `updated_at` datetime,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
 
@@ -50,7 +52,8 @@ INSERT INTO `atom_user` SET
   `id` = '1',
   `email` = 'info@bestion.ru',
   `password` = '$2a$11$eeb81127510262464d5a8u4ND6aiJkXXVjzZPnPus5CqWKPOzvBG6',
-  `name` = 'Лучшее решение'
+  `name` = 'Лучшее решение',
+  `created_at` = '2015-01-01 00:00:00'
 ;
 
 DROP TABLE IF EXISTS `atom_user_block`;

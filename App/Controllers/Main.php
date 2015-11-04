@@ -4,7 +4,7 @@
  *
  * Класс для вызова главной страницы
  *
- * @version 0.6 27.10.2015
+ * @version 0.6.3 04.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -21,16 +21,16 @@ class Main {
      *
      * @return content
      *
-     * @version 0.6 27.10.2015
+     * @version 0.6.3 04.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function start() {
         if (Func::is_login()) {
             // Получаем данные для главной страницы (с авторизацией)
-            return MainView::dashboard(MainModel::index(true));
+            return MainView::dashboard(MainModel::dashboard());
         } else {
             // Получаем данные для главной страницы (без авторизации)
-            return MainView::landing(MainModel::index(false));
+            return MainView::landing(MainModel::landing());
         }
     }
 
