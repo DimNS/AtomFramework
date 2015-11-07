@@ -1,76 +1,9 @@
 /**
  * Функции JavaScript для AJAX
  *
- * @version 0.6 27.10.2015
+ * @version 0.6.5 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
-
-//
-//
-//        db        `7MMF'    db      `YMM'   `MP'
-//       ;MM:         MM     ;MM:       VMb.  ,P
-//      ,V^MM.        MM    ,V^MM.       `MM.M'
-//     ,M  `MM        MM   ,M  `MM         MMb
-//     AbmmmqMA       MM   AbmmmqMA      ,M'`Mb.
-//    A'     VML (O)  MM  A'     VML    ,P   `MM.
-//  .AMA.   .AMMA.Ymmm9 .AMA.   .AMMA..MM:.  .:MMa.
-//
-//
-
-// Настройки
-$.ajaxSetup({
-    timeout: 20000,
-    type: 'POST',
-    dataType: 'json',
-    cache: false
-});
-
-/**
- * Отображение ошибки AJAX
- *
- * @param string status Код ошибки
- * @param string text   Текст сообщения
- *
- * @return null
- *
- * @version 0.1 27.04.2015
- * @author Дмитрий Щербаков <atomcms@ya.ru>
- */
-function ajax_error(status, text) {
-    switch (status)
-    {
-        case 'timeout': showMessage('warning', 'Время ожидания истекло. Попробуйте ещё раз.'); break;
-        case 'parsererror': showMessage('warning', 'Ошибка парсера. Попробуйте ещё раз.'); break;
-        case 'abort': showMessage('info', 'Запрос был отменён.'); break;
-        case 'error': showMessage('danger', 'Произошла ошибка сервера: ' + text + '. Передайте администрации и попробуйте ещё раз.'); break;
-        default: showMessage('danger', 'Неизвестная ошибка. Попробуйте ещё раз.'); break;
-    }
-};
-
-/**
- * Блок ожидания
- *
- * @param string action Показать или скрыть блок ожидания (show|hide)
- *
- * @return null
- *
- * @version 0.6 27.10.2015
- * @author Дмитрий Щербаков <atomcms@ya.ru>
- */
-function ajax_waiter(action) {
-    if (action === 'show') {
-        // Показ блока ожидания
-        $('#ajax_waiter').show();
-        $('#ajax_overlay').show();
-
-        // Скрываем старые ошибки
-        $('#alerts-container .alert').hide();
-    } else {
-        // Скрываем блок ожидания
-        $('#ajax_waiter').hide();
-        $('#ajax_overlay').hide();
-    }
-};
 
 //
 //
@@ -84,17 +17,17 @@ function ajax_waiter(action) {
 //
 //
 
-var cSpeed = 4;
-var cWidth = 100;
-var cHeight = 103;
+var cSpeed       = 4;
+var cWidth       = 100;
+var cHeight      = 103;
 var cTotalFrames = 20;
-var cFrameWidth = 100;
-var cImageSrc = pathRoot + '/images/loader.gif';
+var cFrameWidth  = 100;
+var cImageSrc    = pathRoot + '/img/loader.gif';
 
-var cImageTimeout = false;
-var cIndex = 0;
-var cXpos = 0;
-var cPreloaderTimeout = false;
+var cImageTimeout          = false;
+var cIndex                 = 0;
+var cXpos                  = 0;
+var cPreloaderTimeout      = false;
 var SECONDS_BETWEEN_FRAMES = 0;
 
 /**
@@ -102,15 +35,15 @@ var SECONDS_BETWEEN_FRAMES = 0;
  *
  * @return null
  *
- * @version 0.1 27.04.2015
+ * @version 0.6.5 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function startAnimation() {
     document.getElementById('ajax_loader').style.backgroundImage = 'url(' + cImageSrc + ')';
-    document.getElementById('ajax_loader').style.width = cWidth + 'px';
-    document.getElementById('ajax_loader').style.height = cHeight + 'px';
+    document.getElementById('ajax_loader').style.width           = cWidth + 'px';
+    document.getElementById('ajax_loader').style.height          = cHeight + 'px';
 
-    FPS = Math.round(100 / cSpeed);
+    FPS                    = Math.round(100 / cSpeed);
     SECONDS_BETWEEN_FRAMES = 1 / FPS;
 
     cPreloaderTimeout = setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES / 1000);
@@ -121,15 +54,15 @@ function startAnimation() {
  *
  * @return null
  *
- * @version 0.1 27.04.2015
+ * @version 0.6.5 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function continueAnimation() {
-    cXpos += cFrameWidth;
+    cXpos  += cFrameWidth;
     cIndex += 1;
 
     if (cIndex >= cTotalFrames) {
-        cXpos = 0;
+        cXpos  = 0;
         cIndex = 0;
     }
 
@@ -144,7 +77,7 @@ function continueAnimation() {
  *
  * @return null
  *
- * @version 0.1 27.04.2015
+ * @version 0.6.5 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function stopAnimation() {
@@ -160,17 +93,103 @@ function stopAnimation() {
  *
  * @return null
  *
- * @version 0.1 27.04.2015
+ * @version 0.6.5 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 function imageLoader(s, fun) {
     clearTimeout(cImageTimeout);
-    cImageTimeout = 0;
-    genImage = new Image();
-    genImage.onload = function (){cImageTimeout = setTimeout(fun, 0)};
+    cImageTimeout    = 0;
+    genImage         = new Image();
+    genImage.onload  = function (){cImageTimeout = setTimeout(fun, 0)};
     genImage.onerror = new Function('alert(\'Could not load the image\')');
-    genImage.src = s;
+    genImage.src     = s;
 };
 
 //The following code starts the animation
 new imageLoader(cImageSrc, 'startAnimation()');
+
+//
+//
+//           db        `7MMF'    db      `YMM'   `MP'
+//          ;MM:         MM     ;MM:       VMb.  ,P
+//         ,V^MM.        MM    ,V^MM.       `MM.M'
+//        ,M  `MM        MM   ,M  `MM         MMb
+//        AbmmmqMA       MM   AbmmmqMA      ,M'`Mb.
+//       A'     VML (O)  MM  A'     VML    ,P   `MM.
+//     .AMA.   .AMMA.Ymmm9 .AMA.   .AMMA..MM:.  .:MMa.
+//
+//
+
+var atomAJAX = (function() {
+    /**
+     * Инициализация объекта
+     *
+     * @return null
+     *
+     * @version 0.6.5 07.11.2015
+     * @author Дмитрий Щербаков <atomcms@ya.ru>
+     */
+    var init = function() {
+        // Настройки
+        $.ajaxSetup({
+            timeout: 20000,
+            type: 'POST',
+            dataType: 'json',
+            cache: false
+        });
+    };
+
+    /**
+     * Блок ожидания
+     *
+     * @param string action Показать или скрыть блок ожидания (show|hide)
+     *
+     * @return null
+     *
+     * @version 0.6.5 07.11.2015
+     * @author Дмитрий Щербаков <atomcms@ya.ru>
+     */
+    var blockWaiter = function(action) {
+        if (action === 'show') {
+            // Показ блока ожидания
+            $('#ajax_waiter').show();
+            $('#ajax_overlay').show();
+
+            // Скрываем старые ошибки
+            $('#alerts-container .alert').hide();
+        } else {
+            // Скрываем блок ожидания
+            $('#ajax_waiter').hide();
+            $('#ajax_overlay').hide();
+        }
+    };
+
+    /**
+     * Отображение ошибки AJAX
+     *
+     * @param string status Код ошибки
+     * @param string text   Текст сообщения
+     *
+     * @return null
+     *
+     * @version 0.6.5 07.11.2015
+     * @author Дмитрий Щербаков <atomcms@ya.ru>
+     */
+    var showError = function(status, text) {
+        switch (status) {
+            case 'timeout'    : showMessage('warning', 'Время ожидания истекло. Попробуйте ещё раз.'); break;
+            case 'parsererror': showMessage('warning', 'Ошибка парсера. Попробуйте ещё раз.'); break;
+            case 'abort'      : showMessage('info'   , 'Запрос был отменён.'); break;
+            case 'error'      : showMessage('danger' , 'Произошла ошибка сервера: ' + text + '. Передайте администрации и попробуйте ещё раз.'); break;
+            default           : showMessage('danger' , 'Неизвестная ошибка. Попробуйте ещё раз.'); break;
+        }
+    };
+
+    return {
+        init       : init,
+        showError  : showError,
+        blockWaiter: blockWaiter,
+    };
+})();
+
+atomAJAX.init();

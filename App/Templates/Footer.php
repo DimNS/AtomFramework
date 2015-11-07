@@ -2,7 +2,7 @@
 /**
  * Конечные определения страницы
  *
- * @version 0.6 27.10.2015
+ * @version 0.6.5 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -137,10 +137,13 @@ use AtomFramework\Utility\Func;
             <?php print(isset(Config::$global['page_js_vars']) ? Config::$global['page_js_vars'] : ''); ?>
         </script>
 
-        <script src="<?php echo Config::$global['path_short_root']; ?>/js/core<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/core.min.js'); ?>" type="text/javascript"></script>
-        <script src="<?php echo Config::$global['path_short_root']; ?>/js/ajax<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/ajax.min.js'); ?>" type="text/javascript"></script>
-        <script src="<?php echo Config::$global['path_short_root']; ?>/js/forms<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/forms.min.js'); ?>" type="text/javascript"></script>
-        <script src="<?php echo Config::$global['path_short_root']; ?>/js/app<?php print(Config::$global['production'] ? '.min' : ''); ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/app.min.js'); ?>" type="text/javascript"></script>
+        <?php $min = (Config::$global['production'] ? '.min' : ''); ?>
+        <script src="<?php echo Config::$global['path_short_root']; ?>/js/core<?php echo $min; ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/core.min.js'); ?>" type="text/javascript"></script>
+        <script src="<?php echo Config::$global['path_short_root']; ?>/js/ajax<?php echo $min; ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/ajax.min.js'); ?>" type="text/javascript"></script>
+        <script src="<?php echo Config::$global['path_short_root']; ?>/js/forms<?php echo $min; ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/forms.min.js'); ?>" type="text/javascript"></script>
+        <script src="<?php echo Config::$global['path_short_root']; ?>/js/app<?php echo $min; ?>.js?v=<?php echo md5_file(Config::$global['path_home_root'] . '/js/app.min.js'); ?>" type="text/javascript"></script>
+
+        <?php print(isset(Config::$global['page_js']) ? '<script src="' . Config::$global['path_short_root'] . '/js/page_' . Config::$global['page_js'] . $min . '.js?v=' . md5_file(Config::$global['path_home_root'] . '/js/page_' . Config::$global['page_js'] . '.min.js') . '" type="text/javascript"></script>' : ''); ?>
     </body>
 
 </html>

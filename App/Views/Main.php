@@ -4,7 +4,7 @@
  *
  * Класс для представления главной страницы
  *
- * @version 0.6 27.10.2015
+ * @version 0.6.5 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -35,7 +35,7 @@ class Main {
      *
      * @return null
      *
-     * @version 0.1 27.04.2015
+     * @version 0.6.5 07.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function dashboard($data) {
@@ -56,6 +56,10 @@ class Main {
             ?>
         </section><!-- /.content -->
         <?php
+        Config::$global['page_js'] = 'main';
+        Config::$global['page_js_vars'] = "
+
+        ";
         Template::show(['FooterInner', 'Footer']);
     }
 }

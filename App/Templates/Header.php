@@ -2,7 +2,7 @@
 /**
  * Начальные определения страницы
  *
- * @version 0.6 27.10.2015
+ * @version 0.6.5 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -23,7 +23,7 @@ use AtomFramework\Configs\Config;
 
     <meta property="og:title" content="<?php echo Config::$global['proj_name']; ?>">
     <meta property="og:description" content="<?php echo Config::$global['proj_descr']; ?>">
-    <meta property="og:image" content="<?php echo Config::$global['path_http_root']; ?>/images/logo-vk.jpg?v=<?php echo md5_file(Config::$global['path_home_root'] . '/images/logo-vk.jpg'); ?>">
+    <meta property="og:image" content="<?php echo Config::$global['path_http_root']; ?>/img/logo-vk.jpg?v=<?php echo md5_file(Config::$global['path_home_root'] . '/img/logo-vk.jpg'); ?>">
 
     <link rel="icon" href="<?php echo Config::$global['path_short_root']; ?>/favicon.ico?v=<?php echo md5_file(Config::$global['path_home_root'] . '/favicon.ico'); ?>" type="image/x-icon">
     <link rel="shortcut icon" href="<?php echo Config::$global['path_short_root']; ?>/favicon.ico?v=<?php echo md5_file(Config::$global['path_home_root'] . '/favicon.ico'); ?>" type="image/x-icon">
