@@ -4,12 +4,13 @@
  *
  * Класс для представления главной страницы
  *
- * @version 0.6.5 07.11.2015
+ * @version 0.6.7 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace AtomFramework\Views;
 
+use AtomFramework\Configs\Config;
 use AtomFramework\Utility\Func;
 use AtomFramework\Utility\Template;
 
