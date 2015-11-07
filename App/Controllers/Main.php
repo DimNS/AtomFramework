@@ -4,7 +4,7 @@
  *
  * Класс для вызова главной страницы
  *
- * @version 0.6.3 04.11.2015
+ * @version 0.6.6 07.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -42,7 +42,7 @@ class Main {
      *
      * @return content
      *
-     * @version 0.6 27.10.2015
+     * @version 0.6.6 07.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function error($message_code, $message_text) {
@@ -51,7 +51,7 @@ class Main {
         Config::$global['message_text'] = $message_text;
 
         // Получаем данные для главной страницы (без авторизации)
-        return MainView::landing(MainModel::index(false));
+        return MainView::landing(MainModel::landing(false));
     }
 }
 ?>
