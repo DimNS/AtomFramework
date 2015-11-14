@@ -4,7 +4,7 @@
  *
  * Модель для применения изменений в БД
  *
- * @version 0.6 27.10.2015
+ * @version 0.7.0 14.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -30,7 +30,7 @@ class Migration {
      *
      * @return array
      *
-     * @version 0.3 08.05.2015
+     * @version 0.7.0 14.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function install() {
@@ -43,7 +43,7 @@ class Migration {
             if ($content != '') {
                 // Собираем результат работы
                 $sql_success = 0;
-                $result = [];
+                $result      = [];
 
                 // Предварительно обрабатываем содержимое файла
                 $sql_list = sql_split($content);
@@ -61,23 +61,23 @@ class Migration {
 
                             $result[] = [
                                 'code' => 'success',
-                                'sql' => $command,
+                                'sql'  => $command,
                             ];
                         } else {
                             $result[] = [
                                 'code' => 'error',
-                                'sql' => $command,
+                                'sql'  => $command,
                             ];
                         }
                     }
                 }
 
                 return [
-                    'code' => 'success',
-                    'text' => 'Обработка выполнена.',
-                    'data_count' => $sql_count,
+                    'code'         => 'success',
+                    'text'         => 'Обработка выполнена.',
+                    'data_count'   => $sql_count,
                     'data_success' => $sql_success,
-                    'data' => $result,
+                    'data'         => $result,
                 ];
             } else {
                 return [
@@ -110,7 +110,7 @@ class Migration {
      *
      * @return array
      *
-     * @version 0.3 08.05.2015
+     * @version 0.7.0 14.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function change() {
@@ -122,6 +122,7 @@ class Migration {
 
             if ($content != '') {
                 // Собираем результат работы
+                $sql_success = 0;
                 $result = [];
 
                 // Предварительно обрабатываем содержимое файла
@@ -136,24 +137,27 @@ class Migration {
                         $db_result = query($command, [], __FILE__, __LINE__);
 
                         if ($db_result != -1) {
+                            ++$sql_success;
+
                             $result[] = [
                                 'code' => 'success',
-                                'sql' => $command,
+                                'sql'  => $command,
                             ];
                         } else {
                             $result[] = [
                                 'code' => 'error',
-                                'sql' => $command,
+                                'sql'  => $command,
                             ];
                         }
                     }
                 }
 
                 return [
-                    'code' => 'success',
-                    'text' => 'Обработка выполнена.',
-                    'data_count' => $sql_count,
-                    'data' => $result,
+                    'code'         => 'success',
+                    'text'         => 'Обработка выполнена.',
+                    'data_count'   => $sql_count,
+                    'data_success' => $sql_success,
+                    'data'         => $result,
                 ];
             } else {
                 return [
@@ -171,16 +175,16 @@ class Migration {
 }
 
 //
-//                     ,,                      ,,    ,,
-//                   `7MM                    `7MM    db   mm
-//                     MM                      MM         MM
-//  ,pP"Ybd  ,dW"Yvd   MM   ,pP"Ybd `7MMpdMAo. MM  `7MM mmMMmm
-//  8I   `" ,W'   MM   MM   8I   `"   MM   `Wb MM    MM   MM
-//  `YMMMa. 8M    MM   MM   `YMMMa.   MM    M8 MM    MM   MM
-//  L.   I8 YA.   MM   MM   L.   I8   MM   ,AP MM    MM   MM
-//  M9mmmP'  `MbmdMM .JMML. M9mmmP'   MMbmmd'.JMML..JMML. `Mbmo
-//                MM                  MM
-//              .JMML.  mmmmmmm     .JMML.
+//                        ,,                         ,,    ,,
+//                      `7MM                       `7MM    db   mm
+//                        MM                         MM         MM
+//     ,pP"Ybd  ,dW"Yvd   MM      ,pP"Ybd `7MMpdMAo. MM  `7MM mmMMmm
+//     8I   `" ,W'   MM   MM      8I   `"   MM   `Wb MM    MM   MM
+//     `YMMMa. 8M    MM   MM      `YMMMa.   MM    M8 MM    MM   MM
+//     L.   I8 YA.   MM   MM      L.   I8   MM   ,AP MM    MM   MM
+//     M9mmmP'  `MbmdMM .JMML.    M9mmmP'   MMbmmd'.JMML..JMML. `Mbmo
+//                   MM                     MM
+//                 .JMML.                 .JMML.
 
 /**
  * Функция разделяет SQL-запросы по разделителю ";" и возвращает массив запросов.

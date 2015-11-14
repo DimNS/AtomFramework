@@ -2,7 +2,7 @@
 /**
  * Конечные определения страницы
  *
- * @version 0.6.5 07.11.2015
+ * @version 0.7.0 14.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -115,8 +115,8 @@ use AtomFramework\Utility\Func;
         <script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/jquery.jsdeferred.js" type="text/javascript"></script>
         <!-- Bootstrap Toggle -->
         <script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-toggle/bootstrap-toggle.min.js" type="text/javascript"></script>
-        <!-- Bootstrap Tour -->
-        <script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-tour/bootstrap-tour.min.js" type="text/javascript"></script>
+        <!-- EnjoyHint -->
+        <script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/EnjoyHint/enjoyhint.min.js" type="text/javascript"></script>
         <!-- iCheck -->
         <script src="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
         <!-- Select2 -->

@@ -2,7 +2,7 @@
 /**
  * Начальные определения страницы
  *
- * @version 0.6.5 07.11.2015
+ * @version 0.7.0 14.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -46,8 +46,8 @@ use AtomFramework\Configs\Config;
 
     <!-- Bootstrap Toggle -->
     <link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-toggle/bootstrap-toggle.min.css" rel="stylesheet" type="text/css">
-    <!-- Bootstrap Tour -->
-    <link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/bootstrap-tour/bootstrap-tour.min.css" rel="stylesheet" type="text/css">
+    <!-- EnjoyHint -->
+    <link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/EnjoyHint/enjoyhint.css" rel="stylesheet" type="text/css">
     <!-- iCheck -->
     <link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css">
     <!-- Select2 -->

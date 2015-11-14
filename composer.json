@@ -1,5 +1,5 @@
 {
-    "name": "dimns/atomframework",
+    "name": "DimNS/AtomFramework",
     "description": "Lightweight PHP-framework for SaaS projects",
     "type": "project",
     "license": "MIT",
@@ -11,13 +11,11 @@
             "role": "Developer"
         }
     ],
-    "require": {
-        "php": ">=5.4.0"
-    },
     "autoload": {
         "psr-4": { "AtomFramework\\": "App/" }
     },
     "require": {
+		"php": ">=5.4.0",
         "mobiledetect/mobiledetectlib": "^2.8",
         "erusev/parsedown": "^1.6",
         "phpmailer/phpmailer": "^5.2"

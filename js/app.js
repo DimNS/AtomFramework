@@ -1,7 +1,7 @@
 /**
  * Мое приложение
  *
- * @version 0.6.5 07.11.2015
+ * @version 0.7.0 14.11.2015
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -11,61 +11,36 @@ var app = (function() {
      *
      * @return null
      *
-     * @version 0.6.5 07.11.2015
+     * @version 0.7.0 14.11.2015
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     var init = function() {
         // Выполняем следующий код только после авторизации пользователя
         if (window.pageLogin) {
+            // Для дебага
+            window.firstLogin = true;
+
             // Если это первый вход
             if (window.firstLogin) {
-                // Создаем и настраиваем тур по системе
-                var tour = new Tour({
-                    backdrop: true,
-                    template:
-                        '<div class="popover tour">' +
-                            '<div class="arrow"></div>' +
-                            '<h3 class="popover-title"></h3>' +
-                            '<div class="popover-content"></div>' +
-                            '<div class="popover-navigation">' +
-                                '<button class="btn btn-primary" data-role="prev"><i class="fa fa-arrow-left"></i></button>' +
-                                '<span data-role="separator">&nbsp;</span>' +
-                                '<button class="btn btn-primary" data-role="next"><i class="fa fa-arrow-right"></i></button>' +
-                                '<button class="btn btn-default" data-role="end">Завершить</button>' +
-                            '</div>' +
-                        '</div>'
-                    ,
-                    steps: [{
-                        element  : '#userinfo_drop_menu',
-                        title    : 'Меню пользователя',
-                        content  : 'Нажав сюда, можно попасть на страницу вашего профиля, а также выйти из системы',
-                        placement: 'bottom'
+                // Инициируем тур по системе
+                var tourEnjoyHint = new EnjoyHint({});
+
+                // Настраиваем тур по системе
+                tourEnjoyHint.set([
+                    {
+                        'next .sidebar-toggle' : '<h2>Скрыть основное меню</h2><p>Не хотите видеть основное меню, нажмите эту кнопку и меню исчезнет.</p><p>Нажмите ещё раз эту кнопку и меню появится обратно.</p>',
+                        'nextButton': {text: 'Далее'},
+                        'margin': 0,
                     }, {
-                        element  : '.logo',
-                        title    : 'Переход на главную',
-                        content  : 'Для перехода с любой страницы обратно на главную, нажмите здесь',
-                        placement: 'bottom'
+                        'next .sidebar' : '<h2>Основное меню</h2><p>Здесь располагается основное меню системы.</p>',
+                        'nextButton': {text: 'Далее'},
+                        'margin': 0,
                     }, {
-                        element  : '.sidebar',
-                        title    : 'Основное меню',
-                        content  : 'Здесь располагается основное меню системы, для перехода в нужный раздел нажмите на него',
-                        placement: 'right'
+                        'next #changelog_link' : '<h2>История изменений</h2><p>Нажав сюда, вы сможете посмотреть последние изменения в системе и узнать о новых возможностях.</p>',
+                        'nextButton': {text: 'Далее'},
                     }, {
-                        element  : '.sidebar-toggle',
-                        title    : 'Скрыть основное меню',
-                        content  : 'Не хотите видеть основное меню, нажмите эту кнопку и меню исчезнет, чтобы показать меню ещё раз нажмите эту кнопку',
-                        placement: 'bottom'
-                    }, {
-                        element  : '#changelog_link',
-                        title    : 'История изменений',
-                        content  : 'Нажав сюда вы сможете посмотреть последние изменения в системе и узнать о новых возможностях',
-                        placement: 'top'
-                    }, {
-                        element  : '#atom_confirm',
-                        title    : 'И в завершении',
-                        content  : 'А сейчас вы можете сменить пароль на более удобный для вас',
-                        placement: 'top',
-                        onShow: function() {
+                        'click #atom_confirm' : '<h2>И в завершении</h2><p>А сейчас вы можете сменить пароль на более удобный для вас.</p>',
+                        onBeforeStart: function() {
                             // Меняем номер версии на актуальный, чтобы больше не выдавать окно с содержимым CHANGELOG.md
                             $.ajax({
                                 url: window.pathRoot + '/changelog/check'
@@ -81,15 +56,12 @@ var app = (function() {
                                     },
                                 },
                             });
-                        }
-                    }]
-                });
-
-                // Инициализируем тур по системе
-                tour.init();
+                        },
+                    },
+                ]);
 
                 // Запускаем тур по системе
-                tour.start();
+                tourEnjoyHint.run();
             } else {
                 // Если новая версия
                 if (window.changelog) {
