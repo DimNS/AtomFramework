@@ -2,7 +2,7 @@
 /**
  * Подвал страницы
  *
- * @version 0.6 27.10.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -18,7 +18,7 @@ use AtomFramework\Configs\Config;
             </div>
 
             <!-- Default to the left -->
-            <?php echo Config::$global['start_year']; ?> &copy; <?php echo Config::$global['proj_name']; ?> <a id="changelog_link" href="javascript:;" class="wnd_open" data-id="changelog">v<?php echo Config::$global['version']; ?></a>
+            <?php echo Config::$global['start_year']; ?> &copy; <?php echo Config::$global['proj_name']; ?> <a id="changelog_link" href="javascript:;" class="wnd_open" data-id="changelog">v<?php echo $_ENV['VERSION']; ?></a>
         </footer>
     </div><!-- ./wrapper -->
 </div><!-- ./container_all -->

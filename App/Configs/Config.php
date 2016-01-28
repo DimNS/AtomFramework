@@ -4,7 +4,7 @@
  *
  * Класс для работы с настройками проекта
  *
- * @version 0.6 27.10.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -17,9 +17,6 @@ class Config {
     public static $global = [
         // Это боевой сервер (true), необходим для подставления .min в подключении скриптов и блокировки отправки почты (boolean)
         'production' => false,
-
-        // Текущий номер версии проекта (string)
-        'version' => '0.1',
 
         // Название проекта (string)
         'proj_name' => 'Atom Framework',

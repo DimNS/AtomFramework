@@ -4,7 +4,7 @@
  *
  * Модель для работы с пользователями
  *
- * @version 0.6.4 04.11.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -32,16 +32,15 @@ class User {
     /**
      * Добавление нового пользователя
      *
-     * @param string $name     Имя пользователя
-     * @param string $email    Почтовый адрес
-     * @param string $password Пароль
+     * @param string $name  Имя пользователя
+     * @param string $email Почтовый адрес
      *
      * @return array
      *
-     * @version 0.6.4 04.11.2015
+     * @version 0.8.0 28.01.2016
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
-    static function add($name, $email, $password) {
+    static function add($name, $email) {
         $db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
             WHERE email = :email
             LIMIT 1
@@ -62,7 +61,7 @@ class User {
                     'email'      => $email,
                     'password'   => Func::collect_password($password),
                     'name'       => $name,
-                    'version'    => Config::$global['version'],
+                    'version'    => 0,
                     'created_at' => Config::$global['currtime_format'],
                 ], __FILE__, __LINE__);
                 if ($db_result >= 0) {
@@ -76,9 +75,12 @@ class User {
                     } else {
                         Email::send('newuser', Config::$global['mail_from_email'], ['email' => $email]);
 
+                        // Проводим авторизацию
+                        \AtomFramework\Utility\Session::create($db_result);
+
                         return [
                             'code' => 'success',
-                            'text' => 'Для входа воспользуйтесь паролем отправленным на почту.',
+                            'text' => 'Пользователь успешно зарегистрирован.',
                         ];
                     }
                 } else {
@@ -247,13 +249,14 @@ class User {
      * @param string $name        Имя пользователя
      * @param string $password    Новый пароль, если указан
      * @param string $newpassword Статус смены пароля
+     * @param string $oldpassword Старый пароль, для проверки полномочий
      *
      * @return array
      *
-     * @version 0.6.4 04.11.2015
+     * @version 0.8.0 28.01.2016
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
-    static function save($name, $password, $newpassword) {
+    static function save($name, $password, $newpassword, $oldpassword) {
         $db_result = query("SELECT * FROM `" . Config::$global['db_prefix'] . "user`
             WHERE id = :id
             LIMIT 1
@@ -261,21 +264,29 @@ class User {
             'id' => Config::$userinfo['id'],
         ], __FILE__, __LINE__);
         if ($db_result != -1 AND count($db_result) > 0) {
-            if ($newpassword) {
+            if ($newpassword === 'true') {
                 if ($password != '' AND mb_strlen($password) > 3) {
-                    $db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
-                        name = :name,
-                        password = :password,
-                        updated_at = :updated_at
-                        WHERE id = :id
-                        LIMIT 1
-                    ", [
-                        'name'       => $name,
-                        'password'   => Func::collect_password($password),
-                        'id'         => Config::$userinfo['id'],
-                        'updated_at' => Config::$global['currtime_format'],
-                    ], __FILE__, __LINE__);
-                    Protocol::ins('Сохранение личных данных с изменением пароля', __FILE__, __LINE__, __FUNCTION__);
+                    // Проверяем старый пароль, чтобы проверить что пользователь знает старый пароль
+                    if (crypt($oldpassword, $old['password']) === $old['password']) {
+                        $db_result = query("UPDATE `" . Config::$global['db_prefix'] . "user` SET
+                            name = :name,
+                            password = :password,
+                            updated_at = :updated_at
+                            WHERE id = :id
+                            LIMIT 1
+                        ", [
+                            'name'       => $name,
+                            'password'   => Func::collect_password($password),
+                            'id'         => Config::$userinfo['id'],
+                            'updated_at' => Config::$global['currtime_format'],
+                        ], __FILE__, __LINE__);
+                        Protocol::ins('Сохранение личных данных с изменением пароля', __FILE__, __LINE__, __FUNCTION__);
+                    } else {
+                        return [
+                            'code' => 'warning',
+                            'text' => 'Неверный старый пароль. Попробуйте ещё раз.',
+                        ];
+                    }
                 } else {
                     return [
                         'code' => 'info',

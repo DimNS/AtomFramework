@@ -4,7 +4,7 @@
  *
  * Класс для работы с пользователями
  *
- * @version 0.6 27.10.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -23,7 +23,7 @@ class User {
      *
      * @return content
      *
-     * @version 0.6 27.10.2015
+     * @version 0.8.0 28.01.2016
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     static function start($params) {
@@ -71,7 +71,7 @@ class User {
             break;
 
             case 'add':
-                return UserModel::add($params['params']['name'], $params['params']['email'], $params['params']['password']);
+                return UserModel::add($params['params']['name'], $params['params']['email']);
             break;
 
             case 'get':
@@ -80,7 +80,7 @@ class User {
 
             case 'save':
                 if (Func::is_login()) {
-                    return UserModel::save($params['params']['name'], $params['params']['password'], $params['params']['newpassword']);
+                    return UserModel::save($params['params']['name'], $params['params']['password'], $params['params']['newpassword'], $params['params']['oldpassword']);
                 } else {
                     return MainController::error('info', 'Необходимо войти в систему');
                 }

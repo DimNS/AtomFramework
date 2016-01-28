@@ -2,7 +2,7 @@
 /**
  * Конечные определения страницы
  *
- * @version 0.7.0 14.11.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -13,7 +13,7 @@ use AtomFramework\Utility\Func;
         <div id="atom_confirm" class="window">
             <div class="modal-content">
                 <div class="modal-header">
-                    <a href="javascript:windowClose('atom_confirm');" class="close"><i class="fa fa-times"></i></a>
+                    <a href="javascript:atomCore.windowClose('atom_confirm');" class="close"><i class="fa fa-times"></i></a>
                     <h4 class="modal-title">NaN</h4>
                 </div>
                 <div class="modal-body">
@@ -133,7 +133,7 @@ use AtomFramework\Utility\Func;
             var mobileBrowser = <?php print(Config::$global['mobile'] ? 'true' : 'false'); ?>;
             var pageLogin = <?php print(Func::is_login() ? 'true' : 'false'); ?>;
             var firstLogin = <?php if (isset(Config::$userinfo['version']) AND Config::$userinfo['version'] === '0') { echo 'true'; } else { echo 'false'; } ?>;
-            var changelog = <?php if (isset(Config::$userinfo['version']) AND Config::$userinfo['version'] < Config::$global['version']) { echo 'true'; } else { echo 'false'; } ?>;
+            var changelog = <?php if (isset(Config::$userinfo['version']) AND Config::$userinfo['version'] != $_ENV['VERSION']) { echo 'true'; } else { echo 'false'; } ?>;
             <?php print(isset(Config::$global['page_js_vars']) ? Config::$global['page_js_vars'] : ''); ?>
         </script>
 

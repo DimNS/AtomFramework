@@ -1,7 +1,7 @@
 /**
  * Функции JavaScript для AJAX
  *
- * @version 0.6.5 07.11.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -172,16 +172,16 @@ var atomAJAX = (function() {
      *
      * @return null
      *
-     * @version 0.6.5 07.11.2015
+     * @version 0.8.0 28.01.2016
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     var showError = function(status, text) {
         switch (status) {
-            case 'timeout'    : showMessage('warning', 'Время ожидания истекло. Попробуйте ещё раз.'); break;
-            case 'parsererror': showMessage('warning', 'Ошибка парсера. Попробуйте ещё раз.'); break;
-            case 'abort'      : showMessage('info'   , 'Запрос был отменён.'); break;
-            case 'error'      : showMessage('danger' , 'Произошла ошибка сервера: ' + text + '. Передайте администрации и попробуйте ещё раз.'); break;
-            default           : showMessage('danger' , 'Неизвестная ошибка. Попробуйте ещё раз.'); break;
+            case 'timeout'    : atomCore.showMessage('warning', 'Время ожидания истекло. Попробуйте ещё раз.'); break;
+            case 'parsererror': atomCore.showMessage('warning', 'Ошибка парсера. Попробуйте ещё раз.'); break;
+            case 'abort'      : atomCore.showMessage('info'   , 'Запрос был отменён.'); break;
+            case 'error'      : atomCore.showMessage('danger' , 'Произошла ошибка сервера: ' + text + '. Передайте администрации и попробуйте ещё раз.'); break;
+            default           : atomCore.showMessage('danger' , 'Неизвестная ошибка. Попробуйте ещё раз.'); break;
         }
     };
 

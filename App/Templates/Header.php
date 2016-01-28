@@ -2,7 +2,7 @@
 /**
  * Начальные определения страницы
  *
- * @version 0.7.0 14.11.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -56,8 +56,8 @@ use AtomFramework\Configs\Config;
     <link href="<?php echo Config::$global['path_short_root']; ?>/assets/plugins/validationEngine/validationEngine.jquery.css" rel="stylesheet" type="text/css">
 
     <link href="<?php echo Config::$global['path_short_root']; ?>/css/font-awesome/css/font-awesome.css?v=4.2.0" rel="stylesheet" type="text/css">
-    <link href="<?php echo Config::$global['path_short_root']; ?>/css/style.css?v=<?php echo Config::$global['version']; ?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo Config::$global['path_short_root']; ?>/css/redefinition.css?v=<?php echo Config::$global['version']; ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo Config::$global['path_short_root']; ?>/css/style.css?v=<?php echo $_ENV['VERSION']; ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo Config::$global['path_short_root']; ?>/css/redefinition.css?v=<?php echo $_ENV['VERSION']; ?>" rel="stylesheet" type="text/css">
 
     <title><?php echo Config::$global['proj_name']; ?></title>
 </head>

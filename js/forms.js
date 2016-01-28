@@ -1,7 +1,7 @@
 /**
  * Формы для проверки валидатором и запуска AJAX
  *
- * @version 0.6.5 07.11.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -11,7 +11,7 @@ var atomForms = (function() {
      *
      * @return null
      *
-     * @version 0.6.5 07.11.2015
+     * @version 0.8.0 28.01.2016
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     var init = function() {
@@ -42,11 +42,15 @@ var atomForms = (function() {
                             data: {
                                 'ajax' : true,
                                 'name' : $('#forma_reg_name').val(),
-                                'email': $('#forma_reg_email').val()
+                                'email': $('#forma_reg_email').val(),
                             },
                             success: function(data, textStatus, jqXHR) {
                                 atomCore.windowClose('user_reg');
                                 atomCore.showMessage(data.code, data.text);
+
+                                if (data.code == 'success') {
+                                    location.replace(window.pathRoot);
+                                }
                             },
                             complete: function() {
                                 atomAJAX.blockWaiter('hide');
@@ -65,7 +69,7 @@ var atomForms = (function() {
                             url: window.pathRoot + '/user/lost_password',
                             data: {
                                 'ajax' : true,
-                                'email': $('#forma_lost_email').val()
+                                'email': $('#forma_lost_email').val(),
                             },
                             success: function(data, textStatus, jqXHR) {
                                 atomCore.windowClose('user_lost');
@@ -90,7 +94,8 @@ var atomForms = (function() {
                                 'ajax'       : true,
                                 'name'       : $('#forma_users_save_name').val(),
                                 'password'   : $('#forma_users_save_password').val(),
-                                'newpassword': $('#forma_users_save_newpassword').prop('checked')
+                                'newpassword': $('#forma_users_save_newpassword').prop('checked'),
+                                'oldpassword': $('#forma_users_save_password_old').val(),
                             },
                             success: function(data, textStatus, jqXHR) {
                                 $('.userinfo_name').text($('#forma_users_save_name').val());

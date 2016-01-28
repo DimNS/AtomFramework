@@ -2,7 +2,7 @@
 /**
  * Функции системы
  *
- * @version 0.6.4 04.11.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -34,6 +34,10 @@ require_once('Configs/Database.php');
 
 // Проверка браузера на мобильность
 $mdetect = new \Detection\MobileDetect();
+
+// Работа с файлом .env
+$dotenv_version = new Dotenv\Dotenv(__DIR__, '.version');
+$dotenv_version->load();
 
 //
 //

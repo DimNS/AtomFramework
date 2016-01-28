@@ -28,10 +28,7 @@ class User {
         ?>
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Профиль
-                <small>мои настройки</small>
-            </h1>
+            <h1>Профиль</h1>
         </section>
 
         <!-- Main content -->
@@ -55,13 +52,19 @@ class User {
                         <div class="form-group">
                             <label>Новый пароль</label>
                             <label><input type="checkbox" id="forma_users_save_newpassword" class="bootstrap-toggle" data-on="Да" data-off="Нет" data-size="mini"></label>
-                            <div id="user_profile_newpwd_block" class="form-group input-group has-feedback hide">
-                                <input type="password" id="forma_users_save_password" class="form-control" name="password">
-                                <span id="show_hide_password" class="input-group-btn">
-                                    <button class="btn btn-info" type="button">
-                                        <span class="fa fa-fw fa-lock"></span>
-                                    </button>
-                                </span>
+                            <div id="user_profile_newpwd_block" class="hide">
+                                <div class="form-group input-group has-feedback">
+                                    <input type="password" id="forma_users_save_password" class="form-control" name="password">
+                                    <span id="show_hide_password" class="input-group-btn">
+                                        <button class="btn btn-info" type="button">
+                                            <span class="fa fa-fw fa-lock"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <div>
+                                    <label>Укажите старый пароль для проверки ваших полномочий</label>
+                                    <input type="password" id="forma_users_save_password_old" class="form-control" name="password">
+                                </div>
                             </div>
                         </div>
                     </div><!-- /.box-body -->

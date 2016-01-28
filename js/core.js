@@ -1,12 +1,12 @@
 /**
  * Общие функции JavaScript
  *
- * @version 0.6.5 07.11.2015
+ * @version 0.8.0 28.01.2016
  * @author Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 var atomCore = (function() {
-    // Позиция скролла основного окна, для работы всплывюащих окон
+    // Позиция скролла основного окна, для работы всплывающих окон
     var iScrolled = 0;
 
     // Активное всплывающее окно
@@ -17,7 +17,7 @@ var atomCore = (function() {
      *
      * @return null
      *
-     * @version 0.6.5 07.11.2015
+     * @version 0.8.0 28.01.2016
      * @author Дмитрий Щербаков <atomcms@ya.ru>
      */
     var init = function() {
@@ -32,6 +32,15 @@ var atomCore = (function() {
         $('body').on('click', '#window_overlay', function() {
             if (atomCore.windowActive != 'NaN') {
                 atomCore.windowClose(atomCore.windowActive);
+            }
+        });
+
+        $(document).mouseup(function (e) {
+            if (atomCore.windowActive != 'NaN' && $('.window_layer_box').is(':visible')) {
+                var container = $('.window_layer_box');
+                if (container.has(e.target).length === 0){
+                    atomCore.windowClose(atomCore.windowActive);
+                }
             }
         });
 

@@ -44,10 +44,7 @@ class Main {
         ?>
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Главная
-                <small>сводная информация</small>
-            </h1>
+            <h1>Главная</h1>
         </section>
 
         <!-- Main content -->
